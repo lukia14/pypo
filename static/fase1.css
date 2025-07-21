@@ -1,0 +1,104 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-image:url('../imagens/fase 1/fundo_azul_circular.png');
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    padding: 30px 40px;
+    width: 700px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    position: relative;
+    margin-right: 100px;
+}
+
+.titulo {
+    background-color: #4a97c4;
+    color: #000;
+    padding: 10px 20px;
+    display: inline-block;
+    border-radius: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.pergunta {
+    background-color: #b5dcf8;
+    color: #000;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.botoes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.botao {
+    background-color: #d8eafd;
+    color: #000;
+    border: none;
+    padding: 12px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.botao:hover {
+    background-color: #a9d3fa;
+}
+
+.dica {
+    position: absolute;
+    right: -200px;
+    top: 50px;
+    width: 200px;
+    color: #000;
+}
+
+.dica .balao {
+    background-color: #d0ebff;
+    border-radius: 15px;
+    padding: 10px;
+    font-size: 14px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    margin-bottom: 10px;
+}
+
+.dica img {
+    width: 100%;
+}
+
+.cubo{
+    width:40px;
+    margin-right:10px;
+}.acerto {
+    background-color: #4caf50;
+    color: white;
+}
+.acerto:hover {
+    background-color: #45a049;
+}
+
+.erro{
+    background-color: #f44336;
+    color: white;
+}
+.erro:hover {
+    background-color: #b92d2b;
+}
