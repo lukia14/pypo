@@ -4,8 +4,7 @@ const botao3 = document.createElement("button")
 const botao4 = document.createElement("button")
 const div = document.querySelector(".botoes")
 const balao = document.querySelector('.balao')
-const contaudo_balao = document.querySelector('.conteudo-dica')
-contaudo_balao.innerHTML = 'dica'
+
 
 botao1.innerHTML = "my_var"
 botao2.innerHTML = "2_variable"
@@ -36,9 +35,3 @@ botao4.addEventListener("click", () => {
 })
 
 div.append(botao1, botao2, botao3, botao4)
-
-
-balao.addEventListener('click',()=>{
-    contaudo_balao.innerHTML = 'Dica: Variáveis não podem começar com número, ter espaço ou símbolo!'
-
-})

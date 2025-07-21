@@ -1,3 +1,4 @@
+
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
@@ -7,15 +8,18 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    
 }
 
 .container {
+    left: -13rem;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 20px;
     padding: 30px 40px;
     width: 700px;
     box-shadow: 0 0 15px rgba(0,0,0,0.3);
     position: relative;
+    justify-content: center;
     margin-right: 100px;
 }
 
@@ -71,14 +75,6 @@ body {
     color: #000;
 }
 
-.dica .balao {
-    background-color: #d0ebff;
-    border-radius: 15px;
-    padding: 10px;
-    font-size: 14px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.2);
-    margin-bottom: 10px;
-}
 
 .dica img {
     width: 100%;
@@ -101,4 +97,18 @@ body {
 }
 .erro:hover {
     background-color: #b92d2b;
+}
+.balao{
+    background-image:url('../imagens/fase 1/balao_pensamento.png'); 
+    height: 100px;
+    width: 80px;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    font-size: 15px;
+    padding: 100px;
 }
