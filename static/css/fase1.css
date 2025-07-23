@@ -1,7 +1,10 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background-image:url('../imagens/fase 1/fundo_azul_circular.png');
+     background: radial-gradient(circle at center, #87CEFA, #00b0eb, #03536e);
+    height: 100vh; /* Garante que o fundo preencha toda a altura da viewport */
+    margin: 0; /* Remove as margens padrão do body */
+    background-repeat: no-repeat;
     color: white;
     display: flex;
     justify-content: center;

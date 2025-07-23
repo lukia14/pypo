@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trabalho Web</title>
+{{%extends "template.html"%}}
+{{%block cabecalho%}}
     <link rel="stylesheet" href="../static/fase1.css">
     <script src="../scripts/fase1.js" defer></script>
-</head>
-<body>
+{{%endblock%}}
+
+
+{{%block corpo%}}
   <section>
     <div class="container">
     <div class="titulo"><img src="../imagens/fase 1/cubo_recortado.png" alt="imagem cubo" class="cubo">Variáveis</div>
@@ -28,5 +26,6 @@
       </section>
     </div>
   </div>
-</body>
-</html>
+{{%endblock%}}
+
+
