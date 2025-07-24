@@ -1,4 +1,4 @@
-from flask import render_template,flash, request, redirect, url_for
+from flask import render_template,flash, request, redirect, url_for, session
 from main import app, bd
 from helpers import FormularioUsuario
 from models import Usuario
@@ -33,9 +33,21 @@ def criar():
     bd.session.add(novo_usuario)
     bd.session.commit()
     flash('Usuário cadastrado com sucesso!', 'success')
+    session['usuario_logado'] = nickname
     return redirect(url_for('index'))
 
 @app.route('/login')
 def login():
-    form = FormularioUsuario()
+    if session['usuario_logado'] != None:
+        flash(f'Você já está logado como {session['usuario_logado']}')
+        return redirect(url_for('index'))
+    
+    form = FormularioUsuario(request.form)
+    session['usuario_logado'] = form.nickname.data
     return render_template('login.html', form=form, titulo='Login')
+
+@app.route('/logout')
+def logout():
+    session['usuario_logado'] = None
+    flash('Você foi desconectado com sucesso!', 'success')
+    return redirect(url_for('index'))

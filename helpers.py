@@ -4,6 +4,6 @@ from wtforms.validators import DataRequired, Length
 
 class FormularioUsuario(FlaskForm):
     nickname = StringField("Nickname", validators=[DataRequired(), Length(min=1, max=20)])
-    email = StringField('Email', validators=[DataRequired(), Length(min=6, max=35)])
-    senha = PasswordField('Senha', validators=[DataRequired(), Length(min=6, max=35)])
+    email = StringField('Email', validators=[DataRequired(), Length(min=1, max=35)])
+    senha = PasswordField('Senha', validators=[DataRequired(), Length(min=1, max=35)])
     enviar = SubmitField('Enviar')
