@@ -38,13 +38,29 @@ def criar():
 
 @app.route('/login')
 def login():
+    form = FormularioUsuario()
     if session['usuario_logado'] != None:
         flash(f'Você já está logado como {session['usuario_logado']}')
         return redirect(url_for('index'))
-    
+    else:
+        proxima = request.args.get('proxima')
+        return render_template('login.html', titulo='Login', form=form, proxima = proxima)
+
+@app.route('/autenticar', methods=['POST'])
+def autenticar():
     form = FormularioUsuario(request.form)
-    session['usuario_logado'] = form.nickname.data
-    return render_template('login.html', form=form, titulo='Login')
+    usuario = Usuario.query.filter_by(nickname = form.nickname.data).first()
+    if usuario:
+        if usuario.senha == form.senha.data:
+            session['usuario_logado'] = usuario.nickname
+            proxima_pagina = request.form['proxima']
+            flash('Usuário autenticado com sucesso!', 'success')
+            return redirect(url_for(proxima_pagina))
+        else:
+            flash('Erro ao autenticar. Verifique os dados e tente novamente.', 'error')
+    else:
+        flash('Usuário não encontrado. Verifique os dados e tente novamente.', 'error')
+        return redirect(url_for('login'))
 
 @app.route('/logout')
 def logout():

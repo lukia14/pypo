@@ -1,13 +1,14 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ titulo }}</title>
-</head>
-<body>
-    <h1>PYPO</h1>
-    <a href="{{url_for('cadastrar')}}">Cadastro</a>
-    <a href="{{url_for('login')}}">Login</a>
-</body>
-</html>
+{%extends "template.html"%}
+{%block cabecalho%}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{%endblock%}
+
+{%block corpo%}
+    <h1>Bem-vindo ao PYPO</h1>
+    <p>O jogo de programação que ensina Python de forma divertida!</p>
+    <div class="links">
+        <a href="{{ url_for('cadastrar', proxima='index') }}">Cadastro</a>
+        <a href="{{ url_for('login', proxima='index') }}">Login</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+{%endblock%}

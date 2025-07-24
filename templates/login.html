@@ -7,7 +7,8 @@
   <div class="container">
     <div class="login-box">
       <h2>Login</h2>
-      <form method="post">
+      <form action = "{{url_for('autenticar')}}" method="post">
+        <input type="hidden" name="proxima" value="{{ proxima }}">
         {{ form.csrf_token() }}
          <!-- <label for="nickname">Nickname</label> -->
           {{form.nickname.label()}}

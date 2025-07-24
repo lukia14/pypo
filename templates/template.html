@@ -4,21 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ titulo }}</title>
-</head>
-<body>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
     {% block cabecalho %}
         <!-- Conteúdo do cabeçalho aqui -->
     {% endblock %}
+</head>
+<body>
 
-        {% with messages = get_flashed_messages(with_categories=true) %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
         <ul class="flashes">
-        {% for category, message in messages %}
-        <li class="{{ category }}">{{ message }}</li>
-        {% endfor %}
+            {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
         </ul>
     {% endif %}
-    {% endwith %}
+{% endwith %}
 
     {% block corpo %}
         <!-- Conteúdo do corpo aqui -->
