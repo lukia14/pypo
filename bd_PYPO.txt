@@ -18,7 +18,7 @@ CREATE TABLE Item
 CREATE TABLE Mundo 
 ( 
  idMundo INT PRIMARY KEY AUTO_INCREMENT,  
- linguagem INT NOT NULL,  
+ linguagem VARCHAR(8) NOT NULL,  
  idModulo INT,  
  UNIQUE (linguagem)
  FOREIGN KEY(idModulo) REFERENCES Modulo(idModulo)
