@@ -18,12 +18,59 @@ class Item(bd.Model):
    def __repr__(self):
         return'<Item %r>' % self.nome
 
- #idMundo INT PRIMARY KEY AUTO_INCREMENT,  
- #linguagem INT NOT NULL,  
- #idModulo INT,  
- #UNIQUE (linguagem)
- #FOREIGN KEY(idModulo) REFERENCES Modulo(idModulo)
+
+class Estoque(bd.Model):
+    qtd = bd.Column(bd.Integer, nullable=False)
+    idUsuario = bd.Column(bd.Integer, bd.ForeignKey('usuario.idUsuario'), primary_key=True)
+    idItem = bd.Column(bd.Integer, bd.ForeignKey('item.idItem'), primary_key=True)
+    
+    def __repr__(self):
+        return'<Estoque %r>' % self.qtd
+
+
+
+
 
 class Mundo(bd.Model):
     idMundo = bd.Column(bd.Integer, primary_key=True, auto_increment=True)
     linguagem = bd.Column(bd.String(8), nullable=False, unique=True)
+    idModulo = bd.Column(bd.Integer, bd.ForeignKey('modulo.idModulo'))
+    def __repr__(self):
+        return'<Mundo %r>' % self.linguagem
+    
+class Modulo(bd.Model):
+    idModulo = bd.Column(bd.Integer, primary_key=True, auto_increment=True)
+    numero = bd.Column(bd.Integer, nullable=False)
+    nome = bd.Column(bd.String(25), nullable=False, unique=True)
+    idMundo = bd.Column(bd.Integer, bd.ForeignKey('fase.idFase'))
+
+    def __repr__(self):
+        return'<Modulo %r>' % self.nome
+
+class Fase(bd.Model):
+    idFase = bd.Column(bd.Integer, primary_key=True, auto_increment=True)
+    materialApoio = bd.Column(bd.String(999), nullable=False)
+    idExercicio = bd.Column(bd.Integer, bd.ForeignKey('exercicio.idExercicio'))
+
+
+    def __repr__(self):
+        return'<Fase %r>' % self.materialApoio
+
+class Exercicio(bd.Model):
+    idExercicio = bd.Column(bd.Integer, primary_key=True, auto_increment=True)
+    titulo = bd.Column(bd.String(25), nullable=False)
+    enunciado = bd.Column(bd.String(999), nullable=False)
+    alternativas = bd.Column(bd.String(999), nullable=False)
+    resposta = bd.Column(bd.String(1), nullable=False)
+    numero = bd.Column(bd.Integer, nullable=False)
+
+    def __repr__(self):
+        return'<Exercicio %r>' % self.titulo
+    
+class Progresso(bd.Model):
+    idUsuario = bd.Column(bd.Integer, bd.ForeignKey('usuario.idUsuario'), primary_key=True)
+    idFase = bd.Column(bd.Integer, bd.ForeignKey('fase.idFase'), primary_key=True)
+
+    def __repr__(self):
+        return'<Progresso %r>' % self.idUsuario
+    
