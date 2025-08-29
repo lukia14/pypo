@@ -1,14 +1,14 @@
-{{%extends "template.html"%}}
-{{%block cabecalho%}}
-    <link rel="stylesheet" href="../static/fase1.css">
+{%extends "template.html"%}
+{%block cabecalho%}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/fase1.css')}}"/>
     <script src="../scripts/fase1.js" defer></script>
-{{%endblock%}}
+{%endblock%}
 
 
-{{%block corpo%}}
+{%block corpo%}
   <section>
     <div class="container">
-    <div class="titulo"><img src="../imagens/fase 1/cubo_recortado.png" alt="imagem cubo" class="cubo">Variáveis</div>
+    <div class="titulo"><img src="{{url_for('static',filename= 'imagens/fase 1/cubo_recortado.png')}}" alt="imagem cubo" class="cubo">Variáveis</div>
 
     <div class="pergunta">Qual dessas é uma variável válida?</div>
 
@@ -17,15 +17,10 @@
     </div>
 
     <div class="dica">
-      
-        <button class="balao">
-          <p class="conteudo-dica">Conteúdo</p>
-        </button>
-    
-      <img src="../imagens/mascote.png" alt="Mascote Pypo">
+      <img src="{{url_for('static', filename='imagens/mascote.png')}}" alt="Mascote Pypo">
       </section>
     </div>
   </div>
-{{%endblock%}}
+{%endblock%}
 
 

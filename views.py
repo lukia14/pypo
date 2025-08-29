@@ -67,3 +67,7 @@ def logout():
     session['usuario_logado'] = None
     flash('Você foi desconectado com sucesso!', 'success')
     return redirect(url_for('index'))
+
+@app.route('/fase1')
+def fase1():
+    return render_template('fase1.html', titulo='Fase 1')
