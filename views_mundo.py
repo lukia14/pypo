@@ -44,6 +44,16 @@ def criarExercicio():
         flash('Erro ao criar exercício. Verifique os dados e tente novamente.','error')
         return redirect(url_for('cadastrarExercicio'))
     
+    novo_exercicio = criar_exercicio(form)
+    if not novo_exercicio: # Verifica se o exercício já existe
+        flash('Erro: Exercício com esse ID já existe.', 'error')
+        return redirect(url_for('cadastrarExercicio'))
+    
+    flash('Exercício criado com sucesso!', 'success')
+    return redirect(url_for('index')) 
+
+
+def criar_exercicio(form):
     idExercicio = form.idExercicio.data
     numero = form.numero.data
     titulo = form.titulo.data
@@ -55,10 +65,8 @@ def criarExercicio():
     resposta = form.resposta.data
     exercicio = Exercicio.query.filter_by(idExercicio=idExercicio).first()
     if exercicio:
-        flash('Exercício já cadastrado', 'error')
-        return render_template('cadastrarExercicio.html', form=form, titulo='Criar Exercício', mensagem='Exercício já cadastrado')
+        return None  # Exercicio já existe, não criar duplicado
     novo_exercicio = Exercicio(idExercicio=idExercicio, numero=numero, titulo=titulo, enunciado=enunciado, alternativaA=alternativaA, alternativaB=alternativaB, alternativaC=alternativaC, alternativaD=alternativaD, resposta=resposta)
     bd.session.add(novo_exercicio)
     bd.session.commit()
-    flash('Exercício criado com sucesso!', 'success')
-    return redirect(url_for('index.html')) 
+    return novo_exercicio

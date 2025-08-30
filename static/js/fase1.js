@@ -1,4 +1,8 @@
-
+const A = document.getElementById("A");
+const B = document.getElementById("B");
+const C = document.getElementById("C");
+const D = document.getElementById("D");
+let numeroExercicio = 1;
 
 const listaExercicios = JSON.parse(document.getElementById("listaExercicios").value);
 /* ATRIBUTOS DO OBJETO EXERCICIO:
@@ -13,13 +17,9 @@ resposta
 */
 console.log(listaExercicios);
 
+    
 
 
-
-// A.innerHTML = "my_var"
-// B.innerHTML = "2_variable"
-// C.innerHTML = "Variable name"
-// D.innerHTML = "Var!"
-
+    
 
 
