@@ -1,7 +1,7 @@
 from flask import render_template,flash, request, redirect, url_for, session
 from main import app, bd
 from helpers import FormularioUsuario
-from models import Usuario
+from models import Usuario,Progresso
 
 @app.route('/')
 def index():
@@ -32,6 +32,12 @@ def criar():
     novo_usuario = Usuario(nickname=nickname, email=email, senha=senha)
     bd.session.add(novo_usuario)
     bd.session.commit()
+    idUsuario = novo_usuario.idUsuario
+    novo_progresso = Progresso(idUsuario =idUsuario, idFase=1)
+    bd.session.add(novo_progresso)
+    bd.session.commit()
+
+
     flash('Usuário cadastrado com sucesso!', 'success')
     session['usuario_logado'] = nickname
     return redirect(url_for('index'))
@@ -39,13 +45,13 @@ def criar():
 @app.route('/login')
 def login():
     form = FormularioUsuario()
-    if 'usuario_logado' in session:
-        if session['usuario_logado'] != None:
-            flash(f'Você já está logado como {session['usuario_logado']}')
-            return redirect(url_for('index'))
+    if 'usuario_logado' in session and session['usuario_logado'] is not None:
+        flash(f'Você já está logado como {session['usuario_logado']}','danger')
+        return redirect(url_for('index'))
     else:
         proxima = request.args.get('proxima')
         return render_template('login.html', titulo='Login', form=form, proxima = proxima)
+    
 
 @app.route('/autenticar', methods=['POST'])
 def autenticar():

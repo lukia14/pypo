@@ -1,11 +1,21 @@
 from flask import render_template, request, redirect, session, flash, url_for
 from main import app, bd
 from helpers import FormularioExercicio
-from models import Exercicio
+from models import Exercicio,Progresso,Usuario
 
 @app.route('/fase1')
 def fase1():
-    return render_template('fase1.html', titulo='Fase 1')
+    if 'usuario_logado' not in session:
+        if session['usuario_logado'] == None:
+            flash('Você precisa estar logado para acessar essa página.','error')
+            return redirect(url_for('login', proxima=url_for('fase1')))
+    else:
+        usuario = session['usuario_logado']
+        usuario_bd = Usuario.query.filter_by(nickname=usuario).first()
+        idUsuario = usuario_bd.idUsuario
+        progresso = Progresso.query.filter_by(idUsuario=idUsuario).first()
+        flash(f'Seu progresso atual é: Fase {progresso.idFase}', 'info')
+        return render_template('fase1.html', titulo='Fase 1 - Introdução ao Python')
 
 @app.route('/cadastrarExercicio')
 def cadastrarExercicio():

@@ -12039,10 +12039,21 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-/* ul.flashes {
+ ul.flashes {
   list-style: none;
   padding: 0;
 }
+
+ul.flashes li.error{
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+} 
+
+/*# sourceMappingURL=bootstrap.css.map */
 
 ul.flashes li.success {
   background-color: #d4edda;
@@ -12053,13 +12064,3 @@ ul.flashes li.success {
   border-radius: 0.25rem;
 }
 
-ul.flashes li.error {
-  background-color: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
-  padding: 0.75rem 1.25rem;
-  margin-bottom: 1rem;
-  border-radius: 0.25rem;
-} */
-
-/*# sourceMappingURL=bootstrap.css.map */
