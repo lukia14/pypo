@@ -7,7 +7,8 @@ csrf = CSRFProtect(app)
 bd = SQLAlchemy(app)
 app.config.from_pyfile('config.py')
 
-from views import *
+from views_user import *
+from views_mundo import *
 
 if __name__ == '__main__':
     app.run(debug=True)
