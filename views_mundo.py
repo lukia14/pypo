@@ -14,20 +14,9 @@ def fase1():
         idUsuario = usuario_bd.idUsuario
         progresso = Progresso.query.filter_by(idUsuario=idUsuario).order_by(Progresso.idFase.desc()).first()
         fase_atual = Fase.query.filter_by(idFase=progresso.idFase).first()
-        lista_exercicios = fase_atual.exercicio
-        lista_dicionarios = []
-        for exercicio in lista_exercicios:
-            dict_exercicio = {
-                'idExercicio': exercicio.idExercicio,
-                'titulo': exercicio.titulo,
-                'enunciado': exercicio.enunciado,
-                'alternativaA': exercicio.alternativaA,
-                'alternativaB': exercicio.alternativaB,
-                'alternativaC': exercicio.alternativaC,
-                'alternativaD': exercicio.alternativaD,
-                'resposta': exercicio.resposta
-            }
-            lista_dicionarios.append(dict_exercicio)
+        lista_exercicios = fase_atual.exercicios
+
+        lista_dicionarios = criar_lista_exercicios_dict(lista_exercicios)# Converte a lista de exercícios em uma lista de dicionários
 
         return render_template('fase1.html', titulo='Fase 1', usuario=usuario, lista_exercicios=lista_dicionarios)
 
@@ -70,3 +59,20 @@ def criar_exercicio(form):
     bd.session.add(novo_exercicio)
     bd.session.commit()
     return novo_exercicio
+
+
+def criar_lista_exercicios_dict(lista_exercicios):
+    lista_dicionarios = []
+    for exercicio in lista_exercicios:
+        dict_exercicio = {
+            'idExercicio': exercicio.idExercicio,
+            'titulo': exercicio.titulo,
+            'enunciado': exercicio.enunciado,
+            'alternativaA': exercicio.alternativaA,
+            'alternativaB': exercicio.alternativaB,
+            'alternativaC': exercicio.alternativaC,
+            'alternativaD': exercicio.alternativaD,
+            'resposta': exercicio.resposta
+        }
+        lista_dicionarios.append(dict_exercicio)
+    return lista_dicionarios
