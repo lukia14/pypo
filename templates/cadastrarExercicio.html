@@ -1,0 +1,74 @@
+{% extends "template.html" %}
+{%block cabecalho%}
+  <link rel="stylesheet" href="{{url_for('static', filename ='css/login.css')}}"/>
+ {%endblock%}
+
+{%block corpo%}
+  <div class="container">
+    <div class="login-box">
+      <h2>Login</h2>
+      <form action = "{{url_for('autenticar')}}" method="post">
+        <input type="hidden" name="proxima" value="{{ proxima }}">
+        {{ form.csrf_token() }}
+
+<!-- class FormularioExercicio(FlaskForm):
+    idExercicio = StringField("Id do Exercício",validators=[DataRequired(), Length(min=1,max=11)])
+    numero = IntegerField("Número do Exercício", validators=[DataRequired(), Length(min=1, max=11)])
+    titulo = StringField("Título", validators=[DataRequired(), Length(min=1, max=35)])
+    enunciado = StringField("Enunciado", validators=[DataRequired(), Length(min=1, max=99)])
+    alternativaA = StringField("Alternativa A", validators=[DataRequired(), Length(min=1, max=99)])
+    alternativaB = StringField("Alternatica B", validators=[DataRequired(), Length(min = 1, max=99)])
+    alternativaC = StringField("Alternativa C", validators=[DataRequired(),Length(min=1, max=99)])
+    alternativaD = StringField("ALternativa D", validators=[DataRequired(), Length(min=1, max=99)])
+    resposta = StringField("Alternativa da Resposta",validators=[DataRequired(),Length(min=1, max=1)])
+    
+    enviar = SubmitField("Criar Exercício") -->
+
+
+          {{form.idExercicio.label()}}
+        <div class="input-group">
+           {{ form.idExercicio()}}
+        </div>
+        {{form.numero.label()}}
+        <div class="input-group">
+          {{ form.numero()}}
+        </div>
+
+        {{form.titulo.label()}}
+        <div class="input-group">
+          {{ form.titulo()}}
+        </div>
+        {{form.enunciado.label()}}
+        <div class="input-group">
+          {{ form.enunciado()}}
+        </div>
+        {{form.alternativaA.label()}}
+        <div class="input-group">
+          {{ form.alternativaA()}}
+        </div>
+        {{form.alternativaB.label()}}
+        <div class="input-group">
+          {{ form.alternativaB()}}
+        </div>
+        {{form.alternativaC.label()}}
+        <div class="input-group">
+          {{ form.alternativaC()}}
+        </div>
+        {{form.alternativaD.label()}}
+        <div class="input-group">
+          {{ form.alternativaD()}}
+        </div>
+        {{form.resposta.label()}}
+        <div class="input-group">
+          {{ form.resposta()}}
+        </div>
+        {{ form.enviar(class = ".button") }}
+      </form>
+    </div>
+      <img class="snake-img" src="{{ url_for('static', filename='imagens/mascote.png') }}" alt="mascote_fundo_azul_escuro">
+   
+  </div>
+{%endblock%}
+
+
+

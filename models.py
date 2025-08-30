@@ -1,7 +1,7 @@
 from main import bd
 
 class Usuario(bd.Model):
-    idUsuario = bd.Column(bd.Integer, primary_key=True, auto_increment=True)
+    idUsuario = bd.Column(bd.Integer, primary_key=True, autoincrement=True)
     nickname = bd.Column(bd.String(25), nullable=False, unique=True)
     email = bd.Column(bd.String(45), nullable=False, unique=True)
     senha = bd.Column(bd.String(25), nullable = False, unique=False)
@@ -11,7 +11,7 @@ class Usuario(bd.Model):
     
 
 class Item(bd.Model):
-   idItem = bd.Column(bd.Integer, primary_key=True, auto_increment=True)
+   idItem = bd.Column(bd.Integer, primary_key=True, autoincrement=True)
    nome = bd.Column(bd.String(25), nullable=False)
    valor = bd.Column(bd.Integer, nullable=False)
 
@@ -32,14 +32,14 @@ class Estoque(bd.Model):
 
 
 class Mundo(bd.Model):
-    idMundo = bd.Column(bd.Integer, primary_key=True, auto_increment=True)
+    idMundo = bd.Column(bd.Integer, primary_key=True, autoincrement=True)
     linguagem = bd.Column(bd.String(8), nullable=False, unique=True)
     idModulo = bd.Column(bd.Integer, bd.ForeignKey('modulo.idModulo'))
     def __repr__(self):
         return'<Mundo %r>' % self.linguagem
     
 class Modulo(bd.Model):
-    idModulo = bd.Column(bd.Integer, primary_key=True, auto_increment=True)
+    idModulo = bd.Column(bd.Integer, primary_key=True, autoincrement=True)
     numero = bd.Column(bd.Integer, nullable=False)
     nome = bd.Column(bd.String(25), nullable=False, unique=True)
     idMundo = bd.Column(bd.Integer, bd.ForeignKey('fase.idFase'))
@@ -48,8 +48,8 @@ class Modulo(bd.Model):
         return'<Modulo %r>' % self.nome
 
 class Fase(bd.Model):
-    idFase = bd.Column(bd.Integer, primary_key=True, auto_increment=True)
-    materialApoio = bd.Column(bd.String(999), nullable=False)
+    idFase = bd.Column(bd.Integer, primary_key=True, autoincrement=True)
+    materialApoio = bd.Column(bd.String(99), nullable=False)
     idExercicio = bd.Column(bd.Integer, bd.ForeignKey('exercicio.idExercicio'))
 
 
@@ -57,10 +57,13 @@ class Fase(bd.Model):
         return'<Fase %r>' % self.materialApoio
 
 class Exercicio(bd.Model):
-    idExercicio = bd.Column(bd.Integer, primary_key=True, auto_increment=True)
+    idExercicio = bd.Column(bd.Integer, primary_key=True, autoincrement=True)
     titulo = bd.Column(bd.String(25), nullable=False)
-    enunciado = bd.Column(bd.String(999), nullable=False)
-    alternativas = bd.Column(bd.String(999), nullable=False)
+    enunciado = bd.Column(bd.String(99), nullable=False)
+    alternativaA = bd.Column(bd.String(99), nullable=False)
+    alternativaB = bd.Column(bd.String(99), nullable=False)
+    alternativaC = bd.Column(bd.String(99), nullable=False)
+    alternativaD = bd.Column(bd.String(99), nullable=False)
     resposta = bd.Column(bd.String(1), nullable=False)
     numero = bd.Column(bd.Integer, nullable=False)
 
