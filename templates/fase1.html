@@ -1,12 +1,13 @@
 {%extends "template.html"%}
 {%block cabecalho%}
     <link rel="stylesheet" href="{{url_for('static', filename='css/fase1.css')}}"/>
-    <script src="../scripts/fase1.js" defer></script>
+    <script src="{{ url_for('static', filename='js/fase1.js') }}" defer></script>
 {%endblock%}
 
 
 {%block corpo%}
   <section>
+      <input type="hidden" name="listaExercicios" id = "listaExercicios" value='{{lista_exercicios | tojson}}'><!-- Passa a lista de exercícios para o JavaScript -->
     <div class="container">
     <div class="titulo"><img src="{{url_for('static',filename= 'imagens/fase 1/cubo_recortado.png')}}" alt="imagem cubo" class="cubo">Variáveis</div>
 
@@ -18,9 +19,9 @@
 
     <div class="dica">
       <img src="{{url_for('static', filename='imagens/mascote.png')}}" alt="Mascote Pypo">
-      </section>
     </div>
   </div>
+  </section>
 {%endblock%}
 
 

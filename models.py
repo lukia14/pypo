@@ -27,14 +27,10 @@ class Estoque(bd.Model):
     def __repr__(self):
         return'<Estoque %r>' % self.qtd
 
-
-
-
-
 class Mundo(bd.Model):
     idMundo = bd.Column(bd.Integer, primary_key=True, autoincrement=True)
     linguagem = bd.Column(bd.String(8), nullable=False, unique=True)
-    idModulo = bd.Column(bd.Integer, bd.ForeignKey('modulo.idModulo'))
+    modulo = bd.relationship('Modulo')
     def __repr__(self):
         return'<Mundo %r>' % self.linguagem
     
@@ -42,7 +38,8 @@ class Modulo(bd.Model):
     idModulo = bd.Column(bd.Integer, primary_key=True, autoincrement=True)
     numero = bd.Column(bd.Integer, nullable=False)
     nome = bd.Column(bd.String(25), nullable=False, unique=True)
-    idMundo = bd.Column(bd.Integer, bd.ForeignKey('fase.idFase'))
+    idMundo = bd.Column(bd.Integer, bd.ForeignKey('mundo.idMundo'))
+    fase = bd.relationship('Fase', backref='modulo', lazy=True)
 
     def __repr__(self):
         return'<Modulo %r>' % self.nome
@@ -50,9 +47,8 @@ class Modulo(bd.Model):
 class Fase(bd.Model):
     idFase = bd.Column(bd.Integer, primary_key=True, autoincrement=True)
     materialApoio = bd.Column(bd.String(99), nullable=False)
-    idExercicio = bd.Column(bd.Integer, bd.ForeignKey('exercicio.idExercicio'))
-
-
+    exercicio = bd.relationship('Exercicio', backref='fase', lazy=True)
+    idModulo = bd.Column(bd.Integer, bd.ForeignKey('modulo.idModulo'))
     def __repr__(self):
         return'<Fase %r>' % self.materialApoio
 
@@ -65,6 +61,7 @@ class Exercicio(bd.Model):
     alternativaC = bd.Column(bd.String(99), nullable=False)
     alternativaD = bd.Column(bd.String(99), nullable=False)
     resposta = bd.Column(bd.String(1), nullable=False)
+    idFase = bd.Column(bd.Integer, bd.ForeignKey('fase.idFase'))
     numero = bd.Column(bd.Integer, nullable=False)
 
     def __repr__(self):

@@ -1,21 +1,35 @@
 from flask import render_template, request, redirect, session, flash, url_for
 from main import app, bd
 from helpers import FormularioExercicio
-from models import Exercicio,Progresso,Usuario
+from models import Exercicio,Progresso,Usuario,Fase
 
 @app.route('/fase1')
 def fase1():
-    if 'usuario_logado' not in session:
-        if session['usuario_logado'] == None:
-            flash('Você precisa estar logado para acessar essa página.','error')
-            return redirect(url_for('login', proxima=url_for('fase1')))
+    if 'usuario_logado' not in session or session['usuario_logado'] is None:
+        flash('Você precisa estar logado para acessar essa página.', 'error')
+        return redirect(url_for('login', proxima=url_for('fase1')))
     else:
         usuario = session['usuario_logado']
         usuario_bd = Usuario.query.filter_by(nickname=usuario).first()
         idUsuario = usuario_bd.idUsuario
-        progresso = Progresso.query.filter_by(idUsuario=idUsuario).first()
-        flash(f'Seu progresso atual é: Fase {progresso.idFase}', 'info')
-        return render_template('fase1.html', titulo='Fase 1 - Introdução ao Python')
+        progresso = Progresso.query.filter_by(idUsuario=idUsuario).order_by(Progresso.idFase.desc()).first()
+        fase_atual = Fase.query.filter_by(idFase=progresso.idFase).first()
+        lista_exercicios = fase_atual.exercicio
+        lista_dicionarios = []
+        for exercicio in lista_exercicios:
+            dict_exercicio = {
+                'idExercicio': exercicio.idExercicio,
+                'titulo': exercicio.titulo,
+                'enunciado': exercicio.enunciado,
+                'alternativaA': exercicio.alternativaA,
+                'alternativaB': exercicio.alternativaB,
+                'alternativaC': exercicio.alternativaC,
+                'alternativaD': exercicio.alternativaD,
+                'resposta': exercicio.resposta
+            }
+            lista_dicionarios.append(dict_exercicio)
+
+        return render_template('fase1.html', titulo='Fase 1', usuario=usuario, lista_exercicios=lista_dicionarios)
 
 @app.route('/cadastrarExercicio')
 def cadastrarExercicio():
@@ -47,4 +61,4 @@ def criarExercicio():
     bd.session.add(novo_exercicio)
     bd.session.commit()
     flash('Exercício criado com sucesso!', 'success')
-    return redirect(url_for('index.html'))
+    return redirect(url_for('index.html')) 
