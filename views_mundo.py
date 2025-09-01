@@ -14,11 +14,17 @@ def fase1():
         idUsuario = usuario_bd.idUsuario
         progresso = Progresso.query.filter_by(idUsuario=idUsuario).order_by(Progresso.idFase.desc()).first()
         fase_atual = Fase.query.filter_by(idFase=progresso.idFase).first()
-        lista_exercicios = fase_atual.exercicios
+        lista_exercicios = fase_atual.exercicio
 
         lista_dicionarios = criar_lista_exercicios_dict(lista_exercicios)# Converte a lista de exercícios em uma lista de dicionários
 
         return render_template('fase1.html', titulo='Fase 1', usuario=usuario, lista_exercicios=lista_dicionarios)
+    
+@app.route('/fase1/finalizar', methods=['POST'])
+def finalizar_fase1():
+    dados = request.get_json()
+    pontuacao = dados.get('pontuacao')
+
 
 @app.route('/cadastrarExercicio')
 def cadastrarExercicio():
