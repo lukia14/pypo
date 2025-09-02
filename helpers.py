@@ -9,7 +9,7 @@ class FormularioUsuario(FlaskForm):
     enviar = SubmitField('Enviar')
 
 class FormularioExercicio(FlaskForm):
-    idExercicio = StringField("Id do Exercício",validators=[DataRequired(), Length(min=1,max=11)])
+    idExercicio = IntegerField("Id do Exercício",validators=[DataRequired(), Length(min=1,max=11)])
     numero = IntegerField("Número do Exercício", validators=[DataRequired(), Length(min=1, max=11)])
     titulo = StringField("Título", validators=[DataRequired(), Length(min=1, max=35)])
     enunciado = StringField("Enunciado", validators=[DataRequired(), Length(min=1, max=99)])
@@ -21,5 +21,15 @@ class FormularioExercicio(FlaskForm):
     
     enviar = SubmitField("Criar Exercício")
 
+#     class Item(bd.Model):
+#    idItem = bd.Column(bd.Integer, primary_key=True, autoincrement=True)
+#    nome = bd.Column(bd.String(25), nullable=False)
+#    valor = bd.Column(bd.Integer, nullable=False)
 
+class FormularioItem(FlaskForm):
+    idItem = IntegerField("Id do Item", validators= [DataRequired(), Length(min=1,max=11)])
+    nome = StringField("Nome do Item", validators=[DataRequired(), Length(min=1, max = 30)])
+    valor = IntegerField("Valor do Item", validators=[DataRequired(), Length(min=1, max = 5)])
+
+    enviar = SubmitField("Criar Item")
 

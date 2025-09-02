@@ -4,37 +4,11 @@ const C = document.getElementById("C");
 const D = document.getElementById("D");
 const alternativas = document.querySelectorAll(".botao");
 
-//var pontuacao = 100;
-//var sequencia = 0;
-// const enviarFlask = [
-//     {pontuacao: pontuacao},
-// ]
-
-
-// //const continuar = document.getElementById("continuar");
-// const finalizar = document.getElementById("finalizar");
-
-// finalizar.addEventListener("click", async function() {
-
-//     const res = await fetch("/fase1/finalizar", {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json"
-//         },
-//         body: JSON.stringify({pontuacao: pontuacao})
-//     })
-//     const data = await res.json();
-//     console.log(data);
-// })
-
-
-
-
-
+var pontuacao = 100;
+var sequenciaAcerto = 0;
 
 const listaExercicios = JSON.parse(document.getElementById("listaExercicios").value);
-let numeroExercicio = 1;
-
+var numeroExercicio = 1;
 
 
 
@@ -47,10 +21,15 @@ alternativas.forEach((botao) => {//percorre cada botão
         if(botao.id.toLowerCase() === respostaCorreta) {//compara o id do botão clicado com a resposta 
             botao.classList.add("acerto");//adiciona a classe correto
             desabilitarAlternativas()
+            pontuacao += 10 * sequenciaAcerto
+            sequenciaAcerto++
+            numeroExercicio++
+            
         } 
         else {
             botao.classList.add("erro");//adiciona a classe errado
             pontuacao -= 25
+            sequenciaAcerto = 0
         }
     })
 })
@@ -60,6 +39,10 @@ alternativas.forEach((botao) => {//percorre cada botão
 //     carregarExercicio(numeroExercicio);
 // })
 
+
+
+
+// Funções de auxilio
 function iniciar() {
     carregarExercicio(numeroExercicio);
 }
@@ -87,3 +70,29 @@ function desabilitarAlternativas() {//função para desabilitar os botões
     alternativas.forEach((b) => b.disabled = true);//desabilita todos os botões
 }
 
+function enviarFlask(dict){
+    /*
+const enviarFlask = [
+    {pontuacao: pontuacao},
+    {sequencia: sequenciaAcerto
+    }
+]
+
+//const continuar = document.getElementById("continuar");
+const finalizar = document.getElementById("finalizar");
+
+finalizar.addEventListener("click", async function() {
+
+    const res = await fetch("/fase1/finalizar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({pontuacao: pontuacao})
+    })
+    const data = await res.json();
+    console.log(data);
+})
+*/
+
+}

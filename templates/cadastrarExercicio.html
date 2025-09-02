@@ -11,18 +11,6 @@
         <input type="hidden" name="proxima" value="{{ proxima }}">
         {{ form.csrf_token() }}
 
-<!-- class FormularioExercicio(FlaskForm):
-    idExercicio = StringField("Id do Exercício",validators=[DataRequired(), Length(min=1,max=11)])
-    numero = IntegerField("Número do Exercício", validators=[DataRequired(), Length(min=1, max=11)])
-    titulo = StringField("Título", validators=[DataRequired(), Length(min=1, max=35)])
-    enunciado = StringField("Enunciado", validators=[DataRequired(), Length(min=1, max=99)])
-    alternativaA = StringField("Alternativa A", validators=[DataRequired(), Length(min=1, max=99)])
-    alternativaB = StringField("Alternatica B", validators=[DataRequired(), Length(min = 1, max=99)])
-    alternativaC = StringField("Alternativa C", validators=[DataRequired(),Length(min=1, max=99)])
-    alternativaD = StringField("ALternativa D", validators=[DataRequired(), Length(min=1, max=99)])
-    resposta = StringField("Alternativa da Resposta",validators=[DataRequired(),Length(min=1, max=1)])
-    
-    enviar = SubmitField("Criar Exercício") -->
 
           {{form.idExercicio.label()}}
         <div class="input-group">

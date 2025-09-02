@@ -21,9 +21,6 @@ def criar():
         return redirect(url_for('cadastrar'))
     
     criarNovoUsuario(form)
-
-    flash('Usuário cadastrado com sucesso!', 'success')
-    session['usuario_logado'] = nickname
     return redirect(url_for('index'))
 
 @app.route('/login')
@@ -60,6 +57,10 @@ def logout():
     return redirect(url_for('index'))
 
 
+
+
+
+#Funções de auxilio
 def criarNovoUsuario(form):
     nickname = form.nickname.data
     email = form.email.data
@@ -73,9 +74,11 @@ def criarNovoUsuario(form):
     novo_usuario = Usuario(nickname=nickname, email=email, senha=senha)
     bd.session.add(novo_usuario)
     idUsuario = novo_usuario.idUsuario
-    
+
     criarProgresso(idUsuario)
     bd.session.commit()
+    flash('Usuário cadastrado com sucesso!', 'success')
+    session['usuario_logado'] = nickname
 
 def criarProgresso(idUsuario):
     novo_progresso = Progresso(idUsuario =idUsuario, idFase=1)
