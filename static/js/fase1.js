@@ -35,7 +35,6 @@ const alternativas = document.querySelectorAll(".botao");
 const listaExercicios = JSON.parse(document.getElementById("listaExercicios").value);
 let numeroExercicio = 1;
 
-console.log(A.id);
 
 
 
@@ -87,12 +86,4 @@ resposta
 function desabilitarAlternativas() {//função para desabilitar os botões
     alternativas.forEach((b) => b.disabled = true);//desabilita todos os botões
 }
-
-console.log(listaExercicios);
-
-    
-
-
-    
-
 

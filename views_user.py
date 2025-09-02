@@ -20,23 +20,7 @@ def criar():
         flash('Erro ao cadastrar usuário. Verifique os dados e tente novamente.','error')
         return redirect(url_for('cadastrar'))
     
-    nickname = form.nickname.data
-    email = form.email.data
-    senha = form.senha.data
-
-    usuario = Usuario.query.filter_by(nickname=nickname).first()
-    if usuario:
-        flash('Usuário já cadastrado', 'error')
-        return render_template('cadastrar.html', form=form, titulo='Cadastro', mensagem='Usuário já cadastrado')
-    
-    novo_usuario = Usuario(nickname=nickname, email=email, senha=senha)
-    bd.session.add(novo_usuario)
-    bd.session.commit()
-    idUsuario = novo_usuario.idUsuario
-    novo_progresso = Progresso(idUsuario =idUsuario, idFase=1)
-    bd.session.add(novo_progresso)
-    bd.session.commit()
-
+    criarNovoUsuario(form)
 
     flash('Usuário cadastrado com sucesso!', 'success')
     session['usuario_logado'] = nickname
@@ -74,3 +58,25 @@ def logout():
     session['usuario_logado'] = None
     flash('Você foi desconectado com sucesso!', 'success')
     return redirect(url_for('index'))
+
+
+def criarNovoUsuario(form):
+    nickname = form.nickname.data
+    email = form.email.data
+    senha = form.senha.data
+
+    usuario = Usuario.query.filter_by(nickname=nickname).first()
+    if usuario:
+        flash('Usuário já cadastrado', 'error')
+        return render_template('cadastrar.html', form=form, titulo='Cadastro', mensagem='Usuário já cadastrado')
+    
+    novo_usuario = Usuario(nickname=nickname, email=email, senha=senha)
+    bd.session.add(novo_usuario)
+    idUsuario = novo_usuario.idUsuario
+    
+    criarProgresso(idUsuario)
+    bd.session.commit()
+
+def criarProgresso(idUsuario):
+    novo_progresso = Progresso(idUsuario =idUsuario, idFase=1)
+    bd.session.add(novo_progresso)
