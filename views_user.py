@@ -5,7 +5,7 @@ from models import Usuario,Progresso
 
 @app.route('/')
 def index():
-    return render_template('index.html',titulo='PaginaInicial')
+    return render_template('inicio.html',titulo='PaginaInicial')
 
 
 @app.route('/cadastrar')
