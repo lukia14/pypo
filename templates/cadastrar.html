@@ -1,36 +1,32 @@
-{% extends "template.html" %}
+{%extends "template.html"%}
 {%block cabecalho%}
-  <link rel="stylesheet" href="{{url_for('static', filename ='css/login.css')}}"/>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}"/>
  {%endblock%}
-
+<script src="https://kit.fontawesome.com/74010bf13b.js" crossorigin="anonymous"></script>
 {%block corpo%}
-  <div class="container">
-    <div class="login-box">
-      <h2>Cadastro</h2>
-      <form action= "{{ url_for('criar') }}" method="post">
-        {{ form.csrf_token() }}
-         <!-- <label for="nickname">Nickname</label> -->
-          {{form.nickname.label()}}
-        <div class="input-group">
-          <span class="icon">👤</span>
-          <!-- <input type="" id="email" name="email" required /> -->
-           {{ form.nickname()}}
+    <main class="container-main">
+        <div class="container-principal">
+            <h1>Cadastro</h1>
+            <div class="entrar_metodos">
+                <button class="entrar_botoes"><i class="fa-brands fa-google"></i>Google</button>
+                <button class="entrar_botoes"><i class="fa-brands fa-github"></i>Git Hub</button>
+            </div>
+            <form action = "{{url_for('criar')}}" method="post">
+            <input type="hidden" name="proxima" value="{{ proxima }}">
+            {{ form.csrf_token }}
+             {{form.nickname.label()}}
+              {{form.nickname(class="barra")}}
+              {{form.senha.label()}}
+              {{form.senha(class="barra")}}
+              {{form.email.label()}}
+              {{form.email(class="barra")}}
+              {{ form.enviar(class = "entrar") }}
+            </form>
+            
+            <p class="text_apoio">Esqueceu a senha?<a href="" class="apoio text_apoio">Clique aqui</a></p>
         </div>
-        {{form.email.label()}}
-        <div class="input-group">
-          <span class="icon">📧</span>
-          {{ form.email()}}
+        <div>
+            <img src="../static/imagens/mascote.png" alt="">
         </div>
-
-        {{form.senha.label()}}
-        <div class="input-group">
-          <span class="icon">🔒</span>
-          {{ form.senha()}}
-        </div>
-        {{ form.enviar(class = ".button") }}
-      </form>
-    </div>
-      <img class="snake-img" src="{{ url_for('static', filename='imagens/mascote.png') }}" alt="mascote_fundo_azul_escuro">
-   
-  </div>
+    </main>
 {%endblock%}

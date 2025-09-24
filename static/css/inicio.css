@@ -1,7 +1,7 @@
 :root{
 --cor-de-fundo: #000;
 --branco: #999;
---cor-de-fundo-caixa:rgb(15, 43, 138);
+--cor-de-fundo-caixa: #0a0f1f;
 --cor-titulo: blue;
 --azul-diferente:  #1E90FF;
 --preto-moderno: #696969;
@@ -9,7 +9,6 @@
 
 body{
     font-family: Arial, sans-serif;
-    font-weight: bold;
     height: 100vh;
     margin: 0;
     font-size: 1.5rem;
@@ -40,8 +39,8 @@ body{
 }
 
 .img1{
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
     border-radius: 10px;
 }
 
@@ -59,8 +58,21 @@ body{
     justify-content: space-around;
 }
 
-.icon{
-    background-color: var(--cor-de-fundo-fundo);
+button{
+    background-color: var(--cor-de-fundo-caixa);
+    color:var(--azul-diferente);
+    border: none;
+    padding:10px;
+    border-radius:10px;
+    font-size:1rem;
+    margin-top:23px;
+
+}
+
+.container-icons{
+    display:flex;
+    margin-left:70px;
+    gap:20px;
 }
 
 .texto-header{
@@ -85,9 +97,7 @@ body{
 
 .img2{
     border-radius: 8px;
-    height: 200px;
-    vertical-align: middle;
-    text-align: center;
+    height: 275px;
 }
 
 .txt-a{
@@ -111,11 +121,9 @@ body{
 }
 
 .img3{
-    width: 300px;
-    height: 200px;
+    widtg: 300px;
+    height: 250px;
     border-radius: 10px;
-    vertical-align: middle;
-    text-align: center;
 }
 
 a{
@@ -123,11 +131,11 @@ a{
 }
 
 .rodape {
+  background-color: var(--cor-de-fundo-caixa);
   text-align: center;
   padding-top: 10px;  
   padding-bottom: 20px; 
-  margin-top: 40px;
-  font-size: 1.1rem;
+  margin-top: 40px
 }
 
 .linha {
@@ -137,29 +145,4 @@ a{
   margin-bottom: 10px; 
 }
 
-.fa-solid{
-    background-color: var(--cor-de-fundo-caixa);
-    padding:10px;
-
-}
-
-.container-icons{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row;
-    gap: 15px;
-    margin-left: 175px;
-}
-
-.txt-rodape{
-    background-color: var(--cor-de-fundo-caixa);
-    padding: 40px;
-}
-
-.rodape-container{
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-}
 

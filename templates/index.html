@@ -1,15 +1,47 @@
 {%extends "template.html"%}
 {%block cabecalho%}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="../static/css/index.css">
+    <script src="https://kit.fontawesome.com/74010bf13b.js" crossorigin="anonymous"></script>
 {%endblock%}
 
 {%block corpo%}
-    <h1>Bem-vindo ao PYPO</h1>
-    <p>O jogo de programação que ensina Python de forma divertida!</p>
-    <div class="links">
-        <a href="{{ url_for('cadastrar', proxima='index') }}">Cadastro</a>
-        <a href="{{ url_for('login', proxima='index') }}">Login</a>
-        <a href="{{ url_for('logout') }}">Logout</a>
-        <a href="{{url_for('cadastrarExercicio')}}"><button>Criar Fase</button></a>
-    </div>
+    <header class="container-principal">
+        <div class="container-menu">
+            <h1 class="t1">Bem-Vindo ao PYPO</h1>
+            <div class="container-menu2">
+                <a href="{{url_for('login')}}" class="menu-item" class="item1">Entrar</a>
+                <a href="{{url_for('cadastrar')}}" class="menu-item" class="item1">Cadastrar</a>
+                <a href="{{url_for('fase1')}}" class="menu-item">Jogo</a>
+                <a href="" class="menu-item">Sobre</a>
+            </div>
+        </div>
+    </header>
+    <main class="main-principal">
+        <div class="slogan">
+            <p># Nossa meta é descomplicar a programação!!</p>
+        </div>
+        <div class="slideshow">
+            <div class="slide" style="background-image: url('../static/imagens/fundo1.jpg')"></div>
+            <div class="slide" style="background-image: url('../static/images/fundo2.jpg')"></div>
+            <div class="slide" style="background-image: url('../static/imagens/mascote.png')"></div>
+        </div>
+    </main>
+    <!--<main class="container-2">
+        <div class="container-principal-caixas">
+
+            <div class="item1" class="item">urk67ukr6u</div>
+            <div class="item2" class="item">rjyryujtj</div>
+            <div class="item3" class="item">jteyjrtyjrtyj</div>
+            <div class="item4" class="item">jyrtyjfgyjfgyj</div>
+
+        </div>
+    </main>-->
+    <footer class="rodape">
+        <div>
+            <p>Desenvolvido por Lucas Silva Fernandes e Marco Antônio Pedroso Junqueira. <a href="" class="saibamais">Clique aqui</a> para saber mais.</p>
+            <p><i class="fa-brands fa-facebook"></i>eytnrtyndftngh</p>
+            <p><i class="fa-brands fa-instagram"></i>ndtynff</p>
+            <p><i class="fa-brands fa-github"></i>nyfhgymfghmf</p>
+        </div>
+    </footer>
 {%endblock%}

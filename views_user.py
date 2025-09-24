@@ -73,6 +73,7 @@ def criarNovoUsuario(form):
     
     novo_usuario = Usuario(nickname=nickname, email=email, senha=senha)
     bd.session.add(novo_usuario)
+    bd.session.flush()
     idUsuario = novo_usuario.idUsuario
 
     criarProgresso(idUsuario)
