@@ -6,10 +6,16 @@
 
 
 {%block corpo%}
+
   <section>
       <input type="hidden" name="listaExercicios" id = "listaExercicios" value='{{lista_exercicios | tojson}}'><!-- Passa a lista de exercícios para o JavaScript -->
     <div class="container">
-    <div class="titulo"><img src="{{url_for('static',filename= 'imagens/fase 1/cubo_recortado.png')}}" alt="imagem cubo" class="cubo">Variáveis</div>
+      <div class="container-header">
+        <div class="titulo"><img src="{{url_for('static',filename= 'imagens/fase 1/cubo_recortado.png')}}" alt="imagem cubo" class="cubo">Variáveis</div>
+                <div class="sequencia titulo"><i class="fa-solid fa-square-check fa-beat" style="color: #0e2349;"></i>sequência: 4</div>
+        <div class="numero-fase titulo">Pontos = 100</div>
+    </div>
+    
 
     <div class="pergunta">Qual dessas é uma variável válida?</div>
 
