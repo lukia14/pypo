@@ -39,7 +39,7 @@ body {
     margin-bottom: 20px;
 }
 
-.pergunta {
+#pergunta {
     background-color: #b5dcf8;
     color: #000;
     font-weight: bold;

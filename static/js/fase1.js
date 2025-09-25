@@ -59,7 +59,6 @@ function carregarExercicio(num) {
     B.innerText = listaExercicios[num-1].alternativaB;
     C.innerText = listaExercicios[num-1].alternativaC;
     D.innerText = listaExercicios[num-1].alternativaD;
-    document.querySelector(".pergunta").innerText = listaExercicios[num-1].enunciado;
 }
 /* ATRIBUTOS DO OBJETO EXERCICIO:
 idExercicio
