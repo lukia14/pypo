@@ -3,18 +3,17 @@ const B = document.getElementById("B");
 const C = document.getElementById("C");
 const D = document.getElementById("D");
 const alternativas = document.querySelectorAll(".botao");
+const pergunta = document.getElementById('pergunta')
 pontuacaoHTML = document.getElementById("pontuacao");
 sequenciaHTML = document.getElementById("sequencia");
-console.log(sequencia)
-console.log(pontuacao)
 var pontuacao = 100;
 var sequenciaAcerto = 0;
 
-
-const listaExercicios = JSON.parse(document.getElementById("listaExercicios").value);
+var listaExercicios = JSON.parse(document.getElementById("listaExercicios").value);
 var numeroExercicio = 1;
-
-
+console.log(listaExercicios[0].enunciado)
+console.log(listaExercicios)
+carregarExercicio(1)
 
 alternativas.forEach((botao) => {//percorre cada botão
 
@@ -55,7 +54,7 @@ function iniciar() {
 }
 
 function carregarExercicio(num) {
-    listaExercicios[num-1];//-1 porque o array começa do 0
+    pergunta.innerText = listaExercicios[num-1].enunciado;
     A.innerText = listaExercicios[num-1].alternativaA;
     B.innerText = listaExercicios[num-1].alternativaB;
     C.innerText = listaExercicios[num-1].alternativaC;
