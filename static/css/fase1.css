@@ -3,6 +3,7 @@ body {
     font-family: 'Segoe UI', sans-serif;
      background: radial-gradient(circle at center, #87CEFA, #00b0eb, #03536e);
     height: 100vh; /* Garante que o fundo preencha toda a altura da viewport */
+
     margin: 0; /* Remove as margens padrão do body */
     background-repeat: no-repeat;
     color: white;
@@ -79,17 +80,9 @@ body {
     color: #000;
 }
 
-.dica .balao {
-    background-color: #d0ebff;
-    border-radius: 15px;
-    padding: 10px;
-    font-size: 14px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.2);
-    margin-bottom: 10px;
-}
-
 .dica img {
-    width: 100%;
+    max-width:400px;
+    height: auto;
 }
 
 .cubo{

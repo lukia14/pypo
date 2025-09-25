@@ -3,9 +3,13 @@ const B = document.getElementById("B");
 const C = document.getElementById("C");
 const D = document.getElementById("D");
 const alternativas = document.querySelectorAll(".botao");
-
+pontuacaoHTML = document.getElementById("pontuacao");
+sequenciaHTML = document.getElementById("sequencia");
+console.log(sequencia)
+console.log(pontuacao)
 var pontuacao = 100;
 var sequenciaAcerto = 0;
+
 
 const listaExercicios = JSON.parse(document.getElementById("listaExercicios").value);
 var numeroExercicio = 1;
@@ -21,9 +25,12 @@ alternativas.forEach((botao) => {//percorre cada botão
         if(botao.id.toLowerCase() === respostaCorreta) {//compara o id do botão clicado com a resposta 
             botao.classList.add("acerto");//adiciona a classe correto
             desabilitarAlternativas()
-            pontuacao += 10 * sequenciaAcerto
             sequenciaAcerto++
+            pontuacao += 10 * sequenciaAcerto
             numeroExercicio++
+            pontuacaoHTML.innerHTML = `Pontos: ${pontuacao}`;
+            sequenciaHTML.innerHTML = `<i class="fa-solid fa-square-check fa-beat" style="color: #0e2349;"></i>sequência: ${sequenciaAcerto}`;
+            
             
         } 
         else {
