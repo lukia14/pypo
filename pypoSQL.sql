@@ -10,14 +10,20 @@ create table Conquista(
 
 CREATE TABLE Usuario 
 ( 
- senha VARCHAR(25) NOT NULL,  
+ senha VARCHAR(25) NOT NULL UNIQUE,  
  idUsuario INT PRIMARY KEY AUTO_INCREMENT,  
- email VARCHAR(45) NOT NULL,  
- nickname VARCHAR(25) NOT NULL, 
- UNIQUE (nickname)
+ email VARCHAR(45) NOT NULL UNIQUE,  
+ nickname VARCHAR(25) NOT NULL UNIQUE, 
+ pontuacao int
 ); 
 
-
+CREATE TABLE UsuarioConquista (
+ idUsuario INT,
+ idConquista INT,
+ PRIMARY KEY (idUsuario, idConquista),
+ FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario),
+ FOREIGN KEY (idConquista) REFERENCES Conquista(idConquista)
+);
 
 CREATE TABLE Item 
 ( 
