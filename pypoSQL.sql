@@ -1,14 +1,23 @@
 drop database if exists pypo;
 create database pypo;
 use pypo;
+
+create table Conquista(
+ idConquista int primary key auto_increment,
+ nome varchar(75),
+ pontuacao int
+);
+
 CREATE TABLE Usuario 
 ( 
  senha VARCHAR(25) NOT NULL,  
  idUsuario INT PRIMARY KEY AUTO_INCREMENT,  
  email VARCHAR(45) NOT NULL,  
- nickname VARCHAR(25) NOT NULL,  
+ nickname VARCHAR(25) NOT NULL, 
  UNIQUE (nickname)
 ); 
+
+
 
 CREATE TABLE Item 
 ( 
