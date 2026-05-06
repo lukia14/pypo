@@ -1,86 +1,37 @@
-from flask import render_template,flash, request, redirect, url_for, session
-from main import app, bd
-from helpers import FormularioUsuario
-from models import Usuario,Progresso
+from main import app
+from controllers.UsuarioController import UsuarioController
 
 @app.route('/')
 def index():
-    return render_template('index.html',titulo='PaginaInicial')
+    oUsuarioController = UsuarioController()
+    return  oUsuarioController.index()
 
 
 @app.route('/cadastrar')
 def cadastrar():
-    form = FormularioUsuario()
-    return render_template('cadastrar.html', form=form, titulo='Cadastro')
+    oUsuarioController = UsuarioController()
+    return  oUsuarioController.cadastrar()
 
 @app.route('/criar', methods=['POST'])
 def criar():
-    form = FormularioUsuario(request.form)
-    if not form.validate_on_submit():
-        flash('Erro ao cadastrar usuário. Verifique os dados e tente novamente.','error')
-        return redirect(url_for('cadastrar'))
-    
-    criarNovoUsuario(form)
-    return redirect(url_for('index'))
+    oUsuarioController = UsuarioController()
+    return oUsuarioController.criar()
 
 @app.route('/login')
 def login():
-    form = FormularioUsuario()
-    if 'usuario_logado' in session and session['usuario_logado'] is not None:
-        flash(f'Você já está logado como {session['usuario_logado']}','danger')
-        return redirect(url_for('index'))
-    else:
-        proxima = request.args.get('proxima')
-        return render_template('login.html', titulo='Login', form=form, proxima = proxima)
+    oUsuarioController = UsuarioController()
+    return oUsuarioController.login()
     
 
 @app.route('/autenticar', methods=['POST'])
 def autenticar():
-    form = FormularioUsuario(request.form)
-    usuario = Usuario.query.filter_by(nickname = form.nickname.data).first()
-    if usuario:
-        if usuario.senha == form.senha.data:
-            session['usuario_logado'] = usuario.nickname
-            proxima_pagina = request.form['proxima']
-            flash('Usuário autenticado com sucesso!', 'success')
-            return redirect(url_for(proxima_pagina)) or 'index'
-        else:
-            flash('Erro ao autenticar. Verifique os dados e tente novamente.', 'error')
-    else:
-        flash('Usuário não encontrado. Verifique os dados e tente novamente.', 'error')
-        return redirect(url_for('login'))
+    oUsuarioController = UsuarioController()
+    return oUsuarioController.autenticar()
 
 @app.route('/logout')
 def logout():
-    session['usuario_logado'] = None
-    flash('Você foi desconectado com sucesso!', 'success')
-    return redirect(url_for('index'))
+    oUsuarioController = UsuarioController()
+    return oUsuarioController.logout()
 
 
 
-
-
-#Funções de auxilio
-def criarNovoUsuario(form):
-    nickname = form.nickname.data
-    email = form.email.data
-    senha = form.senha.data
-
-    usuario = Usuario.query.filter_by(nickname=nickname).first()
-    if usuario:
-        flash('Usuário já cadastrado', 'error')
-        return render_template('cadastrar.html', form=form, titulo='Cadastro', mensagem='Usuário já cadastrado')
-    
-    novo_usuario = Usuario(nickname=nickname, email=email, senha=senha)
-    bd.session.add(novo_usuario)
-    bd.session.flush()
-    idUsuario = novo_usuario.idUsuario
-
-    criarProgresso(idUsuario)
-    bd.session.commit()
-    flash('Usuário cadastrado com sucesso!', 'success')
-    session['usuario_logado'] = nickname
-
-def criarProgresso(idUsuario):
-    novo_progresso = Progresso(idUsuario =idUsuario, idFase=1)
-    bd.session.add(novo_progresso)
