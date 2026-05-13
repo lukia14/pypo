@@ -29,6 +29,11 @@ alternativas.forEach((botao) => {//percorre cada botão
             numeroExercicio++
             pontuacaoHTML.innerHTML = `Pontos: ${pontuacao}`;
             sequenciaHTML.innerHTML = `<i class="fa-solid fa-square-check fa-beat" style="color: #0e2349;"></i>sequência: ${sequenciaAcerto}`;
+            const div = document.querySelector('.botao_continuar')
+            const botaoPassar = document.createElement('button')
+            botaoPassar.innerHTML = `<strong>Continuar <i class="fa-solid fa-arrow-right" class="icon1"></i></strong>` 
+            botaoPassar.classList.add('botao_passar')
+            div.append(botaoPassar)
             
             
         } 

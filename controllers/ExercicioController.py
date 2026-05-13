@@ -6,7 +6,7 @@ class ExercicioController:
 
     def criarExercicio(self):
         oExercicioModel = ExercicioModel()
-        return oExercicioModel.criar_exercicio()
+        return oExercicioModel.criarExercicio()
     
     def cadastrarExercicio(self):
         oExercicioView = ExercicioView()

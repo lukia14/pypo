@@ -24,5 +24,10 @@ def criarExercicio():
     oExercicioController = ExercicioController()
     return oExercicioController.criarExercicio()
 
+@app.route('/conclusaoFase/<int:idFase>/<int:pontuacao>')
+def conclusaoFase(idFase,pontuacao):
+    oFaseController = FaseController()
+    return oFaseController.conclusaoFase(idFase,pontuacao)
+
 
 

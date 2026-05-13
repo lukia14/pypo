@@ -11,6 +11,11 @@ class UsuarioView:
     def cadastrar(self):
         form = FormularioUsuario()
         return render_template('cadastrar.html', form=form, titulo='Cadastro')
+    
+    def cadastroExistente(self):
+        form = FormularioUsuario()
+        return render_template('cadastrar.html', form=form, titulo='Cadastro',mensagem='Usuario j')
+    
     def login(self):
         form = FormularioUsuario()
         proxima = request.args.get('proxima')

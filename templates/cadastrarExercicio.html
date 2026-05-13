@@ -4,58 +4,49 @@
  {%endblock%}
 
 {%block corpo%}
-  <div class="container">
-    <div class="login-box">
-      <h2>Login</h2>
-      <form action = "{{url_for('autenticar')}}" method="post">
+<main class="container-main">
+  <div class="container-principal">
+      <h1>Login</h1>
+      <form action = "{{url_for('criarExercicio')}}" method="post">
         <input type="hidden" name="proxima" value="{{ proxima }}">
         {{ form.csrf_token() }}
 
 
-          {{form.idExercicio.label()}}
-        <div class="input-group">
-           {{ form.idExercicio()}}
-        </div>
+        {{form.idExercicio.label()}}
+        {{ form.idExercicio(class="barra")}}
         
         {{form.numero.label()}}
-        <div class="input-group">
-          {{ form.numero()}}
-        </div>
+        {{ form.numero(class="barra")}}
 
         {{form.titulo.label()}}
-        <div class="input-group">
-          {{ form.titulo()}}
-        </div>
+        {{ form.titulo(class="barra")}}
+
         {{form.enunciado.label()}}
-        <div class="input-group">
-          {{ form.enunciado()}}
-        </div>
+        {{ form.enunciado(class="barra")}}
+
         {{form.alternativaA.label()}}
-        <div class="input-group">
-          {{ form.alternativaA()}}
-        </div>
+        {{ form.alternativaA(class="barra")}}
+        
         {{form.alternativaB.label()}}
-        <div class="input-group">
-          {{ form.alternativaB()}}
-        </div>
+        {{ form.alternativaB(class="barra")}}
+
         {{form.alternativaC.label()}}
-        <div class="input-group">
-          {{ form.alternativaC()}}
-        </div>
+        {{ form.alternativaC(class="barra")}}
+
         {{form.alternativaD.label()}}
-        <div class="input-group">
-          {{ form.alternativaD()}}
-        </div>
+        {{ form.alternativaD(class="barra")}}
+
         {{form.resposta.label()}}
-        <div class="input-group">
-          {{ form.resposta()}}
-        </div>
+        {{ form.resposta(class="barra")}}
+
         {{ form.enviar(class = ".button") }}
       </form>
     </div>
-      <img class="snake-img" src="{{ url_for('static', filename='imagens/mascote.png') }}" alt="mascote_fundo_azul_escuro">
+       <div>
+            <img src="../static/imagens/mascote.png" alt="">
+        </div>
    
-  </div>
+</main>
 {%endblock%}
 
 

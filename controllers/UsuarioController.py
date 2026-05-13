@@ -15,7 +15,7 @@ class UsuarioController:
     
     def criar(self):
         oUsuarioModel = UsuarioModel()
-        return oUsuarioModel.criar()
+        return oUsuarioModel.criarUsuario()
     
     def login(self):
         oUsuarioModel = UsuarioModel()

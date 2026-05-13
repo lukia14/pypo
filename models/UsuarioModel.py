@@ -1,20 +1,28 @@
 from flask import render_template,flash, request, redirect, url_for, session
-from main import app, bd
+from main import bd
 from helpers import FormularioUsuario
 from modelsPy import Usuario,Progresso
 from views.UsuarioView import UsuarioView
+from dao.UsuarioDao import UsuarioDao
 class UsuarioModel:
     def __init__(self):
         pass
 
-    def criar(self):
+    def criarUsuario(self):
         oUsuarioView = UsuarioView()
         form = FormularioUsuario(request.form)
         if not form.validate_on_submit():
             flash('Erro ao cadastrar usuário. Verifique os dados e tente novamente.','error')
             return redirect(url_for('cadastrar'))
         
-        self.criarNovoUsuario(form)
+        oUsuarioDao = UsuarioDao()
+
+        usuario = self.modeloUsuario(form)
+        if oUsuarioDao.UsuarioExiste(usuario.nickname):
+            flash('Usuario já cadastrado','danger')
+            oUsuarioView.login()
+        else:
+            oUsuarioDao.criarNovoUsuario(usuario)
         return oUsuarioView.index()
     
     def login(self):
@@ -49,26 +57,9 @@ class UsuarioModel:
     
     #Funções de auxilio
     
-    def criarNovoUsuario(self,form):
+    def modeloUsuario(self,form):
         nickname = form.nickname.data
         email = form.email.data
         senha = form.senha.data
-
-        usuario = Usuario.query.filter_by(nickname=nickname).first()
-        if usuario:
-            flash('Usuário já cadastrado', 'error')
-            return render_template('cadastrar.html', form=form, titulo='Cadastro', mensagem='Usuário já cadastrado')
-        
-        novo_usuario = Usuario(nickname=nickname, email=email, senha=senha)
-        bd.session.add(novo_usuario)
-        bd.session.flush()
-        idUsuario = novo_usuario.idUsuario
-
-        self.criarProgresso(idUsuario)
-        bd.session.commit()
-        flash('Usuário cadastrado com sucesso!', 'success')
-        session['usuario_logado'] = nickname
-
-    def criarProgresso(self,idUsuario):
-        novo_progresso = Progresso(idUsuario =idUsuario, idFase=1)
-        bd.session.add(novo_progresso)
+        usuario = Usuario(nickname=nickname, email=email, senha=senha)
+        return usuario

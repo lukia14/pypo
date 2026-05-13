@@ -1,10 +1,10 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-     background: radial-gradient(circle at center, #87CEFA, #00b0eb, #03536e);
-    height: 100vh; /* Garante que o fundo preencha toda a altura da viewport */
+    background: radial-gradient(circle at center, #4b5d68, #295c6d, #03536e);
+    height: 100vh;
 
-    margin: 0; /* Remove as margens padrão do body */
+    margin: 0;
     background-repeat: no-repeat;
     color: white;
     display: flex;
@@ -105,4 +105,29 @@ body {
 }
 .mascote {
     width: 100%;
+}
+
+.botao_continuar {
+    display:flex;
+    flex-direction:row;
+    justify-content: end;
+    margin:10px;
+    margin-top:15px;
+}
+
+.botao_passar {
+    border: none;
+    background-color: #3bb5fc;
+    border-radius: 20px;
+    gap:15px;
+    font-size: 1.2rem;
+    padding: 12px;
+}
+
+.botao_passar:hover {
+    background-color:#87CEFA;
+}
+
+.icon1 {
+    font-size: 1.2rem;
 }
