@@ -1,4 +1,3 @@
-from flask import render_template, request, redirect, session, flash, url_for
 from app import  bd
 from modelsPy import Exercicio
 class ExercicioDao:

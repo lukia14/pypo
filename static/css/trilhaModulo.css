@@ -1,0 +1,117 @@
+:root{
+--cor-de-fundo: #000;
+--branco: #999;
+--cor-de-fundo-caixa: #0a0f1f;
+--cor-titulo: blue;
+--azul-diferente:  #1E90FF;
+--preto-moderno: #696969;
+--azul-textos: #87CEEB;
+--preto-diferente: rgba(0,0,0,0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+    display: flex;
+    height: 100vh;
+    background-color: #ffffff;
+}
+.sidebar {
+    width: 250px;
+    background-color: var(--cor-de-fundo-caixa);
+    border-right: 2px solid var(--azul-textos);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+}
+.logo {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--azul-textos);
+    margin-bottom: 40px;
+    text-align: center;
+}
+.menu {
+    list-style: none;
+}
+.menu li {
+    margin-bottom: 10px;
+}
+.menu a {
+    text-decoration: none;
+    color: #777;
+    font-weight: bold;
+    font-size: 16px;
+    display: block;
+    padding: 12px 15px;
+    border-radius: 12px;
+    transition: background-color 0.2s;
+    border: 2px solid transparent;
+}
+.menu a:hover {
+    background-color: var(--cor-de-fundo);
+    color: var(--azul-diferente);
+    border: 2px solid var(--azul-textos);
+}
+.content {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+    background-color: var(--cor-de-fundo);
+}
+
+.phase {
+    text-decoration: none;
+    z-index: 1; 
+    transition: transform 0.2s;
+}
+.phase:hover {
+    filter: brightness(1.1);
+}
+.path-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    position: relative;
+    padding: 20px 0 100px 0;
+    width: 100%;
+    max-width: 800px; 
+}
+.phase.left {
+    transform: translateX(-150px); 
+}
+.phase.right {
+    transform: translateX(150px);
+}
+.phase.center {
+    transform: translateX(0);
+}
+.bubble {
+    width: 75px;
+    height: 75px;
+    background-color:var(--azul-diferente);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 28px;
+    font-weight: 800;
+    box-shadow: 0 8px 0 var(--branco); 
+    cursor: pointer;
+}
+
+.phase.start .bubble {
+    width: 95px;
+    height: 95px;
+    font-size: 34px;
+    background-color: var(--azul-textos); 
+    box-shadow: 0 8px 0 var(--azul-diferente);
+}
