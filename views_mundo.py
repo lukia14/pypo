@@ -1,6 +1,6 @@
 from controllers.ExercicioController import ExercicioController
 from controllers.FaseController import FaseController
-from main import app
+from app import app
 @app.route('/fase1')
 def fase1():
     oFaseController = FaseController()

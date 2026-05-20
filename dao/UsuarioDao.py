@@ -1,7 +1,8 @@
 from modelsPy import Usuario,Progresso
-from flask import render_template,flash, request, redirect, url_for, session
-from main import bd
-from views.UsuarioView import UsuarioView
+from flask import flash, session,request
+from models.UsuarioModel import UsuarioModel
+from app import bd
+
 class UsuarioDao:
     def __init__(self):
         pass
@@ -15,6 +16,19 @@ class UsuarioDao:
         bd.session.commit()
         flash('Usuário cadastrado com sucesso!', 'success')
         session['usuario_logado'] = novo_usuario.nickname
+
+    def autenticarUsuario(self,usuario):
+        usuario = UsuarioModel.query.filter_by(nickname = usuario.nickname).first()
+        if usuario:
+            if usuario.senha == usuario.senha:
+                session['usuario_logado'] = usuario.nickname
+                flash('Usuário autenticado com sucesso!', 'success')
+                return '/'
+            else:
+                flash('Erro ao autenticar. Verifique os dados e tente novamente.', 'error')
+        else:
+            flash('Usuário não encontrado. Verifique os dados e tente novamente.', 'error')
+            return 'login'
 
     def criarProgresso(self,idUsuario):
         novo_progresso = Progresso(idUsuario =idUsuario, idFase=1)

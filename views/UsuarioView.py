@@ -16,7 +16,6 @@ class UsuarioView:
         form = FormularioUsuario()
         return render_template('cadastrar.html', form=form, titulo='Cadastro',mensagem='Usuario j')
     
-    def login(self):
-        form = FormularioUsuario()
+    def login(self,form):
         proxima = request.args.get('proxima')
         return render_template('login.html', titulo='Login', form=form, proxima = proxima)

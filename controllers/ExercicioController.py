@@ -1,12 +1,12 @@
-from models.ExercicioModel import ExercicioModel
+from service.ExercicioService import ExercicioService
 from views.ExercicioView import ExercicioView
 class ExercicioController:
     def __init__(self):
         pass
 
     def criarExercicio(self):
-        oExercicioModel = ExercicioModel()
-        return oExercicioModel.criarExercicio()
+        oExercicioService = ExercicioService()
+        return oExercicioService.criarExercicio()
     
     def cadastrarExercicio(self):
         oExercicioView = ExercicioView()

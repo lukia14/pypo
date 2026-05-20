@@ -1,4 +1,4 @@
-from main import bd
+from app import bd
 
 class Usuario(bd.Model):
     idUsuario = bd.Column(bd.Integer, primary_key=True, autoincrement=True)

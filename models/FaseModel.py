@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, session, flash, url_for
-from main import app, bd
+from app import app, bd
 from helpers import FormularioExercicio
 from modelsPy import Exercicio,Progresso,Usuario,Fase
 from views.FaseView import FaseView

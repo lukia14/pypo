@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, session, flash, url_for
-from main import  bd
+from app import  bd
 from modelsPy import Exercicio
 class ExercicioDao:
     def __init__(self):
