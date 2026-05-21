@@ -15,7 +15,7 @@ class UsuarioService:
         
         oUsuarioDao = UsuarioDao()
         oUsuarioModel = UsuarioModel()
-        usuario = oUsuarioModel.modeloUsuario(form)
+        usuario = oUsuarioModel.modeloUsuario(form.data)
         if oUsuarioDao.UsuarioExiste(usuario.nickname):
             flash('Usuario já cadastrado','danger')
             oUsuarioView.login()
