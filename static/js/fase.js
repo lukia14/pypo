@@ -4,8 +4,10 @@ const C = document.getElementById("C");
 const D = document.getElementById("D");
 const alternativas = document.querySelectorAll(".botao");
 const pergunta = document.getElementById('pergunta')
-pontuacaoHTML = document.getElementById("pontuacao");
-sequenciaHTML = document.getElementById("sequencia");
+const pontuacaoHTML = document.getElementById("pontuacao");
+const sequenciaHTML = document.getElementById("sequencia");
+
+const containerLink = document.getElementById("container-link");
 var pontuacao = 100;
 var sequenciaAcerto = 0;
 
@@ -34,9 +36,15 @@ alternativas.forEach((botao) => {//percorre cada botão
             botaoPassar.innerHTML = `<strong>Continuar <i class="fa-solid fa-arrow-right" class="icon1"></i></strong>` 
             botaoPassar.classList.add('botao_passar')
             div.append(botaoPassar)
+            botaoPassar.addEventListener('click', function() {
+                carregarExercicio(numeroExercicio)
+                botaoPassar.remove()
+                alternativas.forEach((b) => b.disabled = false);
+                alternativas.forEach((b) => b.classList.remove("acerto", "erro"));
+            }
             
             
-        } 
+    )} 
         else {
             botao.classList.add("erro");//adiciona a classe errado
             pontuacao -= 25
@@ -54,16 +62,23 @@ alternativas.forEach((botao) => {//percorre cada botão
 
 
 // Funções de auxilio
-function iniciar() {
-    carregarExercicio(numeroExercicio);
-}
 
 function carregarExercicio(num) {
+    if (num > listaExercicios.length) {
+        const a = document.createElement("a");
+        linkBase = containerLink.getAttribute("data-url-fase");
+        linkProximaFase = linkBase.replace("TROCAR_PELA_PONTUACAO", pontuacao);
+        a.href = linkProximaFase;
+        a.click()
+        return;
+    }
     pergunta.innerText = listaExercicios[num-1].enunciado;
     A.innerText = listaExercicios[num-1].alternativaA;
     B.innerText = listaExercicios[num-1].alternativaB;
     C.innerText = listaExercicios[num-1].alternativaC;
     D.innerText = listaExercicios[num-1].alternativaD;
+    
+    
 }
 /* ATRIBUTOS DO OBJETO EXERCICIO:
 idExercicio

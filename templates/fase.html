@@ -6,7 +6,9 @@
 
 
 {%block corpo%}
+  <div id="container-link" data-url-fase="{{url_for('conclusaoFase',pontuacao=TROCAR_PELA_PONTUACAO)}}">
 
+  </div>
   <section>
       <input type="hidden" name="listaExercicios" id = "listaExercicios" value='{{lista_exercicios | tojson}}'><!-- Passa a lista de exercícios para o JavaScript -->
     <div class="container">

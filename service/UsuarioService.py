@@ -6,11 +6,11 @@ from dao.UsuarioDao import UsuarioDao
 class UsuarioService:
     def __init__(self):
         pass
-    def criarUsuario(self):
+    def criarUsuario(self):        
         oUsuarioView = UsuarioView()
         form = FormularioUsuario(request.form)
         if not form.validate_on_submit():
-            flash('Erro ao cadastrar usuário. Verifique os dados e tente novamente.','error')
+            flash('Erro ao cadastrar usuário. Verifique os dados e tente novamente.','danger')
             return redirect(url_for('cadastrar'))
         
         oUsuarioDao = UsuarioDao()
