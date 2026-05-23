@@ -6,11 +6,11 @@ from views.FaseView import FaseView
 class FaseModel:
     def __init__(self):
         pass
-    def fase1(self):
+    def fase(self):
         oFaseView = FaseView()
         if 'usuario_logado' not in session or session['usuario_logado'] is None:
             flash('Você precisa estar logado para acessar essa página.', 'error')
-            return redirect(url_for('login', proxima=url_for('fase1')))
+            return redirect(url_for('login', proxima=url_for('fase')))
         else:
             usuario = session['usuario_logado']
             usuario_bd = Usuario.query.filter_by(nickname=usuario).first()
@@ -20,7 +20,7 @@ class FaseModel:
             lista_exercicios = fase_atual.exercicio
 
             lista_dicionarios = self.criar_lista_exercicios_dict(lista_exercicios)# Converte a lista de exercícios em uma lista de dicionários
-            return oFaseView.fase1(usuario,lista_dicionarios)
+            return oFaseView.fase(usuario,lista_dicionarios, progresso.idFase)
             
         
     #funções auxiliares

@@ -4,10 +4,10 @@ class FaseController:
     def __init__(self):
         pass
     
-    def fase1(self):
+    def fase(self):
         oFaseModel = FaseModel()
-        return oFaseModel.fase1()
+        return oFaseModel.fase()
     
-    def conclusaoFase(self,idFase,pontuacao):
+    def conclusaoFase(self,pontuacao,idFase):
         oFaseView = FaseView()
-        oFaseView.conclusaoFase(idFase,pontuacao)
+        return oFaseView.conclusaoFase(pontuacao,idFase)

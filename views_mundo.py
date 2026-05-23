@@ -1,14 +1,16 @@
+from flask import render_template
+
 from controllers.ExercicioController import ExercicioController
 from controllers.FaseController import FaseController
 from app import app
-@app.route('/fase1')
-def fase1():
+@app.route('/fase')
+def fase():
     oFaseController = FaseController()
-    return oFaseController.fase1()
+    return oFaseController.fase()
         
     
-# @app.route('/fase1/finalizar', methods=['POST'])
-# def finalizar_fase1():
+# @app.route('/fase/finalizar', methods=['POST'])
+# def finalizar_fase():
 #     dados = request.get_json()
 #     pontuacao = dados.get('pontuacao')
 
@@ -27,7 +29,8 @@ def criarExercicio():
 @app.route('/conclusaoFase/<int:idFase>/<int:pontuacao>')
 def conclusaoFase(idFase,pontuacao):
     oFaseController = FaseController()
-    return oFaseController.conclusaoFase(idFase,pontuacao)
+    return oFaseController.conclusaoFase(idFase=idFase,pontuacao=pontuacao)
 
-
-
+@app.route('/principal')
+def principal():
+    return render_template('principal.html')

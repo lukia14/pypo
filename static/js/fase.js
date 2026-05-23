@@ -66,8 +66,10 @@ alternativas.forEach((botao) => {//percorre cada botão
 function carregarExercicio(num) {
     if (num > listaExercicios.length) {
         const a = document.createElement("a");
+        const idFase = document.getElementById("idFase").value;
+        console.log(idFase)
         linkBase = containerLink.getAttribute("data-url-fase");
-        linkProximaFase = linkBase.replace("TROCAR_PELA_PONTUACAO", pontuacao);
+        linkProximaFase = linkBase.replace("999999", pontuacao).replace("777777", idFase);
         a.href = linkProximaFase;
         a.click()
         return;
