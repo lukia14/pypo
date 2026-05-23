@@ -1,0 +1,102 @@
+{% extends "template.html" %}
+{% block cabecalho %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/loja.css') }}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock %}
+
+{% block corpo %}
+<div class="tela-loja-container">
+    
+    <<div class="loja-header-actions">
+        <div class="grupo-botoes-sair">
+            <a href="{{ url_for('principal') }}" class="botao-sair-cancelar" title="Sair sem salvar">
+                <i class="fa-solid fa-xmark"></i> Sair sem Salvar
+            </a>
+            
+            <a href="/loja/salvar" class="botao-sair-salvar" title="Salvar compras e sair">
+                <i class="fa-solid fa-floppy-disk"></i> Salvar e Sair
+            </a>
+        </div>
+
+        <div class="saldo-usuario">
+            <i class="fa-solid fa-coins" style="color: #ffd700;"></i>
+            <span>Seus Pontos: <strong>550</strong></span>
+        </div>
+    </div>
+
+    <h1 class="titulo-loja">Loja Pypo</h1>
+    <p class="subtitulo-loja">Passe o mouse sobre os itens para ver os detalhes!</p>
+
+    <div class="grid-loja">
+        
+        <div class="card-item">
+            <div class="area-interativa">
+                <div class="icone-item">
+                    <i class="fa-solid fa-glasses"></i>
+                </div>
+                <div class="descricao-item">
+                    <p>Equipe óculos clássicos no seu Pypo e ganhe o visual de um programador sênior.</p>
+                </div>
+            </div>
+            <h3 class="nome-item">Pypo Nerd (Skin)</h3>
+            <div class="preco-item">
+                <i class="fa-solid fa-coins"></i>
+                <span>150</span>
+            </div>
+            <button class="botao-comprar">Comprar</button>
+        </div>
+
+        <div class="card-item">
+            <div class="area-interativa">
+                <div class="icone-item">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <div class="descricao-item">
+                    <p>Ganhe o dobro de pontos ao acertar sequências de exercícios na próxima fase.</p>
+                </div>
+            </div>
+            <h3 class="nome-item">Multiplicador 2x</h3>
+            <div class="preco-item">
+                <i class="fa-solid fa-coins"></i>
+                <span>300</span>
+            </div>
+            <button class="botao-comprar">Comprar</button>
+        </div>
+
+        <div class="card-item">
+            <div class="area-interativa">
+                <div class="icone-item">
+                    <i class="fa-solid fa-palette"></i>
+                </div>
+                <div class="descricao-item">
+                    <p>Altere as cores do seu painel para um tema neon estilo Cyberpunk.</p>
+                </div>
+            </div>
+            <h3 class="nome-item">Tema Cyberpunk</h3>
+            <div class="preco-item">
+                <i class="fa-solid fa-coins"></i>
+                <span>500</span>
+            </div>
+            <button class="botao-comprar">Comprar</button>
+        </div>
+
+        <div class="card-item">
+            <div class="area-interativa">
+                <div class="icone-item">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <div class="descricao-item">
+                    <p>Permite errar uma questão extra sem perder o seu progresso atual.</p>
+                </div>
+            </div>
+            <h3 class="nome-item">Coração Extra</h3>
+            <div class="preco-item">
+                <i class="fa-solid fa-coins"></i>
+                <span>100</span>
+            </div>
+            <button class="botao-comprar">Comprar</button>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,5 +1,3 @@
-from flask import render_template
-
 from controllers.ExercicioController import ExercicioController
 from controllers.FaseController import FaseController
 from app import app
@@ -31,6 +29,4 @@ def conclusaoFase(idFase,pontuacao):
     oFaseController = FaseController()
     return oFaseController.conclusaoFase(idFase=idFase,pontuacao=pontuacao)
 
-@app.route('/principal')
-def principal():
-    return render_template('principal.html')
+

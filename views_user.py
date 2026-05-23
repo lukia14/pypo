@@ -34,4 +34,16 @@ def logout():
     return oUsuarioController.logout()
 
 
+#tela principal
+@app.route('/principal')
+def principal():
+    oUsuarioController = UsuarioController()
+    return oUsuarioController.principal()
+
+@app.route('/loja')
+def loja():
+    oUsuarioController = UsuarioController()
+    return oUsuarioController.loja()
+
+
 

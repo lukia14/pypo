@@ -1,0 +1,328 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Fundo padrão do projeto PYPO */
+.tela-loja-container {
+    background: radial-gradient(circle, #1a444e 0%, #11262b 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Barra Superior */
+.loja-header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.botao-voltar {
+    background-color: rgba(13, 31, 61, 0.85);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.botao-voltar:hover {
+    background-color: #1c82ff;
+    transform: translateX(-3px);
+}
+
+.saldo-usuario {
+    background-color: rgba(13, 31, 61, 0.85);
+    color: #ffffff;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Títulos */
+.titulo-loja {
+    color: #38b6ff;
+    font-size: 2.8rem;
+    margin: 10px 0 5px 0;
+    text-shadow: 0 0 15px rgba(56, 182, 255, 0.5);
+    text-transform: uppercase;
+}
+
+.subtitulo-loja {
+    color: #e0e6ed;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* Grid de itens */
+.grid-loja {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 30px;
+    max-width: 1100px;
+    width: 100%;
+    justify-content: center;
+}
+
+/* Card do Item */
+.card-item {
+    background: linear-gradient(135deg, #184282 0%, #0d2349 100%);
+    border-radius: 15px;
+    padding: 25px 20px;
+    text-align: center;
+    color: #ffffff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(56, 182, 255, 0.3);
+}
+
+/* Área que gerencia a troca de Ícone por Descrição */
+.area-interativa {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilo do Ícone (Visível por padrão) */
+.icone-item {
+    font-size: 3.5rem;
+    color: #38b6ff;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+}
+
+/* Estilo da Descrição (Escondida por padrão) */
+.descricao-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    padding: 0 5px;
+    box-sizing: border-box;
+}
+
+.descricao-item p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #e0e6ed;
+    margin: 0;
+}
+
+/* LÓGICA DO HOVER: Quando passa o mouse no card, inverte os dois */
+.card-item:hover .icone-item {
+    opacity: 0;
+    transform: scale(0.7);
+}
+
+.card-item:hover .descricao-item {
+    opacity: 1;
+    visibility: visible;
+}
+.card-item:hover .descricao-item p{
+    font-size: 1rem;
+
+}
+
+/* Informações de Texto e Preço */
+.nome-item {
+    font-size: 1.25rem;
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+.preco-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #ffd700;
+    margin-bottom: 20px;
+}
+
+/* Botão de Compra */
+.botao-comprar {
+    background-color: #1c82ff;
+    color: white;
+    border: none;
+    padding: 12px 0;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.botao-comprar:hover {
+    background-color: #0066e3;
+}
+
+.botao-comprar:active {
+    transform: scale(0.97);
+}
+
+/* Container que junta os dois botões de saída */
+.grupo-botoes-sair {
+    display: flex;
+    gap: 12px;
+}
+
+/* Estilo Base dos Novos Botões */
+.botao-sair-cancelar, .botao-sair-salvar {
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+/* Botão Sair Sem Salvar (Tom vermelho escuro/sutil para não poluir o visual) */
+.botao-sair-cancelar {
+    background-color: rgba(220, 53, 69, 0.15);
+    color: #ff6b6b;
+    border: 1px solid rgba(220, 53, 69, 0.4);
+}
+
+.botao-sair-cancelar:hover {
+    background-color: rgba(220, 53, 69, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Botão Salvar e Sair (Verde vivo para destacar a ação principal positiva) */
+.botao-sair-salvar {
+    background-color: #23a851;
+    color: #ffffff;
+    border: 1px solid transparent;
+    box-shadow: 0 4px 12px rgba(35, 168, 81, 0.2);
+}
+
+.botao-sair-salvar:hover {
+    background-color: #1c873f;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(35, 168, 81, 0.4);
+}
+
+@media (max-width: 768px) {
+    
+    .titulo-loja {
+        font-size: 2rem; /* Título um pouco menor para não quebrar linha */
+    }
+
+    .subtitulo-loja {
+        font-size: 0.95rem;
+        padding: 0 10px;
+    }
+
+    /* Ajusta a barra superior para empilhar os elementos se a tela for muito pequena */
+    .loja-header-actions {
+        padding: 0 10px;
+        gap: 15px;
+    }
+
+    .saldo-usuario {
+        padding: 8px 15px;
+        font-size: 0.95rem;
+    }
+
+    /* Muda o grid para exibir 2 itens por linha (ou 1 em telas micro) */
+    .grid-loja {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 15px;
+        padding: 0 10px;
+    }
+
+    /* Ajustes no Card para dedões e telas menores */
+    .card-item {
+        padding: 15px 10px;
+    }
+
+    /* Desativa o efeito de esconder/revelar no mobile */
+    .area-interativa {
+        height: auto; /* Deixa o tamanho se ajustar ao conteúdo */
+        flex-direction: column; /* Coloca o ícone em cima e o texto embaixo */
+        gap: 10px;
+    }
+
+    .icone-item {
+        font-size: 2.5rem; /* Ícone discretamente menor */
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .descricao-item {
+        position: relative; /* Sai do modo absoluto e assume o fluxo normal */
+        opacity: 1 !important;
+        visibility: visible !important;
+        height: auto;
+    }
+
+    .descricao-item p {
+        font-size: 0.8rem; /* Texto menor para caber perfeitamente */
+        color: #b0c4de; /* Tom cinza azulado mais suave para leitura */
+    }
+
+    .nome-item {
+        font-size: 1.1rem;
+        margin: 8px 0;
+    }
+
+    .preco-item {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+
+    /* Botão maior e mais fácil de clicar no touch */
+    .botao-comprar {
+        padding: 10px 0;
+        font-size: 0.9rem;
+    }
+}
+
+/* Ajuste extra para celulares muito pequenos (telas abaixo de 360px) */
+@media (max-width: 360px) {
+    .grid-loja {
+        grid-template-columns: 1fr; /* 1 item por linha para não esmagar nada */
+    }
+}

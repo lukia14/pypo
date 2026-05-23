@@ -32,3 +32,11 @@ class UsuarioController:
     def logout(self):
         oUsuarioService = UsuarioService()
         return oUsuarioService.logout()
+    
+    def principal(self):
+        oUsuarioView = UsuarioView()
+        return oUsuarioView.principal()
+    
+    def loja(self):
+        oUsuarioView = UsuarioView()
+        return oUsuarioView.loja()
