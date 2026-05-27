@@ -1,0 +1,260 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Fundo padrão PYPO */
+.crud-container {
+    background: radial-gradient(circle, #1a444e 0%, #11262b 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Cabeçalho do CRUD */
+.crud-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.crud-titulo {
+    color: #38b6ff;
+    font-size: 2.2rem;
+    margin: 0 0 5px 0;
+    text-shadow: 0 0 10px rgba(56, 182, 255, 0.3);
+}
+
+.crud-subtitulo {
+    color: #e0e6ed;
+    margin: 0;
+    font-size: 1rem;
+}
+
+/* Botão Novo Exercício */
+.btn-novo-exercicio {
+    background-color: #23a851;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(35, 168, 81, 0.3);
+    transition: all 0.2s ease;
+}
+
+.btn-novo-exercicio:hover {
+    background-color: #1c873f;
+    transform: translateY(-2px);
+}
+
+/* Container de contenção da tabela */
+.tabela-responsiva {
+    max-width: 1200px;
+    width: 100%;
+    background-color: rgba(13, 31, 61, 0.85);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Customização da Tabela */
+.tabela-exercicios {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    color: #ffffff;
+}
+
+.tabela-exercicios th {
+    background-color: rgba(10, 24, 48, 0.9);
+    color: #38b6ff;
+    padding: 18px 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid rgba(56, 182, 255, 0.2);
+}
+
+.tabela-exercicios td {
+    padding: 18px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.95rem;
+    vertical-align: middle;
+}
+
+.tabela-exercicios tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.tabela-exercicios tbody tr:hover {
+    background-color: rgba(56, 182, 255, 0.05);
+}
+
+/* Limitadores de texto para enunciados longos */
+.col-titulo {
+    color: #ffffff;
+}
+
+.col-enunciado {
+    color: #c9d1d9;
+    max-width: 400px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Bota as '...' se o enunciado for gigante */
+}
+
+/* Badges estilizados */
+.badge-fase {
+    background-color: rgba(56, 182, 255, 0.15);
+    color: #38b6ff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    border: 1px solid rgba(56, 182, 255, 0.3);
+    white-space: nowrap;
+}
+
+.badge-resposta {
+    background-color: rgba(255, 215, 0, 0.15);
+    color: #ffd700;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    white-space: nowrap;
+}
+
+/* Alinhamento dos botões de ação */
+.grupo-acoes {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn-acao {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.btn-alterar {
+    background-color: rgba(56, 182, 255, 0.1);
+    color: #38b6ff;
+    border: 1px solid rgba(56, 182, 255, 0.3);
+}
+
+.btn-alterar:hover {
+    background-color: #38b6ff;
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(56, 182, 255, 0.4);
+}
+
+.btn-apagar {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #ff6b6b;
+    border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+.btn-apagar:hover {
+    background-color: #dc3545;
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(220, 53, 69, 0.4);
+}
+
+/* Estado quando não há dados */
+.tabela-vazia {
+    text-align: center;
+    padding: 40px !important;
+    color: #8b949e;
+}
+
+.tabela-vazia i {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE: Transformação de Tabela para Cards em Celulares
+   ========================================================================== */
+@media (max-width: 768px) {
+    .crud-header {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .btn-novo-exercicio {
+        justify-content: center;
+    }
+
+    /* Remove os comportamentos visuais originais da tabela */
+    .tabela-exercicios thead {
+        display: none; /* Esconde o cabeçalho original */
+    }
+
+    .tabela-exercicios, .tabela-exercicios tbody, .tabela-exercicios tr, .tabela-exercicios td {
+        display: block;
+        width: 100%;
+    }
+
+    .tabela-exercicios tr {
+        border-bottom: 3px solid rgba(56, 182, 255, 0.2);
+        padding: 15px 5px;
+    }
+
+    .tabela-exercicios td {
+        text-align: right;
+        padding: 10px 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    /* Força a quebra de linha correta se o texto for grande no mobile */
+    .col-enunciado {
+        max-width: 60%;
+        white-space: normal;
+        text-align: right;
+    }
+
+    /* Cria rótulos flutuantes usando o atributo 'data-label' do HTML */
+    .tabela-exercicios td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #38b6ff;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+    }
+
+    .grupo-acoes {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}

@@ -20,7 +20,6 @@ class UsuarioView:
         proxima = request.args.get('proxima')
         return render_template('login.html', titulo='Login', form=form, proxima = proxima)
     
-
     def principal(self):
         return render_template('principal.html')
     

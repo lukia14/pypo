@@ -16,16 +16,28 @@ class ExercicioModel(bd.Model):
         return'<Exercicio %r>' % self.titulo
     
     
-    
-    #Funções Auxiliares
     def modeloExercicio(self,form):
-        numero = form.get('numero')
-        titulo = form.get('titulo')
-        enunciado = form.get('enunciado')
-        alternativaA = form.get('alternativaA')
-        alternativaB = form.get('alternativaB')
-        alternativaC = form.get('alternativaC')
-        alternativaD = form.get('alternativaD')
-        resposta = form.get('resposta')
-        novo_exercicio = ExercicioModel(numero=numero,enunciado=enunciado,titulo=titulo,alternativaA=alternativaA,alternativaB=alternativaB,alternativaC=alternativaC,alternativaD=alternativaD,resposta=resposta)
-        return novo_exercicio
+        idExercicio = form.idExercicio.data
+        titulo = form.titulo.data
+        enunciado = form.enunciado.data
+        alternativaA = form.alternativaA.data
+        alternativaB = form.alternativaB.data
+        alternativaC = form.alternativaC.data
+        alternativaD = form.alternativaD.data
+        resposta = form.resposta.data
+        idFase = form.idFase.data
+        numero = form.numero.data
+
+        exercicio = ExercicioModel(
+            idExercicio=idExercicio,
+            titulo=titulo,
+            enunciado=enunciado,
+            alternativaA=alternativaA,
+            alternativaB=alternativaB,
+            alternativaC=alternativaC,
+            alternativaD=alternativaD,
+            resposta=resposta,
+            idFase=idFase,
+            numero=numero
+        )
+        return exercicio

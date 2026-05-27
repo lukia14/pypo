@@ -9,7 +9,9 @@ class FormularioUsuario(FlaskForm):
     enviar = SubmitField('Enviar')
 
 class FormularioExercicio(FlaskForm):
+    idExercicio = IntegerField("Id do Exercício", validators=[DataRequired()],render_kw={'readonly': True})
     numero = IntegerField("Número do Exercício", validators=[DataRequired()])
+    idFase = IntegerField("Id da Fase", validators=[DataRequired()])
     titulo = StringField("Título", validators=[DataRequired(), Length(min=1, max=35)])
     enunciado = StringField("Enunciado", validators=[DataRequired(), Length(min=1, max=99)])
     alternativaA = StringField("Alternativa A", validators=[DataRequired(), Length(min=1, max=99)])

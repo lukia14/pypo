@@ -5,14 +5,13 @@ from app import app
 def fase():
     oFaseController = FaseController()
     return oFaseController.fase()
-        
-    
-# @app.route('/fase/finalizar', methods=['POST'])
-# def finalizar_fase():
-#     dados = request.get_json()
-#     pontuacao = dados.get('pontuacao')
 
+@app.route('/conclusaoFase/<int:idFase>/<int:pontuacao>')
+def conclusaoFase(idFase,pontuacao):
+    oFaseController = FaseController()
+    return oFaseController.conclusaoFase(idFase=idFase,pontuacao=pontuacao)
 
+# Exercicio
 @app.route('/cadastrarExercicio')
 def cadastrarExercicio():
     oExercicioController = ExercicioController()
@@ -23,10 +22,17 @@ def cadastrarExercicio():
 def criarExercicio():
     oExercicioController = ExercicioController()
     return oExercicioController.criarExercicio()
+@app.route('/listarExercicios')
+def listarExercicios():
+    oExercicioController = ExercicioController()
+    return oExercicioController.listarExercicios()
 
-@app.route('/conclusaoFase/<int:idFase>/<int:pontuacao>')
-def conclusaoFase(idFase,pontuacao):
-    oFaseController = FaseController()
-    return oFaseController.conclusaoFase(idFase=idFase,pontuacao=pontuacao)
+@app.route('/exercicio/alterar/<int:idExercicio>')
+def alterarExercicio(idExercicio):
+    oExercicioController = ExercicioController()
+    return oExercicioController.alterarExercicio(idExercicio)
 
-
+@app.route('/exercicio/deletar/<int:idExercicio>')
+def deletarExercicio(idExercicio):
+    oExercicioController = ExercicioController()
+    return oExercicioController.deletarExercicio(idExercicio)

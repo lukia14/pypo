@@ -34,7 +34,7 @@ def logout():
     return oUsuarioController.logout()
 
 
-#tela principal
+
 @app.route('/principal')
 def principal():
     oUsuarioController = UsuarioController()

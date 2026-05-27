@@ -44,6 +44,13 @@ class UsuarioService:
         flash('Você foi desconectado com sucesso!', 'success')
         return redirect(url_for('index'))
     
+    def principal(self):
+        oUsuarioView = UsuarioView()
+        if 'usuario_logado' not in session or session['usuario_logado'] is None:
+            flash('Faça login para acessar a página principal', 'danger')
+            return redirect(url_for('login'))
+        return oUsuarioView.principal()
+    
     def loja(self):
         oItemDao = ItemDao()
         if 'usuario_logado' not in session or session['usuario_logado'] is None:
