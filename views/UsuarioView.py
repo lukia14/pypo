@@ -24,5 +24,5 @@ class UsuarioView:
     def principal(self):
         return render_template('principal.html')
     
-    def loja(self):
-        return render_template('loja.html')
+    def loja(self,listaItens):
+        return render_template('loja.html', listaItens=listaItens)

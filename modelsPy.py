@@ -10,14 +10,6 @@ class Usuario(bd.Model):
         return'<Usuario %r>' % self.nickname
     
 
-class Item(bd.Model):
-   idItem = bd.Column(bd.Integer, primary_key=True, autoincrement=True)
-   nome = bd.Column(bd.String(25), nullable=False)
-   valor = bd.Column(bd.Integer, nullable=False)
-
-   def __repr__(self):
-        return'<Item %r>' % self.nome
-
 
 class Estoque(bd.Model):
     qtd = bd.Column(bd.Integer, nullable=False)

@@ -1,7 +1,2 @@
-const item = [{
-    nome: "ola",
-    preco: 300
-}]
-item.push({nome:'pudim',preco:999})
-
-
+let botao = document.querySelectorAll('.botao-comprar')
+console.log(botao)

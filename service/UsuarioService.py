@@ -2,6 +2,7 @@ from flask import render_template,flash, request, redirect, url_for, session
 from helpers import FormularioUsuario
 from views.UsuarioView import UsuarioView
 from models.UsuarioModel import UsuarioModel
+from dao.ItemDao import ItemDao
 from dao.UsuarioDao import UsuarioDao
 class UsuarioService:
     def __init__(self):
@@ -42,6 +43,15 @@ class UsuarioService:
         session['usuario_logado'] = None
         flash('Você foi desconectado com sucesso!', 'success')
         return redirect(url_for('index'))
+    
+    def loja(self):
+        oItemDao = ItemDao()
+        if 'usuario_logado' not in session or session['usuario_logado'] is None:
+            flash('Faça login para acessar a loja', 'danger')
+            return redirect(url_for('login'))
+        listaItens = oItemDao.carregarItensLoja()
+        oUsuarioView = UsuarioView()
+        return oUsuarioView.loja(listaItens)
     
     #Funções de auxilio
     

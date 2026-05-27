@@ -1,6 +1,7 @@
 from modelsPy import Usuario,Progresso
 from flask import flash, session,request
 from models.UsuarioModel import UsuarioModel
+from models.ItemModel import ItemModel
 from app import bd
 
 class UsuarioDao:
@@ -30,10 +31,14 @@ class UsuarioDao:
             flash('Usuário não encontrado. Verifique os dados e tente novamente.', 'error')
             return 'login'
 
+    
     def criarProgresso(self,idUsuario):
         novo_progresso = Progresso(idUsuario =idUsuario, idFase=1)
         bd.session.add(novo_progresso)
 
+    
+    #funções de auxilio
+    
     def UsuarioExiste(self,nickname):
         usuario = Usuario.query.filter_by(nickname=nickname).first()
         if usuario:

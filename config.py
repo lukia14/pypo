@@ -3,7 +3,7 @@ SQLALCHEMY_DATABASE_URI = \
     '{SGBD}://{usuario}:{senha}@{servidor}/{database}'.format(
 SGBD = 'mysql+mysqlconnector',
 usuario = 'root',
-senha = 'Lf132639',
+senha = 'ifsp',
 servidor = 'localhost',
 database = 'pypo'
 )

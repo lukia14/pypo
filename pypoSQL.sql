@@ -28,9 +28,13 @@ CREATE TABLE UsuarioConquista (
 CREATE TABLE Item 
 ( 
  idItem INT PRIMARY KEY AUTO_INCREMENT,  
- nome VARCHAR(25) NOT NULL,  
+ nome VARCHAR(25) NOT NULL,
+ descricao TEXT NOT NULL,
  valor INT NOT NULL 
 ); 
+
+insert into Item values
+(default,"50/50","Reduz o número de opções para a metade",100);
 
 CREATE TABLE Mundo 
 ( 
