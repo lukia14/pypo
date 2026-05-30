@@ -8,7 +8,12 @@ class UsuarioDao:
     def __init__(self):
         pass
 
-    def criarNovoUsuario(self,novo_usuario):
+    def getUsuario(self,form):
+        usuario = UsuarioModel.query.filter_by(nickname=form.nickname.data).first()
+        return usuario
+
+    def criarNovoUsuario(self,form):
+        novo_usuario = UsuarioModel.modeloUsuario(form)
         bd.session.add(novo_usuario)
         bd.session.flush()
         idUsuario = novo_usuario.idUsuario
@@ -39,8 +44,8 @@ class UsuarioDao:
     
     #funções de auxilio
     
-    def UsuarioExiste(self,nickname):
-        usuario = Usuario.query.filter_by(nickname=nickname).first()
+    def UsuarioExiste(self,form):
+        usuario = Usuario.query.filter_by(nickname=form.nickname.data).first()
         if usuario:
             return True
         return False

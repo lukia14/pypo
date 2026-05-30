@@ -42,6 +42,13 @@ body, html {
     font-size: 1rem;
 }
 
+/* Container de botões alinhados */
+.header-acoes {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
 /* Botão Novo Exercício */
 .btn-novo-exercicio {
     background-color: #23a851;
@@ -59,6 +66,28 @@ body, html {
 
 .btn-novo-exercicio:hover {
     background-color: #1c873f;
+    transform: translateY(-2px);
+}
+
+/* Botão de Voltar para a Tela Principal */
+.btn-voltar {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #e0e6ed;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+}
+
+.btn-voltar:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.25);
     transform: translateY(-2px);
 }
 
@@ -117,7 +146,7 @@ body, html {
     max-width: 400px;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; /* Bota as '...' se o enunciado for gigante */
+    text-overflow: ellipsis;
 }
 
 /* Badges estilizados */
@@ -208,13 +237,20 @@ body, html {
         text-align: center;
     }
 
-    .btn-novo-exercicio {
+    .header-acoes {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .btn-novo-exercicio, .btn-voltar {
+        width: 100%;
         justify-content: center;
     }
 
     /* Remove os comportamentos visuais originais da tabela */
     .tabela-exercicios thead {
-        display: none; /* Esconde o cabeçalho original */
+        display: none;
     }
 
     .tabela-exercicios, .tabela-exercicios tbody, .tabela-exercicios tr, .tabela-exercicios td {
@@ -237,14 +273,12 @@ body, html {
         box-sizing: border-box;
     }
 
-    /* Força a quebra de linha correta se o texto for grande no mobile */
     .col-enunciado {
         max-width: 60%;
         white-space: normal;
         text-align: right;
     }
 
-    /* Cria rótulos flutuantes usando o atributo 'data-label' do HTML */
     .tabela-exercicios td::before {
         content: attr(data-label);
         font-weight: 600;

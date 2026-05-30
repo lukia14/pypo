@@ -15,13 +15,18 @@ class ExercicioDao:
         exercicios = ExercicioModel.query.all()
         return exercicios
     
+    def carregarExercicioPorId(self, idExercicio):
+        exercicio = ExercicioModel.query.get(idExercicio)
+        return exercicio
+    
     def deletarExercicio(self, idExercicio):
         exercicio = ExercicioModel.query.get(idExercicio)
         if exercicio:
             bd.session.delete(exercicio)
             bd.session.commit()
 
-    def alterarExercicio(self,form,idExercicio):
+    def alterarExercicio(self,form):
+
         exercicio = ExercicioModel.modeloExercicio(form)
 
         exercicioAntigo = ExercicioModel.query.get(exercicio.idExercicio)
@@ -36,6 +41,7 @@ class ExercicioDao:
             exercicioAntigo.alternativaC = exercicio.alternativaC
             exercicioAntigo.alternativaD = exercicio.alternativaD
             bd.session.commit()
+    
     #funcoes auxiliares
     def maiorIdExercicio(self):
         maiorId = bd.session.query(func.max(ExercicioModel.idExercicio)).scalar()

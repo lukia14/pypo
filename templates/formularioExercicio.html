@@ -6,8 +6,8 @@
 {%block corpo%}
 <main class="container-main">
   <div class="container-principal">
-      <h1>Login</h1>
-      <form action = "{{url_for('criarExercicio')}}" method="post">
+      <h1>Cadastrar Exercício</h1>
+      <form action = "{{url_for(aoEnviar)}}" method="post">
         <input type="hidden" name="proxima" value="{{ proxima }}">
         {{ form.csrf_token() }}
 

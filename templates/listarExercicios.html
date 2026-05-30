@@ -12,9 +12,15 @@
             <h1 class="crud-titulo">Banco de Exercícios</h1>
             <p class="crud-subtitulo">Gerencie as questões, alternativas e respostas do sistema.</p>
         </div>
-        <a href="{{ url_for('cadastrarExercicio') }}" class="btn-novo-exercicio">
-            <i class="fa-solid fa-plus"></i> Novo Exercício
-        </a>
+        
+        <div class="header-acoes">
+            <a href="{{ url_for('index') }}" class="btn-voltar">
+                <i class="fa-solid fa-house"></i> Voltar 
+            </a>
+            <a href="{{ url_for('cadastrarExercicio') }}" class="btn-novo-exercicio">
+                <i class="fa-solid fa-plus"></i> Novo Exercício
+            </a>
+        </div>
     </div>
 
     <div class="tabela-responsiva">
@@ -49,7 +55,7 @@
                     
                     <td data-label="Ações" style="text-align: center;">
                         <div class="grupo-acoes">
-                            <a href="{{ url_for('alterarExercicio', idExercicio=exercicio.idExercicio) }}" class="btn-acao btn-alterar" title="Alterar Exercício">
+                            <a href="{{ url_for('editarExercicio', idExercicio=exercicio.idExercicio) }}" class="btn-acao btn-alterar" title="Alterar Exercício">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </a>
                             

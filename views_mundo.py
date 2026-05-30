@@ -27,10 +27,15 @@ def listarExercicios():
     oExercicioController = ExercicioController()
     return oExercicioController.listarExercicios()
 
-@app.route('/exercicio/alterar/<int:idExercicio>')
-def alterarExercicio(idExercicio):
+@app.route('/exercicio/editar/<int:idExercicio>')
+def editarExercicio(idExercicio):
     oExercicioController = ExercicioController()
-    return oExercicioController.alterarExercicio(idExercicio)
+    return oExercicioController.editarExercicio(idExercicio)
+
+@app.route('/exercicio/alterar',methods=['POST'])
+def alterarExercicio():
+    oExercicioController = ExercicioController()
+    return oExercicioController.alterarExercicio()
 
 @app.route('/exercicio/deletar/<int:idExercicio>')
 def deletarExercicio(idExercicio):

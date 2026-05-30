@@ -29,7 +29,7 @@ class ExercicioService:
             oExercicioDao.criarNovoExercicio(form)
         
         flash('Exercício criado com sucesso!', 'success')
-        return redirect(url_for('index')) 
+        return redirect(url_for('listarExercicios')) 
     
     def listarExercicios(self):
         oExercicioDao = ExercicioDao()
@@ -43,9 +43,16 @@ class ExercicioService:
         oExercicioDao.deletarExercicio(idExercicio)
         flash('Exercício deletado com sucesso!', 'success')
         exercicios = oExercicioDao.carregarExercicios()
-        oExercicioView.listarExercicios(exercicios)
+        return oExercicioView.listarExercicios(exercicios)
 
-    def alterarExercicio(self, idExercicio):
+    def editarExercicio(self, idExercicio):
+        oExercicioDao = ExercicioDao()
+        oExercicioView = ExercicioView()
+        exercicio = oExercicioDao.carregarExercicioPorId(idExercicio)
+        form = FormularioExercicio(obj=exercicio)
+        return oExercicioView.editarExercicio(form)
+    
+    def alterarExercicio(self):
         oExercicioDao = ExercicioDao()
         oExercicioView = ExercicioView()
         form = FormularioExercicio(request.form)
@@ -53,7 +60,8 @@ class ExercicioService:
             flash('Erro ao alterar exercício. Verifique os dados e tente novamente.','error')
             return oExercicioView.cadastrarExercicio(oExercicioDao.maiorIdExercicio())
         
-        oExercicioDao.alterarExercicio(form,idExercicio)
+        oExercicioDao.alterarExercicio(form)
         flash('Exercício alterado com sucesso!', 'success')
         exercicios = oExercicioDao.carregarExercicios()
-        oExercicioView.listarExercicios(exercicios)
+        return oExercicioView.listarExercicios(exercicios)
+    

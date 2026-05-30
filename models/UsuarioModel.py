@@ -7,10 +7,11 @@ class UsuarioModel(bd.Model):
     email = bd.Column(bd.String(45), nullable=False, unique=True)
     senha = bd.Column(bd.String(25), nullable = False, unique=False)
 
-    def modeloUsuario(self,form):
-        nickname = form.get('nickname')
-        email = form.get('email')
-        senha = form.get('senha')
-        email = form.get('email')
+    @staticmethod
+    def modeloUsuario(form):
+        nickname = form.nickname.data
+        email = form.email.data
+        senha = form.senha.data
+        email = form.email.data
         usuario = UsuarioModel(nickname=nickname, email=email, senha=senha)
         return usuario

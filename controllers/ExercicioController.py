@@ -11,6 +11,7 @@ class ExercicioController:
     def cadastrarExercicio(self):
         oExercicioService = ExercicioService()
         return oExercicioService.cadastrarExercicio()
+
     
     def listarExercicios(self):
         oExercicioService = ExercicioService()
@@ -20,6 +21,10 @@ class ExercicioController:
         oExercicioService = ExercicioService()
         return oExercicioService.deletarExercicio(idExercicio)
     
-    def alterarExercicio(self, idExercicio):
+    def editarExercicio(self, idExercicio):
         oExercicioService = ExercicioService()
-        return oExercicioService.alterarExercicio(idExercicio)
+        return oExercicioService.editarExercicio(idExercicio)
+    
+    def alterarExercicio(self):
+        oExercicioService = ExercicioService()
+        return oExercicioService.alterarExercicio()

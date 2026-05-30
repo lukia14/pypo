@@ -15,8 +15,8 @@ class ExercicioModel(bd.Model):
     def __repr__(self):
         return'<Exercicio %r>' % self.titulo
     
-    
-    def modeloExercicio(self,form):
+    @staticmethod
+    def modeloExercicio(form):
         idExercicio = form.idExercicio.data
         titulo = form.titulo.data
         enunciado = form.enunciado.data
