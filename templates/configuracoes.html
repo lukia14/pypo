@@ -1,6 +1,6 @@
 {% extends "template.html" %}
 {% block cabecalho %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/configuracoes.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/configuracoes.css') }}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 {% endblock %}
 
@@ -12,7 +12,7 @@
             <h1 class="crud-titulo"><i class="fa-solid fa-gear"></i> Configurações</h1>
             <p class="crud-subtitulo">Gerencie suas informações de perfil, credenciais de acesso e conta.</p>
         </div>
-        <a href="{{ url_for('principal,') }}" class="btn-voltar">
+        <a href="{{ url_for('principal') }}" class="btn-voltar">
             <i class="fa-solid fa-house"></i> Voltar Principal
         </a>
     </div>
@@ -104,6 +104,7 @@
                     <p>A exclusão da conta apagará permanentemente todo o seu progresso, estatísticas e acessos. Esta ação não poderá ser desfeita.</p>
                 </div>
                 <form action="{{ url_for('deletarConta') }}" method="POST" onsubmit="return confirm('ATENÇÃO: Tem certeza absoluta que deseja deletar sua conta? Todos os seus dados serão apagados permanentemente.')">
+                    {{ formPerfil.csrf_token}}
                     <button type="submit" class="btn-deletar-conta">
                         <i class="fa-solid fa-user-xmark"></i> Excluir Conta
                     </button>

@@ -89,16 +89,19 @@ class UsuarioService:
         oUsuarioDao.alterarSenha(form)
         return oUsuarioView.configuracoes(oUsuarioDao.getUsuarioPorNickname(session['usuario_logado']))
         
+    def deletarConta(self):
+        oUsuarioDao = UsuarioDao()
+        if not self.verificarLogin():
+            flash('Faça login para deletar a conta', 'danger')
+            return redirect(url_for('login'))
+        
+        oUsuarioDao.deletarConta(session['usuario_logado'])
+        session['usuario_logado'] = None
+        flash('Conta deletada com sucesso!', 'success')
+        return redirect(url_for('principal'))
             
     
-    def loja(self):
-        oItemDao = ItemDao()
-        if not self.verificarLogin():
-            flash('Faça login para acessar a loja', 'danger')
-            return redirect(url_for('login'))
-        listaItens = oItemDao.carregarItensLoja()
-        oUsuarioView = UsuarioView()
-        return oUsuarioView.loja(listaItens)
+    
     
     #Funções de auxilio
     def verificarLogin(self):

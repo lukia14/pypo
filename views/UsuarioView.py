@@ -28,5 +28,4 @@ class UsuarioView:
         formSenha = FormularioAlterarSenha()
         return render_template('configuracoes.html', usuario=usuario, formPerfil=formPerfil, formSenha=formSenha)
 
-    def loja(self,listaItens):
-        return render_template('loja.html', listaItens=listaItens)
+    

@@ -49,8 +49,10 @@ class UsuarioController:
         oUsuarioService = UsuarioService()
         return oUsuarioService.alterarSenha()
     
-    def loja(self):
+    def deletarConta(self):
         oUsuarioService = UsuarioService()
-        return oUsuarioService.loja()
+        return oUsuarioService.deletarConta()
+    
+    
 
     

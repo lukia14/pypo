@@ -35,15 +35,7 @@ def logout():
 
 
 
-@app.route('/principal')
-def principal():
-    oUsuarioController = UsuarioController()
-    return oUsuarioController.principal()
 
-@app.route('/configuracoes')
-def configuracoes():
-    oUsuarioController = UsuarioController()
-    return oUsuarioController.configuracoes()
 
 @app.route('/alterarSenha', methods=['POST'])
 def alterarSenha():
@@ -57,12 +49,10 @@ def alterarPerfil():
 
 @app.route('/deletarConta', methods=['POST'])
 def deletarConta():
-    pass
-
-@app.route('/loja')
-def loja():
     oUsuarioController = UsuarioController()
-    return oUsuarioController.loja()
+    return oUsuarioController.deletarConta()
+
+
 
 
 

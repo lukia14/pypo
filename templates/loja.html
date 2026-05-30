@@ -1,8 +1,8 @@
 {% extends "template.html" %}
 {% block cabecalho %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/loja.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/loja.css') }}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="{{url_for('static', filename='js/loja.js')}}" defer></script>
+    <script type="module" src="{{url_for('static', filename='js/loja.js')}}" defer></script>
 {% endblock %}
 
 {% block corpo %}
@@ -27,8 +27,8 @@
 
     <h1 class="titulo-loja">Loja Pypo</h1>
     <p class="subtitulo-loja">Passe o mouse sobre os itens para ver os detalhes!</p>
-
     <div class="grid-loja">
+        <input type="hidden" id="item-id" value="{{ listaItens}}">
         {% for item in listaItens %}
         <div class="card-item">
             <div class="area-interativa">
@@ -44,7 +44,7 @@
                 <i class="fa-solid fa-coins"></i>
                 <span>{{ item.valor }}</span>
             </div>
-            <button class="botao-comprar">Comprar</button>
+            <button class="botao-comprar {{ item.id }}">Comprar</button>
         </div>
 
         {% endfor %}

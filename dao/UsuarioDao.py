@@ -72,7 +72,13 @@ class UsuarioDao:
         usuarioAntigo.senha = form.novaSenha.data
         bd.session.commit()
         
-    
+    def deletarConta(self, nickname):
+        usuario = UsuarioModel.query.filter_by(nickname=nickname).first()
+        if usuario:
+            bd.session.delete(usuario)
+            bd.session.commit()
+            flash('Conta deletada com sucesso!', 'success')
+
     #funções de auxilio
     
     def UsuarioExiste(self,form):
