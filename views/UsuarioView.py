@@ -1,5 +1,5 @@
 from flask import render_template,request
-from helpers import FormularioUsuario
+from helpers import FormularioUsuario, FormularioAlterarSenha
 
 class UsuarioView:
     def __init__(self):
@@ -23,5 +23,10 @@ class UsuarioView:
     def principal(self):
         return render_template('principal.html')
     
+    def configuracoes(self, usuario):
+        formPerfil = FormularioUsuario()
+        formSenha = FormularioAlterarSenha()
+        return render_template('configuracoes.html', usuario=usuario, formPerfil=formPerfil, formSenha=formSenha)
+
     def loja(self,listaItens):
         return render_template('loja.html', listaItens=listaItens)

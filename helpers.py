@@ -7,6 +7,11 @@ class FormularioUsuario(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Length(min=1, max=35)])
     senha = PasswordField('Senha', validators=[DataRequired(), Length(min=1, max=35)])
     enviar = SubmitField('Enviar')
+class FormularioAlterarSenha(FlaskForm):
+    senhaAntiga = PasswordField('Senha Antiga', validators=[DataRequired(), Length(min=1, max=35)])
+    novaSenha = PasswordField('Nova Senha', validators=[DataRequired(), Length(min=1, max=35)])
+    confirmarSenha = PasswordField('Confirmar Nova Senha', validators=[DataRequired(), Length(min=1, max=35), validators.EqualTo('novaSenha', message='As senhas devem coincidir')])
+    enviar = SubmitField('Alterar Senha')
 
 class FormularioExercicio(FlaskForm):
     idExercicio = IntegerField("Id do Exercício", validators=[DataRequired()],render_kw={'readonly': True})

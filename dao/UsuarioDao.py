@@ -12,6 +12,10 @@ class UsuarioDao:
         usuario = UsuarioModel.query.filter_by(nickname=form.nickname.data).first()
         return usuario
 
+    def getUsuarioPorNickname(self, nickname):
+        usuario = UsuarioModel.query.filter_by(nickname=nickname).first()
+        return usuario
+
     def criarNovoUsuario(self,form):
         novo_usuario = UsuarioModel.modeloUsuario(form)
         bd.session.add(novo_usuario)
@@ -41,6 +45,33 @@ class UsuarioDao:
         novo_progresso = Progresso(idUsuario =idUsuario, idFase=1)
         bd.session.add(novo_progresso)
 
+    def alterarPerfil(self,form):
+        usuarioAntigo = UsuarioModel.query.filter_by(nickname=session['usuario_logado']).first()
+        if usuarioAntigo:
+            usuarioAntigo.email = form.email.data
+            bd.session.commit()
+            flash('Perfil atualizado com sucesso!', 'success')
+            return True
+        else:
+            flash('Usuário não encontrado. Verifique os dados e tente novamente.', 'error')
+            return False
+        
+    def alterarSenha(self,form):
+        usuarioAntigo = UsuarioModel.query.filter_by(nickname=session['usuario_logado']).first()
+        senhaAntiga = usuarioAntigo.senha if usuarioAntigo else None
+        if not senhaAntiga:
+            flash('Usuário não encontrado. Verifique os dados e tente novamente.', 'error')
+
+        if senhaAntiga != form.senhaAntiga.data:
+            flash('Senha antiga incorreta. Verifique os dados e tente novamente.', 'error')
+
+        if form.novaSenha.data != form.confirmarSenha.data:
+            flash('As novas senhas não coincidem. Verifique os dados e tente novamente.', 'error')
+            
+        flash('Senha alterada com sucesso!', 'success')
+        usuarioAntigo.senha = form.novaSenha.data
+        bd.session.commit()
+        
     
     #funções de auxilio
     

@@ -40,6 +40,25 @@ def principal():
     oUsuarioController = UsuarioController()
     return oUsuarioController.principal()
 
+@app.route('/configuracoes')
+def configuracoes():
+    oUsuarioController = UsuarioController()
+    return oUsuarioController.configuracoes()
+
+@app.route('/alterarSenha', methods=['POST'])
+def alterarSenha():
+    oUsuarioController = UsuarioController()
+    return oUsuarioController.alterarSenha()
+
+@app.route('/alterarPerfil', methods=['POST'])
+def alterarPerfil():
+    oUsuarioController = UsuarioController()
+    return oUsuarioController.alterarPerfil()
+
+@app.route('/deletarConta', methods=['POST'])
+def deletarConta():
+    pass
+
 @app.route('/loja')
 def loja():
     oUsuarioController = UsuarioController()

@@ -1,5 +1,6 @@
 from flask import render_template,flash, request, redirect, url_for, session
-from helpers import FormularioUsuario
+from wtforms import form
+from helpers import FormularioUsuario,FormularioAlterarSenha
 from views.UsuarioView import UsuarioView
 from dao.ItemDao import ItemDao
 from dao.UsuarioDao import UsuarioDao
@@ -52,14 +53,47 @@ class UsuarioService:
     
     def principal(self):
         oUsuarioView = UsuarioView()
-        if 'usuario_logado' not in session or session['usuario_logado'] is None:
+        if not self.verificarLogin():
             flash('Faça login para acessar a página principal', 'danger')
             return redirect(url_for('login'))
+        
         return oUsuarioView.principal()
+    
+    def configuracoes(self):
+        oUsuarioView = UsuarioView()
+        oUsuarioDao = UsuarioDao()
+        if not self.verificarLogin():
+            flash('Faça login para acessar as configurações', 'danger')
+            return redirect(url_for('login'))
+        
+        nickname = session['usuario_logado']
+        usuario = oUsuarioDao.getUsuarioPorNickname(nickname)
+        return oUsuarioView.configuracoes(usuario)
+    
+    def alterarPerfil(self):
+        oUsuarioDao = UsuarioDao()
+        form = FormularioUsuario(request.form)
+        if not self.verificarLogin():
+            flash('Faça login para alterar o perfil', 'danger')
+            return redirect(url_for('login'))
+        oUsuarioDao.alterarPerfil(form)
+        return redirect(url_for('configuracoes'))
+    
+    def alterarSenha(self):
+        oUsuarioDao = UsuarioDao()
+        oUsuarioView = UsuarioView()
+        form = FormularioAlterarSenha(request.form)
+        if not self.verificarLogin():
+            flash('Faça login para alterar a senha', 'danger')
+            return redirect(url_for('login'))
+        oUsuarioDao.alterarSenha(form)
+        return oUsuarioView.configuracoes(oUsuarioDao.getUsuarioPorNickname(session['usuario_logado']))
+        
+            
     
     def loja(self):
         oItemDao = ItemDao()
-        if 'usuario_logado' not in session or session['usuario_logado'] is None:
+        if not self.verificarLogin():
             flash('Faça login para acessar a loja', 'danger')
             return redirect(url_for('login'))
         listaItens = oItemDao.carregarItensLoja()
@@ -67,5 +101,8 @@ class UsuarioService:
         return oUsuarioView.loja(listaItens)
     
     #Funções de auxilio
-    
-   
+    def verificarLogin(self):
+        if 'usuario_logado' not in session or session['usuario_logado'] is None:
+            flash('Faça login para acessar esta página', 'danger')
+            return False
+        return True

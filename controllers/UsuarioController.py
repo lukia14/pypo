@@ -37,6 +37,20 @@ class UsuarioController:
         oUsuarioService = UsuarioService()
         return oUsuarioService.principal()
     
+    def configuracoes(self):
+        oUsuarioService = UsuarioService()
+        return oUsuarioService.configuracoes()
+    
+    def alterarPerfil(self):
+        oUsuarioService = UsuarioService()
+        return oUsuarioService.alterarPerfil()
+    
+    def alterarSenha(self):
+        oUsuarioService = UsuarioService()
+        return oUsuarioService.alterarSenha()
+    
     def loja(self):
         oUsuarioService = UsuarioService()
         return oUsuarioService.loja()
+
+    
