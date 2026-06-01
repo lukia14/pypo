@@ -11,13 +11,7 @@ class Usuario(bd.Model):
     
 
 
-class Estoque(bd.Model):
-    qtd = bd.Column(bd.Integer, nullable=False)
-    idUsuario = bd.Column(bd.Integer, bd.ForeignKey('usuario.idUsuario'), primary_key=True)
-    idItem = bd.Column(bd.Integer, bd.ForeignKey('item.idItem'), primary_key=True)
-    
-    def __repr__(self):
-        return'<Estoque %r>' % self.qtd
+
 
 class Mundo(bd.Model):
     idMundo = bd.Column(bd.Integer, primary_key=True, autoincrement=True)

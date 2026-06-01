@@ -11,3 +11,7 @@ class ItemController:
     def apiItensLoja(self):
         oItemService = ItemService()
         return oItemService.apiItensLoja()
+    
+    def apiEstoque(self):
+        oItemService = ItemService()
+        return oItemService.apiEstoque()

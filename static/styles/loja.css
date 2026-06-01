@@ -27,22 +27,6 @@ body, html {
     margin-bottom: 30px;
 }
 
-.botao-voltar {
-    background-color: rgba(13, 31, 61, 0.85);
-    color: #ffffff;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.botao-voltar:hover {
-    background-color: #1c82ff;
-    transform: translateX(-3px);
-}
-
 .saldo-usuario {
     background-color: rgba(13, 31, 61, 0.85);
     color: #ffffff;
@@ -71,14 +55,93 @@ body, html {
     text-align: center;
 }
 
-/* Grid de itens */
+/* ==========================================================================
+   ALINHAMENTO EM COLUNAS (NOVO)
+   ========================================================================== */
+.layout-loja-corpo {
+    display: flex;
+    gap: 30px;
+    max-width: 1100px;
+    width: 100%;
+    align-items: flex-start;
+}
+
+/* ==========================================================================
+   ESTILOS DO INVENTÁRIO (NOVO)
+   ========================================================================== */
+.secao-inventario {
+    flex: 0 0 280px; /* Largura fixa para o inventário */
+    background: linear-gradient(135deg, #13323a 0%, #0d1e22 100%);
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid rgba(56, 182, 255, 0.15);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    position: sticky;
+    top: 30px; /* Segue a rolagem da tela na vitrine */
+}
+
+.secao-inventario h2 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.secao-inventario h2 i {
+    color: #38b6ff;
+}
+
+/* Linhas dos itens do inventário */
+.item-inventario {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(13, 31, 61, 0.4);
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    transition: all 0.2s ease;
+}
+
+.item-inventario:hover {
+    border-color: rgba(56, 182, 255, 0.3);
+    transform: translateX(3px);
+}
+
+.item-inventario .nome-item {
+    color: #e0e6ed;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.item-inventario .qtd-item {
+    background-color: #38b6ff;
+    color: #11262b;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.inventario-vazio {
+    color: #8fa0a6;
+    font-size: 0.9rem;
+    text-align: center;
+    font-style: italic;
+    padding: 10px 0;
+}
+
+/* Grid de itens ajustado para o layout colunar */
 .grid-loja {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     gap: 30px;
-    max-width: 1100px;
-    width: 100%;
-    justify-content: center;
+    flex: 1; /* Ocupa o restante do espaço */
 }
 
 /* Card do Item */
@@ -112,7 +175,6 @@ body, html {
     justify-content: center;
 }
 
-/* Estilo do Ícone (Visível por padrão) */
 .icone-item {
     font-size: 3.5rem;
     color: #38b6ff;
@@ -120,7 +182,6 @@ body, html {
     opacity: 1;
 }
 
-/* Estilo da Descrição (Escondida por padrão) */
 .descricao-item {
     position: absolute;
     top: 0;
@@ -144,7 +205,6 @@ body, html {
     margin: 0;
 }
 
-/* LÓGICA DO HOVER: Quando passa o mouse no card, inverte os dois */
 .card-item:hover .icone-item {
     opacity: 0;
     transform: scale(0.7);
@@ -156,10 +216,8 @@ body, html {
 }
 .card-item:hover .descricao-item p{
     font-size: 1rem;
-
 }
 
-/* Informações de Texto e Preço */
 .nome-item {
     font-size: 1.25rem;
     margin: 10px 0;
@@ -199,13 +257,12 @@ body, html {
     transform: scale(0.97);
 }
 
-/* Container que junta os dois botões de saída */
+/* Container de botões de saída */
 .grupo-botoes-sair {
     display: flex;
     gap: 12px;
 }
 
-/* Estilo Base dos Novos Botões */
 .botao-sair-cancelar, .botao-sair-salvar {
     text-decoration: none;
     padding: 10px 18px;
@@ -218,7 +275,6 @@ body, html {
     transition: all 0.3s ease;
 }
 
-/* Botão Sair Sem Salvar (Tom vermelho escuro/sutil para não poluir o visual) */
 .botao-sair-cancelar {
     background-color: rgba(220, 53, 69, 0.15);
     color: #ff6b6b;
@@ -230,7 +286,6 @@ body, html {
     transform: translateY(-2px);
 }
 
-/* Botão Salvar e Sair (Verde vivo para destacar a ação principal positiva) */
 .botao-sair-salvar {
     background-color: #23a851;
     color: #ffffff;
@@ -244,10 +299,111 @@ body, html {
     box-shadow: 0 6px 15px rgba(35, 168, 81, 0.4);
 }
 
+/* Forçar o cabeçalho a aparecer com destaque */
+.inventario-cabecalho {
+    display: flex !important; /* Garante que o flexbox está ativo */
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 16px;
+    margin-bottom: 12px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+.inventario-cabecalho .txt-coluna {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #ffffff; /* Mudamos para branco puro para dar contraste máximo */
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+/* Container principal do inventário */
+#inventario-dados {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espaçamento vertical entre cada item */
+    max-height: 400px; /* Limita a altura máxima do inventário */
+    overflow-y: auto; /* Adiciona barra de rolagem se o jogador tiver muitos itens */
+    padding-right: 4px; /* Espaço para a barra de rolagem não cobrir o conteúdo */
+}
+
+/* Cada linha de item do inventário */
+.item-inventario {
+    display: flex;
+    justify-content: space-between; /* Nome na esquerda total, Qtd na direita total */
+    align-items: center; /* Alinha verticalmente os textos no centro da linha */
+    background-color: rgba(13, 31, 61, 0.4); /* Fundo escuro translúcido */
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.03); /* Borda sutil quase invisível */
+    transition: all 0.2s ease;
+}
+
+/* Efeito visual opcional ao passar o mouse por cima do item */
+.item-inventario:hover {
+    background-color: rgba(13, 31, 61, 0.6);
+    transform: translateX(3px); /* Dá um leve "pulo" para a direita */
+    border-color: rgba(56, 182, 255, 0.2); /* Acende levemente a borda */
+}
+
+/* Estilização do Nome do Item */
+.nome-item-inventario {
+    font-size: 0.95rem;
+    color: #ffffff; /* Texto branco */
+    font-weight: 500;
+    white-space: nowrap; /* Impede o texto de quebrar linha */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Se o nome for gigante, vira "..." automaticamente */
+    max-width: 75%; /* Garante espaço para a quantidade */
+}
+
+/* Estilização da Quantidade (Badge/Etiqueta) */
+.qtd-item-inventario {
+    color: #ffffff; /* Texto escuro por cima para dar excelente contraste */
+    font-size: 0.85rem;
+    font-weight: 700; /* Texto em negrito */
+    padding: 3px 10px;
+    border-radius: 6px;
+    min-width: 35px; /* Mantém o mesmo tamanho padrão caso seja só 1 dígito */
+    text-align: center;
+}
+
+/* --- EXTRA: Customização elegante da barra de rolagem (Scrollbar) se houver muitos itens --- */
+#inventario-dados::-webkit-scrollbar {
+    width: 6px;
+}
+#inventario-dados::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.01);
+    border-radius: 10px;
+}
+#inventario-dados::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+}
+#inventario-dados::-webkit-scrollbar-thumb:hover {
+    background: rgba(56, 182, 255, 0.4); /* Fica azul ao passar o mouse */
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE (MOBILE AJUSTADO)
+   ========================================================================== */
 @media (max-width: 768px) {
     
+    .layout-loja-corpo {
+        flex-direction: column; /* Joga o inventário para cima da vitrine no mobile */
+        gap: 20px;
+    }
+
+    .secao-inventario {
+        width: 100%;
+        flex: none;
+        position: static; /* Remove o sticky no mobile */
+    }
+
     .titulo-loja {
-        font-size: 2rem; /* Título um pouco menor para não quebrar linha */
+        font-size: 2rem;
     }
 
     .subtitulo-loja {
@@ -255,7 +411,6 @@ body, html {
         padding: 0 10px;
     }
 
-    /* Ajusta a barra superior para empilhar os elementos se a tela for muito pequena */
     .loja-header-actions {
         padding: 0 10px;
         gap: 15px;
@@ -266,41 +421,39 @@ body, html {
         font-size: 0.95rem;
     }
 
-    /* Muda o grid para exibir 2 itens por linha (ou 1 em telas micro) */
     .grid-loja {
         grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
         gap: 15px;
         padding: 0 10px;
+        width: 100%;
     }
 
-    /* Ajustes no Card para dedões e telas menores */
     .card-item {
         padding: 15px 10px;
     }
 
-    /* Desativa o efeito de esconder/revelar no mobile */
     .area-interativa {
-        height: auto; /* Deixa o tamanho se ajustar ao conteúdo */
-        flex-direction: column; /* Coloca o ícone em cima e o texto embaixo */
+        height: auto;
+        flex-direction: column;
         gap: 10px;
     }
 
     .icone-item {
-        font-size: 2.5rem; /* Ícone discretamente menor */
+        font-size: 2.5rem;
         opacity: 1 !important;
         transform: none !important;
     }
 
     .descricao-item {
-        position: relative; /* Sai do modo absoluto e assume o fluxo normal */
+        position: relative;
         opacity: 1 !important;
         visibility: visible !important;
         height: auto;
     }
 
     .descricao-item p {
-        font-size: 0.8rem; /* Texto menor para caber perfeitamente */
-        color: #b0c4de; /* Tom cinza azulado mais suave para leitura */
+        font-size: 0.8rem;
+        color: #b0c4de;
     }
 
     .nome-item {
@@ -313,16 +466,14 @@ body, html {
         margin-bottom: 15px;
     }
 
-    /* Botão maior e mais fácil de clicar no touch */
     .botao-comprar {
         padding: 10px 0;
         font-size: 0.9rem;
     }
 }
 
-/* Ajuste extra para celulares muito pequenos (telas abaixo de 360px) */
 @media (max-width: 360px) {
     .grid-loja {
-        grid-template-columns: 1fr; /* 1 item por linha para não esmagar nada */
+        grid-template-columns: 1fr;
     }
 }

@@ -16,6 +16,10 @@ class UsuarioDao:
         usuario = UsuarioModel.query.filter_by(nickname=nickname).first()
         return usuario
 
+    def getUsuarioPorId(self, idUsuario):
+        usuario = UsuarioModel.query.filter_by(idUsuario=idUsuario).first()
+        return usuario
+
     def criarNovoUsuario(self,form):
         novo_usuario = UsuarioModel.modeloUsuario(form)
         bd.session.add(novo_usuario)
@@ -25,13 +29,13 @@ class UsuarioDao:
         self.criarProgresso(idUsuario)
         bd.session.commit()
         flash('Usuário cadastrado com sucesso!', 'success')
-        session['usuario_logado'] = novo_usuario.nickname
+        session['usuario_logado'] = novo_usuario.idUsuario
 
     def autenticarUsuario(self,usuario):
         usuario = UsuarioModel.query.filter_by(nickname = usuario.nickname).first()
         if usuario:
             if usuario.senha == usuario.senha:
-                session['usuario_logado'] = usuario.nickname
+                session['usuario_logado'] = usuario.idUsuario
                 flash('Usuário autenticado com sucesso!', 'success')
                 return '/'
             else:
@@ -46,7 +50,7 @@ class UsuarioDao:
         bd.session.add(novo_progresso)
 
     def alterarPerfil(self,form):
-        usuarioAntigo = UsuarioModel.query.filter_by(nickname=session['usuario_logado']).first()
+        usuarioAntigo = UsuarioModel.query.filter_by(idUsuario=session['usuario_logado']).first()
         if usuarioAntigo:
             usuarioAntigo.email = form.email.data
             bd.session.commit()
@@ -57,7 +61,7 @@ class UsuarioDao:
             return False
         
     def alterarSenha(self,form):
-        usuarioAntigo = UsuarioModel.query.filter_by(nickname=session['usuario_logado']).first()
+        usuarioAntigo = UsuarioModel.query.filter_by(idUsuario=session['usuario_logado']).first()
         senhaAntiga = usuarioAntigo.senha if usuarioAntigo else None
         if not senhaAntiga:
             flash('Usuário não encontrado. Verifique os dados e tente novamente.', 'error')
@@ -72,8 +76,8 @@ class UsuarioDao:
         usuarioAntigo.senha = form.novaSenha.data
         bd.session.commit()
         
-    def deletarConta(self, nickname):
-        usuario = UsuarioModel.query.filter_by(nickname=nickname).first()
+    def deletarConta(self, idUsuario):
+        usuario = UsuarioModel.query.filter_by(idUsuario=idUsuario).first()
         if usuario:
             bd.session.delete(usuario)
             bd.session.commit()

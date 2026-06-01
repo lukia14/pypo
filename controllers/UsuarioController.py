@@ -12,7 +12,7 @@ class UsuarioController:
 
     def cadastrar(self):
         if 'usuario_logado' in session and session['usuario_logado'] is not None:
-            flash(f'Você já está logado como {session['usuario_logado']}','danger')
+            flash('Você já está logado.', 'danger')
             return redirect(url_for('index'))   
         oUsuarioView = UsuarioView()
         return  oUsuarioView.cadastrar()

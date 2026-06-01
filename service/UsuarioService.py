@@ -27,7 +27,10 @@ class UsuarioService:
         form = FormularioUsuario()
         oUsuarioView = UsuarioView()
         if 'usuario_logado' in session and session['usuario_logado'] is not None:
-            flash(f'Você já está logado como {session['usuario_logado']}','danger')
+            oUsuarioDao = UsuarioDao()
+            usuario = oUsuarioDao.getUsuarioPorId(session['usuario_logado'])
+            nome = usuario.nickname if usuario else session['usuario_logado']
+            flash(f'Você já está logado como {nome}','danger')
             return oUsuarioView.principal()
        
         return oUsuarioView.login(form)
@@ -39,7 +42,7 @@ class UsuarioService:
         usuario = oUsuarioDao.getUsuario(form)
         if usuario:
             if usuario.senha == form.senha.data and usuario.email == form.email.data:
-                session['usuario_logado'] = usuario.nickname
+                session['usuario_logado'] = usuario.idUsuario
                 flash('Usuário autenticado com sucesso!', 'success')
                 return oUsuarioView.principal()
             
@@ -66,8 +69,7 @@ class UsuarioService:
             flash('Faça login para acessar as configurações', 'danger')
             return redirect(url_for('login'))
         
-        nickname = session['usuario_logado']
-        usuario = oUsuarioDao.getUsuarioPorNickname(nickname)
+        usuario = oUsuarioDao.getUsuarioPorId(session['usuario_logado'])
         return oUsuarioView.configuracoes(usuario)
     
     def alterarPerfil(self):
@@ -87,7 +89,7 @@ class UsuarioService:
             flash('Faça login para alterar a senha', 'danger')
             return redirect(url_for('login'))
         oUsuarioDao.alterarSenha(form)
-        return oUsuarioView.configuracoes(oUsuarioDao.getUsuarioPorNickname(session['usuario_logado']))
+        return oUsuarioView.configuracoes(oUsuarioDao.getUsuarioPorId(session['usuario_logado']))
         
     def deletarConta(self):
         oUsuarioDao = UsuarioDao()

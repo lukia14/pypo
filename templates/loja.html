@@ -27,27 +27,48 @@
 
     <h1 class="titulo-loja">Loja Pypo</h1>
     <p class="subtitulo-loja">Passe o mouse sobre os itens para ver os detalhes!</p>
-    <div class="grid-loja">
-        <input type="hidden" id="item-id" value="{{ listaItens}}">
-        {% for item in listaItens %}
-        <div class="card-item">
-            <div class="area-interativa">
-                <div class="icone-item">
-                    <i class="fa-solid fa-glasses"></i>
-                </div>
-                <div class="descricao-item">
-                    <p>{{ item.descricao }}</p>
-                </div>
+    
+    <div class="layout-loja-corpo">
+        
+        <aside class="secao-inventario">
+            <h2><i class="fa-solid fa-box-open"></i> Meu Inventário</h2>
+            
+            <div class="inventario-cabecalho">
+                <span class="txt-coluna">Item</span>
+                <span class="txt-coluna">Qtd</span>
             </div>
-            <h3 class="nome-item">{{ item.nome }}</h3>
-            <div class="preco-item">
-                <i class="fa-solid fa-coins"></i>
-                <span>{{ item.valor }}</span>
-            </div>
-            <button class="botao-comprar {{ item.id }}">Comprar</button>
-        </div>
 
-        {% endfor %}
+            <div id="inventario-dados">
+                {% for estoque in listaEstoque %}
+                    <div class="item-inventario">
+                        <span class="nome-item-inventario">{{ estoque.nome }}</span>
+                        <span class="qtd-item-inventario">{{ estoque.qtd }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </aside>
+
+        <div class="grid-loja">
+            <input type="hidden" id="item-id" value="{{ listaItens}}">
+            {% for item in listaItens %}
+            <div class="card-item">
+                <div class="area-interativa">
+                    <div class="icone-item">
+                        <i class="fa-solid fa-glasses"></i>
+                    </div>
+                    <div class="descricao-item">
+                        <p>{{ item.descricao }}</p>
+                    </div>
+                </div>
+                <h3 class="nome-item">{{ item.nome }}</h3>
+                <div class="preco-item">
+                    <i class="fa-solid fa-coins"></i>
+                    <span>{{ item.valor }}</span>
+                </div>
+                <button class="botao-comprar {{ item.id }}">Comprar</button>
+            </div>
+            {% endfor %}
+        </div>
 
     </div>
 </div>

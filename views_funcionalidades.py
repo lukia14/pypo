@@ -22,3 +22,12 @@ def loja():
 def apiItensLoja():
     oItemController = ItemController()
     return oItemController.apiItensLoja()
+
+@app.route('/api/estoque')
+def apiEstoque():
+    oItemController = ItemController()
+    return oItemController.apiEstoque()
+
+@app.route('/api/inventario')
+def apiInventario():
+    pass
