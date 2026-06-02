@@ -4,11 +4,13 @@ const botaoSalvarCompra = document.querySelector('.botao-sair-salvar')
 var pontuacao = parseInt(pontuacaoHTML.textContent.split(' ')[1])
 
 botaoSalvarCompra.addEventListener('click', () => {
-    console.log('Salvando compra...')
+    console.log('Salvando compra...');
+    
     const tokencsrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    fetch('/api/salvarCompra',{
+    
+    fetch('/api/salvarCompra', {
         method: 'POST',
-        headers:{
+        headers: {
             'Content-Type': 'application/json',
             'X-CSRFToken': tokencsrf
         },
@@ -17,7 +19,30 @@ botaoSalvarCompra.addEventListener('click', () => {
             'pontuacao': pontuacao
         })
     })
-})
+    // 1️⃣ Transforma a resposta bruta do Flask em um objeto JavaScript (JSON)
+    .then(response => response.json())
+    
+    // 2️⃣ Agora sim! A variável 'dados' nasce aqui com o que o Python respondeu
+    .then(dados => {
+        console.log('Resposta do servidor:', dados);
+        
+        if (dados.status === 'sucesso') {
+            // Mostra o flash verde usando a mensagem vinda do Python
+            flash(dados.mensagem, 'success'); 
+            
+            // Opcional: Se quiser limpar o carrinho/lista local após salvar:
+            // listaEstoque = []; 
+        } else {
+            // Se o Python mandou um status de erro, mostra o flash vermelho
+            flash(dados.mensagem, 'danger');
+        }
+    })
+    // 3️⃣ Caso o servidor esteja desligado ou a rede caia totalmente
+    .catch(error => {
+        console.error('Erro no fetch:', error);
+        flash('Erro crítico ao salvar a compra.', 'danger');
+    });
+});
 
 async function carregarItens() {
     try{

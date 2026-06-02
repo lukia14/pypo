@@ -63,7 +63,6 @@ class ItemService:
                 idItem= item.get('idItem')
                 qtd= item.get('qtd')
                 oEstoqueDao.adicionarAoEstoque(session['usuario_logado'],idItem,qtd)
-                
         return {"status": "sucesso", "mensagem": "Compra salva com sucesso!"}, 200
     
     #funções auxiliares

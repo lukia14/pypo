@@ -12039,28 +12039,54 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
- ul.flashes {
-  list-style: none;
-  padding: 0;
+/* Container fixo no canto da tela */
+#flash-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
 }
 
-ul.flashes li.error{
-  background-color: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
-  padding: 0.75rem 1.25rem;
-  margin-bottom: 1rem;
-  border-radius: 0.25rem;
-} 
-
-/*# sourceMappingURL=bootstrap.css.map */
-
-ul.flashes li.success {
-  background-color: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
-  padding: 0.75rem 1.25rem;
-  margin-bottom: 1rem;
-  border-radius: 0.25rem;
+/* Base de todas as mensagens */
+.flash-message {
+    pointer-events: auto;
+    min-width: 300px;
+    max-width: 450px;
+    padding: 16px 20px;
+    border-radius: 6px;
+    color: #ffffff;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transition: all 0.3s ease;
 }
 
+/* 🟢 SUCCESS (Sucesso) */
+.flash .success {
+    background-color: #2ecc71;
+    border-left: 6px solid #27ae60;
+}
+
+/* 🔴 DANGER (Perigo / Erro) */
+.flash .danger {
+    background-color: #e74c3c;
+    border-left: 6px solid #c0392b;
+}
+
+/* Animação para surgirem da direita */
+@keyframes slideIn {
+    from {
+        transform: translateX(120%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
