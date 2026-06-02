@@ -91,10 +91,11 @@ class UsuarioDao:
     def deletarConta(self, idUsuario):
         usuario = UsuarioModel.query.filter_by(idUsuario=idUsuario).first()
         if usuario:
-            progresso = ProgressoModel.query.filter_by(idUsuario=idUsuario)
-            estoque = EstoqueModel.query.filter_by(idUsuario=idUsuario)
+            progresso = ProgressoModel.query.filter_by(idUsuario=idUsuario).first()
+            estoque = EstoqueModel.query.filter_by(idUsuario=idUsuario).first()
+            if estoque:
+                bd.session.delete(estoque)
             bd.session.delete(progresso)
-            bd.session.delete(estoque)
             bd.session.delete(usuario)
             bd.session.commit()
             flash('Conta deletada com sucesso!', 'success')
