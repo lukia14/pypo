@@ -1,5 +1,6 @@
 {% extends "template.html" %}
 {% block cabecalho %}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/loja.css') }}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script type="module" src="{{url_for('static', filename='js/loja.js')}}" defer></script>
@@ -11,17 +12,17 @@
     <div class="loja-header-actions">
         <div class="grupo-botoes-sair">
             <a href="{{ url_for('principal') }}" class="botao-sair-cancelar" title="Sair sem salvar">
-                <i class="fa-solid fa-xmark"></i> Sair sem Salvar
+                <i class="fa-solid fa-xmark"></i> Sair
             </a>
             
-            <a href="/loja/salvar" class="botao-sair-salvar" title="Salvar compras e sair">
-                <i class="fa-solid fa-floppy-disk"></i> Salvar e Sair
-            </a>
+           <button class="botao-sair-salvar" title="Salvar compras e sair">
+                <i class="fa-solid fa-floppy-disk"></i> Salvar
+            </button>
         </div>
 
         <div class="saldo-usuario">
             <i class="fa-solid fa-coins" style="color: #ffd700;"></i>
-            <span>Seus Pontos: <strong>550</strong></span>
+            <span id="pontuacao">pontuação: {{ pontuacao }}</span>
         </div>
     </div>
 
@@ -65,10 +66,11 @@
                     <i class="fa-solid fa-coins"></i>
                     <span>{{ item.valor }}</span>
                 </div>
-                <button class="botao-comprar {{ item.id }}">Comprar</button>
+                <button class="botao-comprar {{ item.idItem }}">Comprar</button>
             </div>
             {% endfor %}
         </div>
+        <div id="flash-container"></div>
 
     </div>
 </div>

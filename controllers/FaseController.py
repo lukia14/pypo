@@ -1,12 +1,12 @@
-from models.FaseModel import FaseModel
+from service.FaseService import FaseService
 from views.FaseView import FaseView
 class FaseController:
     def __init__(self):
         pass
     
     def fase(self):
-        oFaseModel = FaseModel()
-        return oFaseModel.fase()
+        oFaseService = FaseService()
+        return oFaseService.fase()
     
     def conclusaoFase(self,pontuacao,idFase):
         oFaseView = FaseView()

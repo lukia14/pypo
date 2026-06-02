@@ -6,6 +6,7 @@ class UsuarioModel(bd.Model):
     nickname = bd.Column(bd.String(25), nullable=False, unique=True)
     email = bd.Column(bd.String(45), nullable=False, unique=True)
     senha = bd.Column(bd.String(25), nullable = False, unique=False)
+    pontuacao = bd.Column(bd.Integer, nullable = False)
 
     @staticmethod
     def modeloUsuario(form):

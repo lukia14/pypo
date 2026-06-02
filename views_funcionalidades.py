@@ -1,4 +1,4 @@
-from app import app
+from app import app,csrf
 from controllers.UsuarioController import UsuarioController
 from controllers.ItemController import ItemController
 
@@ -28,6 +28,7 @@ def apiEstoque():
     oItemController = ItemController()
     return oItemController.apiEstoque()
 
-@app.route('/api/inventario')
-def apiInventario():
-    pass
+@app.route('/api/salvarCompra', methods=['POST'])
+def apiSalvarCompra():
+    oItemController = ItemController()
+    return oItemController.apiSalvarCompra()

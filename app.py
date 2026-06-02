@@ -3,7 +3,7 @@ from flask_wtf.csrf import CSRFProtect
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-csrf = CSRFProtect(app)
+csrf = CSRFProtect(app) 
 bd = SQLAlchemy(app)
 app.config.from_pyfile('config.py')
 

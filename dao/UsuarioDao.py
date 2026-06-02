@@ -1,7 +1,9 @@
-from modelsPy import Usuario,Progresso
 from flask import flash, session,request
 from models.UsuarioModel import UsuarioModel
 from models.ItemModel import ItemModel
+from models.ProgressoModel import ProgressoModel
+from models.EstoqueModel import EstoqueModel
+from dao.ProgressoDao import ProgressoDao
 from app import bd
 
 class UsuarioDao:
@@ -11,6 +13,11 @@ class UsuarioDao:
     def getUsuario(self,form):
         usuario = UsuarioModel.query.filter_by(nickname=form.nickname.data).first()
         return usuario
+    
+    def getPontuacao(self,idUsuario):
+        usuario = UsuarioModel.query.filter_by(idUsuario=idUsuario).first()
+        return usuario.pontuacao
+    
 
     def getUsuarioPorNickname(self, nickname):
         usuario = UsuarioModel.query.filter_by(nickname=nickname).first()
@@ -20,16 +27,24 @@ class UsuarioDao:
         usuario = UsuarioModel.query.filter_by(idUsuario=idUsuario).first()
         return usuario
 
-    def criarNovoUsuario(self,form):
-        novo_usuario = UsuarioModel.modeloUsuario(form)
-        bd.session.add(novo_usuario)
-        bd.session.flush()
-        idUsuario = novo_usuario.idUsuario
+    def setPontuacao(self,idUsuario,pontuacao):
+        print('PONTUAÇÂO',pontuacao)
+        usuario = UsuarioModel.query.filter_by(idUsuario=idUsuario).first()
+        usuario.pontuacao = pontuacao
+        bd.session.commit()
 
-        self.criarProgresso(idUsuario)
+    def criarNovoUsuario(self,form):
+        oProgressoDao = ProgressoDao()
+        novoUsuario = UsuarioModel.modeloUsuario(form)
+        novoUsuario.pontuacao = 100
+        bd.session.add(novoUsuario)
+        bd.session.flush()
+        idUsuario = novoUsuario.idUsuario
+
+        oProgressoDao.criarProgresso(idUsuario)
         bd.session.commit()
         flash('Usuário cadastrado com sucesso!', 'success')
-        session['usuario_logado'] = novo_usuario.idUsuario
+        session['usuario_logado'] = novoUsuario.idUsuario
 
     def autenticarUsuario(self,usuario):
         usuario = UsuarioModel.query.filter_by(nickname = usuario.nickname).first()
@@ -45,9 +60,6 @@ class UsuarioDao:
             return 'login'
 
     
-    def criarProgresso(self,idUsuario):
-        novo_progresso = Progresso(idUsuario =idUsuario, idFase=1)
-        bd.session.add(novo_progresso)
 
     def alterarPerfil(self,form):
         usuarioAntigo = UsuarioModel.query.filter_by(idUsuario=session['usuario_logado']).first()
@@ -79,6 +91,10 @@ class UsuarioDao:
     def deletarConta(self, idUsuario):
         usuario = UsuarioModel.query.filter_by(idUsuario=idUsuario).first()
         if usuario:
+            progresso = ProgressoModel.query.filter_by(idUsuario=idUsuario)
+            estoque = EstoqueModel.query.filter_by(idUsuario=idUsuario)
+            bd.session.delete(progresso)
+            bd.session.delete(estoque)
             bd.session.delete(usuario)
             bd.session.commit()
             flash('Conta deletada com sucesso!', 'success')
@@ -86,7 +102,7 @@ class UsuarioDao:
     #funções de auxilio
     
     def UsuarioExiste(self,form):
-        usuario = Usuario.query.filter_by(nickname=form.nickname.data).first()
+        usuario = UsuarioModel.query.filter_by(nickname=form.nickname.data).first()
         if usuario:
             return True
         return False

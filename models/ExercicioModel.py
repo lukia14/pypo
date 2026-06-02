@@ -9,7 +9,7 @@ class ExercicioModel(bd.Model):
     alternativaC = bd.Column(bd.String(99), nullable=False)
     alternativaD = bd.Column(bd.String(99), nullable=False)
     resposta = bd.Column(bd.String(1), nullable=False)
-    idFase = bd.Column(bd.Integer, bd.ForeignKey('fase.idFase'))
+    idFase = bd.Column(bd.Integer, bd.ForeignKey('Fase.idFase'), nullable=False)
     numero = bd.Column(bd.Integer, nullable=False)
 
     def __repr__(self):

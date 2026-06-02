@@ -15,3 +15,7 @@ class ItemController:
     def apiEstoque(self):
         oItemService = ItemService()
         return oItemService.apiEstoque()
+    
+    def apiSalvarCompra(self):
+        oItemService = ItemService()
+        return oItemService.apiSalvarCompra()
