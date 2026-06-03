@@ -28,7 +28,6 @@ class UsuarioDao:
         return usuario
 
     def setPontuacao(self,idUsuario,pontuacao):
-        print('PONTUAÇÂO',pontuacao)
         usuario = UsuarioModel.query.filter_by(idUsuario=idUsuario).first()
         usuario.pontuacao = pontuacao
         bd.session.commit()
@@ -91,8 +90,8 @@ class UsuarioDao:
     def deletarConta(self, idUsuario):
         usuario = UsuarioModel.query.filter_by(idUsuario=idUsuario).first()
         if usuario:
-            progresso = ProgressoModel.query.filter_by(idUsuario=idUsuario)
-            estoque = EstoqueModel.query.filter_by(idUsuario=idUsuario)
+            progresso = ProgressoModel.query.filter_by(idUsuario=idUsuario).first()
+            estoque = EstoqueModel.query.filter_by(idUsuario=idUsuario).first()
             bd.session.delete(progresso)
             bd.session.delete(estoque)
             bd.session.delete(usuario)

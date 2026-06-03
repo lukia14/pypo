@@ -32,3 +32,8 @@ def apiEstoque():
 def apiSalvarCompra():
     oItemController = ItemController()
     return oItemController.apiSalvarCompra()
+
+@app.route('/api/salvarPontuacaoFase',methods=['POST'])
+def apiSalvarPontuacaoFase():
+    oUsuarioController = UsuarioController()
+    return oUsuarioController.apiSalvarPontuacao()

@@ -7,8 +7,12 @@ class ProgressoDao:
 
     def getProgresso(self,idUsuario):
         return ProgressoModel.query.filter_by(idUsuario=idUsuario).first()
-        
     
+    def setProgresso(self,idUsuario,idFase):
+        progresso = ProgressoModel.query.filter_by(idUsuario=idUsuario).first()
+        progresso.idFase = idFase
+        bd.session.commit()
+
     def criarProgresso(self,idUsuario):
         novoProgresso = ProgressoModel(idUsuario =idUsuario, idFase=1)
         bd.session.add(novoProgresso)

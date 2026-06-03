@@ -41,6 +41,10 @@ class UsuarioController:
         oUsuarioService = UsuarioService()
         return oUsuarioService.configuracoes()
     
+    def apiSalvarPontuacao(self):
+        oUsuarioService = UsuarioService()
+        return oUsuarioService.apiSalvarPontuacao()
+    
     def alterarPerfil(self):
         oUsuarioService = UsuarioService()
         return oUsuarioService.alterarPerfil()

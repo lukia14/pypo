@@ -62,17 +62,44 @@ alternativas.forEach((botao) => {//percorre cada botão
 
 
 // Funções de auxilio
+function enviarPontuacaoFlask(pontuacao,idFase){
+    const tokencsrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    return fetch('/api/salvarPontuacaoFase', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': tokencsrf
+        },
+        body: JSON.stringify({
+            'idFase': parseInt(idFase)+1,
+            'pontuacao': pontuacao
+        })
+    })
+}
 
 function carregarExercicio(num) {
     if (num > listaExercicios.length) {
         const a = document.createElement("a");
         const idFase = document.getElementById("idFase").value;
-        console.log(idFase)
-        linkBase = containerLink.getAttribute("data-url-fase");
-        linkProximaFase = linkBase.replace("999999", pontuacao).replace("777777", idFase);
-        a.href = linkProximaFase;
-        a.click()
-        return;
+        enviarPontuacaoFlask(pontuacao,idFase)
+        .then(response => {
+            if (response.ok) {
+                // SÓ MUDA DE PÁGINA SE O SERVIDOR DEU OK
+                console.log('js foi')
+                const a = document.createElement("a");
+                const linkBase = containerLink.getAttribute("data-url-fase");
+                const linkProximaFase = linkBase.replace("999999", pontuacao).replace("777777", idFase);
+                
+                a.href = linkProximaFase;
+                a.click();
+            } else {
+                console.error("O Flask recebeu o pedido, mas retornou um erro.");
+            }
+        })
+        .catch(error => {
+            console.error("Erro crítico na requisição de salvar:", error);
+        });
+        return
     }
     pergunta.innerText = listaExercicios[num-1].enunciado;
     A.innerText = listaExercicios[num-1].alternativaA;

@@ -1,10 +1,9 @@
-from flask import render_template,flash, request, redirect, url_for, session
+from flask import render_template,flash, request, redirect, url_for, session,jsonify
 from wtforms import form
 from helpers import FormularioUsuario,FormularioAlterarSenha
 from views.UsuarioView import UsuarioView
-from dao.ItemDao import ItemDao
 from dao.UsuarioDao import UsuarioDao
-
+from dao.ProgressoDao import ProgressoDao
 class UsuarioService:
     def __init__(self):
         pass
@@ -71,6 +70,20 @@ class UsuarioService:
         
         usuario = oUsuarioDao.getUsuarioPorId(session['usuario_logado'])
         return oUsuarioView.configuracoes(usuario)
+    
+    def apiSalvarPontuacao(self):
+        idUsuario = session['usuario_logado']
+        oUsuarioDao = UsuarioDao()
+        oProgressoDao = ProgressoDao()
+        dados = request.get_json(silent=True)
+        if not dados:
+            return jsonify({'status': 'erro', 'mensagem': 'Dados não recebidos'}), 400
+        pontuacao = dados.get('pontuacao')
+        idFase = dados.get('idFase')
+        oUsuarioDao.setPontuacao(idUsuario,pontuacao)
+        oProgressoDao.setProgresso(idUsuario,idFase)
+
+        return jsonify({"status": "sucesso", "mensagem": "Pontuação salva com sucesso!"}), 200
     
     def alterarPerfil(self):
         oUsuarioDao = UsuarioDao()
