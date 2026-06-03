@@ -92,8 +92,10 @@ class UsuarioDao:
         if usuario:
             progresso = ProgressoModel.query.filter_by(idUsuario=idUsuario).first()
             estoque = EstoqueModel.query.filter_by(idUsuario=idUsuario).first()
-            bd.session.delete(progresso)
-            bd.session.delete(estoque)
+            if estoque:
+                bd.session.delete(estoque)
+            if progresso:
+                bd.session.delete(progresso)
             bd.session.delete(usuario)
             bd.session.commit()
             flash('Conta deletada com sucesso!', 'success')

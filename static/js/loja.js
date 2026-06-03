@@ -44,7 +44,7 @@ botaoSalvarCompra.addEventListener('click', () => {
     });
 });
 
-async function carregarItens() {
+async function carregarItensAPI() {
     try{
         const response = await fetch('/api/itensLoja')
         return await response.json()
@@ -54,7 +54,7 @@ async function carregarItens() {
     }
 }
 
-async function carregarEstoque() {
+async function carregarEstoqueAPI() {
     try{
         const response = await fetch('/api/estoque')
         return await response.json()
@@ -63,13 +63,14 @@ async function carregarEstoque() {
     }
 }
 
-let listaItens = await carregarItens()
-let listaEstoque = await carregarEstoque()
+let listaItens = await carregarItensAPI()
+let listaEstoque = await carregarEstoqueAPI()
 
 botoes.forEach(botao =>{
     botao.addEventListener('click', async (event) => {
         const itemId = event.target.classList[1]
         let item = listaItens.find(item => item.idItem == itemId)
+        console.log(item)
         let valor = item?.valor || 0
         if (pontuacao < valor){
             flash(`Você precisa de ${valor} pontos, mas só tem ${pontuacao}!`, 'alerta');
@@ -78,6 +79,7 @@ botoes.forEach(botao =>{
         pontuacao -= valor
         pontuacaoHTML.textContent = `pontuação: ${pontuacao}`
         salvarCompra(itemId)
+        renderizarEstoque()
             
     })
 })
@@ -90,15 +92,18 @@ function salvarCompra(itemId) {
         item.qtd += 1
     }
     else{
-        listaEstoque.push({idItem: itemId, qtd: 1})
+        let itemLista = listaItens.find(item => item.idItem == itemId)
+        listaEstoque.push({idItem: itemId, qtd: 1, nome: itemLista.nome})
     }
     renderizarEstoque()
 }
 
 function renderizarEstoque(){
     listaEstoque.forEach(item=>{
-        const div = document.querySelector('.item-inventario')
-        div.innerHTML = ''
+        const container = document.querySelector('#inventario-dados')
+        const div = document.createElement('div')
+        div.classList.add('item-inventario')
+        container.innerHTML = ''
         const spanNome = document.createElement('span')
         const spanQtd = document.createElement('span')
         
@@ -108,6 +113,7 @@ function renderizarEstoque(){
         spanNome.innerHTML = item.nome 
         spanQtd.innerHTML = item.qtd
         div.append(spanNome,spanQtd)
+        container.append(div)
     })
 }
 
