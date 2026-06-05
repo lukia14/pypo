@@ -6,3 +6,4 @@ class FaseDao:
 
     def getFase(self,idFase):
         return FaseModel.query.filter_by(idFase=idFase).first()
+    

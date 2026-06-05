@@ -11,31 +11,23 @@
     <nav class="sidebar">
         <div class="logo">PYPO</div>
         <ul class="menu">
+            <li><a href="#perfil"><i class="fa-solid fa-arrow-left" style="color: rgb(116, 192, 252);"></i>Voltar</a></li>
             <li><a href="#aprender" class="active"><i class="fa-solid fa-user" style="color: rgb(116, 192, 252);"></i>perfil</a></li>
             <li><a href="#revisar"><i class="fa-solid fa-book" style="color: rgb(116, 192, 252);"></i>Revisar</a></li>
-            <li><a href="#perfil"><i class="fa-solid fa-arrow-left" style="color: rgb(116, 192, 252);"></i>Voltar</a></li>
+            <li><a href="{{ url_for('loja') }}"><i class="fa-solid fa-store" style="color: rgb(116, 192, 252);"></i>Loja</a></li>
+            <li><a href="{{ url_for('loja') }}"><i class="fa-solid fa-trophy" style="color: rgb(116, 192, 252);"></i>Conquistas</a></li>
+
         </ul>
     </nav>
     <main class="content">
         <div class="path-container">
-            <a href="#fase1" class="phase start center">
-                <div class="bubble">1</div>
+        {% for fase in listaFases %}
+            <a href="#fase{{ fase.idFase }}" class="phase">
+                <div class="bubble">{{ loop.index }}</div>
+                
+                <span class="phase-tooltip">Fase {{ loop.index }}: {{ fase.materialApoio }}</span>
             </a>
-            <a href="#fase2" class="phase left">
-                <div class="bubble">2</div>
-            </a>
-            <a href="#fase3" class="phase right">
-                <div class="bubble">3</div>
-            </a>
-            <a href="#fase4" class="phase center">
-                <div class="bubble">4</div>
-            </a>
-            <a href="#fase5" class="phase left">
-                <div class="bubble">5</div>
-            </a>
-            <a href="#fase6" class="phase right">
-                <div class="bubble">6</div>
-            </a>
+        {% endfor %}
         </div>
     </main>
 </body>

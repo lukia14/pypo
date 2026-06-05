@@ -7,20 +7,6 @@
 {% block corpo %}
 <div class="tela-mundos-container">
     
-    <div class="menu-dashboard">
-        <a href="{{ url_for('loja') }}" class="item-menu" title="Loja">
-            <i class="fa-solid fa-store"></i>
-            <span>Loja</span>
-        </a>
-        <a href="/conquistas" class="item-menu" title="Conquistas">
-            <i class="fa-solid fa-trophy"></i>
-            <span>Conquistas</span>
-        </a>
-        <a href="/configuracoes" class="item-menu" title="Configurações">
-            <i class="fa-solid fa-gear"></i>
-            <span>Configurações</span>
-        </a>
-    </div>
 
     <h1 class="titulo-pagina">Escolha seu Mundo</h1>
 
@@ -32,7 +18,7 @@
             </div>
             <h2>Mundo Portugol</h2>
             <p>Domine os conceitos básicos e a lógica de programação usando pseudo-código de forma simples e intuitiva.</p>
-            <a href="/fase/portugol" class="botao-entrar">Entrar</a>
+            <a href="{{url_for('modulo')}}" class="botao-entrar">Entrar</a>
         </div>
 
         <div class="card-mundo mundo-python">

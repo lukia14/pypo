@@ -1,5 +1,5 @@
 from flask import redirect, session, flash, url_for
-from app import app, bd
+from app import app
 from dao.UsuarioDao import UsuarioDao
 from dao.ProgressoDao import ProgressoDao
 from dao.FaseDao import FaseDao

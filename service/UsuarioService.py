@@ -17,7 +17,7 @@ class UsuarioService:
         
         if oUsuarioDao.UsuarioExiste(form):
             flash('Usuario já cadastrado','danger')
-            oUsuarioView.login()
+            oUsuarioView.login(form)
         else:
             oUsuarioDao.criarNovoUsuario(form)
         return oUsuarioView.principal()

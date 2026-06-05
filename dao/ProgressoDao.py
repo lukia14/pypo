@@ -6,7 +6,11 @@ class ProgressoDao:
         pass
 
     def getProgresso(self,idUsuario):
-        return ProgressoModel.query.filter_by(idUsuario=idUsuario).first()
+        progresso = ProgressoModel.query.filter_by(idUsuario=idUsuario).first()
+        if progresso:
+            return progresso
+        else:
+            return None
     
     def setProgresso(self,idUsuario,idFase):
         progresso = ProgressoModel.query.filter_by(idUsuario=idUsuario).first()
