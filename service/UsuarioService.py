@@ -1,5 +1,4 @@
-from flask import render_template,flash, request, redirect, url_for, session,jsonify
-from wtforms import form
+from flask import flash, request, redirect, url_for, session,jsonify
 from helpers import FormularioUsuario,FormularioAlterarSenha
 from views.UsuarioView import UsuarioView
 from dao.UsuarioDao import UsuarioDao
@@ -7,6 +6,15 @@ from dao.ProgressoDao import ProgressoDao
 class UsuarioService:
     def __init__(self):
         pass
+
+    def cadastrar(self):
+        oUsuarioView = UsuarioView()
+        if self.verificarLogin():
+            flash('Você já está logado.', 'danger')
+            return oUsuarioView.index()
+        
+        return  oUsuarioView.cadastrar()
+
     def criarUsuario(self):        
         oUsuarioView = UsuarioView()
         oUsuarioDao = UsuarioDao()
@@ -25,7 +33,7 @@ class UsuarioService:
     def login(self):
         form = FormularioUsuario()
         oUsuarioView = UsuarioView()
-        if 'usuario_logado' in session and session['usuario_logado'] is not None:
+        if self.verificarLogin():
             oUsuarioDao = UsuarioDao()
             usuario = oUsuarioDao.getUsuarioPorId(session['usuario_logado'])
             nome = usuario.nickname if usuario else session['usuario_logado']
@@ -114,11 +122,8 @@ class UsuarioService:
         session['usuario_logado'] = None
         flash('Conta deletada com sucesso!', 'success')
         return redirect(url_for('principal'))
-            
     
-    
-    
-    #Funções de auxilio
+    #funções auxiliares
     def verificarLogin(self):
         if 'usuario_logado' not in session or session['usuario_logado'] is None:
             flash('Faça login para acessar esta página', 'danger')

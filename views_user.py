@@ -6,7 +6,6 @@ def index():
     oUsuarioController = UsuarioController()
     return  oUsuarioController.index()
 
-
 @app.route('/cadastrar')
 def cadastrar():
     oUsuarioController = UsuarioController()
@@ -32,10 +31,6 @@ def autenticar():
 def logout():
     oUsuarioController = UsuarioController()
     return oUsuarioController.logout()
-
-
-
-
 
 @app.route('/alterarSenha', methods=['POST'])
 def alterarSenha():

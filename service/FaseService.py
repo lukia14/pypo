@@ -9,7 +9,7 @@ from views.FaseView import FaseView
 class FaseService:
     def __init__(self):
         pass
-    def fase(self):
+    def fase(self,idFase):
         idUsuario = session['usuario_logado']
         oFaseView = FaseView()
         oProgressoDao = ProgressoDao()
@@ -19,6 +19,9 @@ class FaseService:
             return redirect(url_for('login', proxima=url_for('fase')))
         else:
             progresso = oProgressoDao.getProgresso(idUsuario)
+            if idFase > progresso.idFase:
+                flash(f'Fase ainda não desbloqueada. Fase atual: {progresso.idFase+1}')
+                return redirect(url_for('modulo'))
             fase = oFaseDao.getFase(progresso.idFase)
             lista_exercicios = fase.exercicio
 

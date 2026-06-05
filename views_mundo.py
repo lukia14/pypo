@@ -7,10 +7,10 @@ def modulo():
     oModuloController = ModuloController()
     return oModuloController.modulo()
 
-@app.route('/fase')
-def fase():
+@app.route('/fase/<int:idFase>')
+def fase(idFase):
     oFaseController = FaseController()
-    return oFaseController.fase()
+    return oFaseController.fase(idFase)
 
 @app.route('/conclusaoFase/<int:idFase>/<int:pontuacao>')
 def conclusaoFase(idFase,pontuacao):
@@ -47,3 +47,26 @@ def alterarExercicio():
 def deletarExercicio(idExercicio):
     oExercicioController = ExercicioController()
     return oExercicioController.deletarExercicio(idExercicio)
+
+#Fase
+@app.route('/listarFases')
+def listarFases():
+    from flask import render_template
+    return render_template('listarFases.html')
+#Modulo
+@app.route('/listarModulos')
+def listarModulos():
+    from flask import render_template
+    return render_template('listarModulos.html')
+
+#Mundo
+@app.route('/listarMundos')
+def listarMundos():
+    from flask import render_template
+    return render_template('listarMundos.html')
+
+#Itens
+@app.route('/listarItens')
+def listarItens():
+    from flask import render_template
+    return render_template('listarItens.html')

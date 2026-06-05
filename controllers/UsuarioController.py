@@ -1,4 +1,3 @@
-from flask import flash, redirect, session, url_for
 from service.UsuarioService import UsuarioService
 from views.UsuarioView import UsuarioView
 class UsuarioController:
@@ -11,11 +10,8 @@ class UsuarioController:
         return  oUsuarioView.index()
 
     def cadastrar(self):
-        if 'usuario_logado' in session and session['usuario_logado'] is not None:
-            flash('Você já está logado.', 'danger')
-            return redirect(url_for('index'))   
-        oUsuarioView = UsuarioView()
-        return  oUsuarioView.cadastrar()
+        oUsuarioService = UsuarioService()
+        return  oUsuarioService.cadastrar()
     
     def criar(self):
         oUsuarioService = UsuarioService()

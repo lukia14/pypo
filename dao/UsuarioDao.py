@@ -1,4 +1,4 @@
-from flask import flash, session,request
+from flask import flash, session
 from models.UsuarioModel import UsuarioModel
 from models.ItemModel import ItemModel
 from models.ProgressoModel import ProgressoModel
@@ -58,15 +58,18 @@ class UsuarioDao:
             flash('Usuário não encontrado. Verifique os dados e tente novamente.', 'error')
             return 'login'
 
-    
-
     def alterarPerfil(self,form):
         usuarioAntigo = UsuarioModel.query.filter_by(idUsuario=session['usuario_logado']).first()
+        email = form.email.data
         if usuarioAntigo:
-            usuarioAntigo.email = form.email.data
-            bd.session.commit()
-            flash('Perfil atualizado com sucesso!', 'success')
-            return True
+            if not self.emailExiste(email):
+                usuarioAntigo.email = form.email.data
+                bd.session.commit()
+                flash('Perfil atualizado com sucesso!', 'success')
+                return True
+            else:
+                flash('Email já cadastrado','danger')
+                return False
         else:
             flash('Usuário não encontrado. Verifique os dados e tente novamente.', 'error')
             return False
@@ -104,6 +107,12 @@ class UsuarioDao:
     
     def UsuarioExiste(self,form):
         usuario = UsuarioModel.query.filter_by(nickname=form.nickname.data).first()
+        if usuario:
+            return True
+        return False
+    
+    def emailExiste(self,email):
+        usuario = UsuarioModel.query.filter_by(email=email).first()
         if usuario:
             return True
         return False

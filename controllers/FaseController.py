@@ -4,9 +4,9 @@ class FaseController:
     def __init__(self):
         pass
     
-    def fase(self):
+    def fase(self,idFase):
         oFaseService = FaseService()
-        return oFaseService.fase()
+        return oFaseService.fase(idFase)
     
     def conclusaoFase(self,pontuacao,idFase):
         oFaseView = FaseView()
