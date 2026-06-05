@@ -4,7 +4,7 @@ from models.ItemModel import ItemModel
 from models.ProgressoModel import ProgressoModel
 from models.EstoqueModel import EstoqueModel
 from dao.ProgressoDao import ProgressoDao
-from app import bd
+from database import bd
 
 class UsuarioDao:
     def __init__(self):

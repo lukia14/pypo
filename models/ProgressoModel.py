@@ -1,4 +1,4 @@
-from app import bd
+from database import bd
 class ProgressoModel(bd.Model):
     __tablename__ = 'Progresso'
     idUsuario = bd.Column(bd.Integer, bd.ForeignKey('Usuario.idUsuario'), primary_key=True)

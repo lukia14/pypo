@@ -1,5 +1,5 @@
 from sqlalchemy import func
-from app import  bd
+from database import  bd
 from models.ExercicioModel import ExercicioModel
 class ExercicioDao:
     def __init__(self):

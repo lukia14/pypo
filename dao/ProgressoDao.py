@@ -1,4 +1,4 @@
-from app import bd
+from database import bd
 from models.ProgressoModel import ProgressoModel
 
 class ProgressoDao:

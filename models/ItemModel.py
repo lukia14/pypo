@@ -1,4 +1,4 @@
-from app import bd
+from database import bd
 
 class ItemModel(bd.Model):
    __tablename__ = 'Item'

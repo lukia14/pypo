@@ -1,4 +1,4 @@
-from app import bd
+from database import bd
 from models.FaseModel import FaseModel
 class FaseDao:
     def __init__(self):

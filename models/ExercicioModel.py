@@ -1,4 +1,4 @@
-from app import bd
+from database import bd
 class ExercicioModel(bd.Model):
     __tablename__ = 'Exercicio'
     idExercicio = bd.Column(bd.Integer, primary_key=True, autoincrement=True)

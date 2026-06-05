@@ -1,4 +1,4 @@
-from app import bd
+from database import bd
 class FaseModel(bd.Model):
     __tablename__ = 'Fase'
     idFase = bd.Column(bd.Integer, primary_key=True, autoincrement=True)

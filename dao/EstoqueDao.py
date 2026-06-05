@@ -1,6 +1,6 @@
 from models.EstoqueModel import EstoqueModel
 from models.ItemModel import ItemModel
-from app import bd
+from database import bd
 
 class Estoquedao:
     def __init__(self):

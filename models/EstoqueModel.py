@@ -1,4 +1,4 @@
-from app import bd
+from database import bd
 class EstoqueModel(bd.Model):
     __tablename__ = 'Estoque'
     qtd = bd.Column(bd.Integer, nullable=False)
