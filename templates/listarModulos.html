@@ -17,7 +17,7 @@
             <a href="{{ url_for('index') }}" class="btn-voltar">
                 <i class="fa-solid fa-house"></i> Voltar 
             </a>
-            <a href="{{ url_for('cadastrarExercicio') }}" class="btn-novo-exercicio">
+            <a href="{{ url_for('cadastrarModulo') }}" class="btn-novo-exercicio">
                 <i class="fa-solid fa-plus"></i> Novo Módulo
             </a>
         </div>
@@ -67,11 +67,11 @@
                     
                     <td data-label="Ações" style="text-align: center;">
                         <div class="grupo-acoes">
-                            <a href="{{ url_for('editarExercicio', idExercicio=exercicio.idExercicio) }}" class="btn-acao btn-alterar" title="Alterar Exercício">
+                            <a href="{{ url_for('editarModulo', idModulo=modulo.idModulo) }}" class="btn-acao btn-alterar" title="Alterar Módulo">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </a>
                             
-                            <a href="{{ url_for('deletarExercicio', idExercicio=exercicio.idExercicio) }}" class="btn-acao btn-apagar" title="Apagar Exercício" onclick="return confirm('Tem certeza que deseja apagar o exercício: {{ exercicio.titulo }}?')">
+                            <a href="{{ url_for('deletarModulo', idModulo=modulo.idModulo) }}" class="btn-acao btn-apagar" title="Apagar Módulo" onclick="return confirm('Tem certeza que deseja apagar o módulo: {{ modulo.nome }}?')">
                                 <i class="fa-solid fa-trash-can"></i>
                             </a>
                         </div>

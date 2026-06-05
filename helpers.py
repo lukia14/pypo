@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, validators, IntegerField
-from wtforms.validators import DataRequired, Length
+from wtforms.validators import DataRequired, Length, NumberRange
 
 class FormularioUsuario(FlaskForm):
     nickname = StringField("Nickname", validators=[DataRequired(), Length(min=1, max=20)])
@@ -27,15 +27,30 @@ class FormularioExercicio(FlaskForm):
     
     enviar = SubmitField("Criar Exercício")
 
-#     class Item(bd.Model):
-#    idItem = bd.Column(bd.Integer, primary_key=True, autoincrement=True)
-#    nome = bd.Column(bd.String(25), nullable=False)
-#    valor = bd.Column(bd.Integer, nullable=False)
+class FormularioFase(FlaskForm):
+    idFase = IntegerField("Id da Fase",validators=[DataRequired()])
+    materialApoio = StringField("Material de apoio",validators=[DataRequired()])
+    idModulo = StringField("Id do módulo",validators=[DataRequired()])
+    enviar = SubmitField("Enviar")
+
 
 class FormularioItem(FlaskForm):
     idItem = IntegerField("Id do Item", validators= [DataRequired()])
     nome = StringField("Nome do Item", validators=[DataRequired(), Length(min=1, max = 30)])
-    valor = IntegerField("Valor do Item", validators=[DataRequired(), Length(min=1, max = 5)])
+    descricao = StringField("Descrição", validators=[DataRequired(), Length(min=1, max=99)])
+    valor = IntegerField("Valor do Item", validators=[DataRequired()])
 
     enviar = SubmitField("Criar Item")
+
+class FormularioModulo(FlaskForm):
+    idModulo = IntegerField("Id do Módulo", validators=[DataRequired()])
+    numero = IntegerField("Número do Módulo", validators=[DataRequired()])
+    nome = StringField("Nome", validators=[DataRequired(), Length(min=1, max=35)])
+    idMundo = IntegerField("Id do Mundo", validators=[DataRequired()])
+    enviar = SubmitField("Criar Módulo")
+
+class FormularioMundo(FlaskForm):
+    idMundo = IntegerField("Id do Mundo", validators=[DataRequired()])
+    linguagem = StringField("Linguagem", validators=[DataRequired(), Length(min=1, max=20)])
+    enviar = SubmitField("Criar Mundo")
 

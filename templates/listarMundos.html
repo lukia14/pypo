@@ -17,7 +17,7 @@
             <a href="{{ url_for('index') }}" class="btn-voltar">
                 <i class="fa-solid fa-house"></i> Voltar 
             </a>
-            <a href="{{ url_for('cadastrarExercicio') }}" class="btn-novo-exercicio">
+            <a href="{{ url_for('cadastrarMundo') }}" class="btn-novo-exercicio">
                 <i class="fa-solid fa-plus"></i> Novo Mundo
             </a>
         </div>
@@ -52,8 +52,8 @@
             <tbody>
                 {% for mundo in listaMundos %}
                 <tr>
-                    <td data-label="Fase/Nº">
-                        <span class="badge-fase">{{mudo.idMundo}}</span>
+                    <td data-label="Id/Mundo">
+                        <span class="badge-fase">{{ mundo.idMundo }}</span>
                     </td>
                     
                     <td data-label="linguagem" class="col-titulo">
@@ -62,11 +62,11 @@
                     
                     <td data-label="Ações" style="text-align: center;">
                         <div class="grupo-acoes">
-                            <a href="{{ url_for('editarExercicio', idExercicio=exercicio.idExercicio) }}" class="btn-acao btn-alterar" title="Alterar Exercício">
+                            <a href="{{ url_for('editarMundo', idMundo=mundo.idMundo) }}" class="btn-acao btn-alterar" title="Alterar Mundo">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </a>
                             
-                            <a href="{{ url_for('deletarExercicio', idExercicio=exercicio.idExercicio) }}" class="btn-acao btn-apagar" title="Apagar Exercício" onclick="return confirm('Tem certeza que deseja apagar o exercício: {{ exercicio.titulo }}?')">
+                            <a href="{{ url_for('deletarMundo', idMundo=mundo.idMundo) }}" class="btn-acao btn-apagar" title="Apagar Mundo" onclick="return confirm('Tem certeza que deseja apagar o mundo: {{ mundo.linguagem }}?')">
                                 <i class="fa-solid fa-trash-can"></i>
                             </a>
                         </div>

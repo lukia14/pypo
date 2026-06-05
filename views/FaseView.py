@@ -9,3 +9,12 @@ class FaseView:
     
     def conclusaoFase(self, pontuacao, idFase):
         return render_template('conclusaoFase.html', idFase=idFase, pontuacao=pontuacao)
+    
+    def listarFases(self,listaFases):
+        return render_template('listarFases.html',listaFases=listaFases)
+    
+    def cadastrarFase(self, form, aoEnviar='criarFase'):
+        return render_template('formularioFase.html', form=form, titulo='Criar Fase', aoEnviar=aoEnviar)
+
+    def editarFase(self, form):
+        return render_template('formularioFase.html', form=form, titulo='Editar Fase', aoEnviar='alterarFase')

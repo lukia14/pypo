@@ -17,7 +17,7 @@
             <a href="{{ url_for('index') }}" class="btn-voltar">
                 <i class="fa-solid fa-house"></i> Voltar 
             </a>
-            <a href="{{ url_for('cadastrarExercicio') }}" class="btn-novo-exercicio">
+            <a href="{{ url_for('cadastrarFase') }}" class="btn-novo-exercicio">
                 <i class="fa-solid fa-plus"></i> Nova Fase
             </a>
         </div>
@@ -56,17 +56,17 @@
                         <span class="badge-fase">M{{ fase.idModulo }} - F{{ fase.idFase }}</span>
                     </td>
                     
-                    <td data-label="Título" class="col-titulo">
-                        <strong>{{ exercicio.materialApoio }}</strong>
+                    <td data-label="materialApoio" class="col-titulo">
+                        <strong>{{ fase.materialApoio }}</strong>
                     </td>
                     
                     <td data-label="Ações" style="text-align: center;">
                         <div class="grupo-acoes">
-                            <a href="{{ url_for('editarExercicio', idExercicio=exercicio.idExercicio) }}" class="btn-acao btn-alterar" title="Alterar Exercício">
+                            <a href="{{ url_for('editarFase', idFase=fase.idFase) }}" class="btn-acao btn-alterar" title="Alterar Fase">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </a>
                             
-                            <a href="{{ url_for('deletarExercicio', idExercicio=exercicio.idExercicio) }}" class="btn-acao btn-apagar" title="Apagar Exercício" onclick="return confirm('Tem certeza que deseja apagar o exercício: {{ exercicio.titulo }}?')">
+                            <a href="{{ url_for('deletarFase', idFase=fase.idFase) }}" class="btn-acao btn-apagar" title="Apagar Fase" onclick="return confirm('Tem certeza que deseja apagar a fase: {{ fase.materialApoio }}?')">
                                 <i class="fa-solid fa-trash-can"></i>
                             </a>
                         </div>
