@@ -8,6 +8,10 @@ class FaseController:
         oFaseService = FaseService()
         return oFaseService.fase(idFase)
     
+    def material(self,idFase):
+        oFaseService = FaseService()
+        return oFaseService.material(idFase)
+    
     def conclusaoFase(self,pontuacao,idFase):
         oFaseView = FaseView()
         return oFaseView.conclusaoFase(pontuacao,idFase)

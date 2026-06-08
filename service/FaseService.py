@@ -27,6 +27,24 @@ class FaseService:
 
             lista_dicionarios = self.criar_lista_exercicios_dict(lista_exercicios)# Converte a lista de exercícios em uma lista de dicionários
             return oFaseView.fase(idUsuario,lista_dicionarios, fase.idFase)
+        
+    def material(self,idFase):
+        idUsuario = session['usuario_logado']
+        oFaseView = FaseView()
+        oProgressoDao = ProgressoDao()
+        oFaseDao = FaseDao()
+        if not self.verificarLogin():
+            flash('Você precisa estar logado para acessar essa página.', 'error')
+            return redirect(url_for('login', proxima=url_for('fase')))
+        else:
+            progresso = oProgressoDao.getProgresso(idUsuario)
+            if idFase > progresso.idFase:
+                flash(f'Fase ainda não desbloqueada. Fase atual: {progresso.idFase+1}')
+                return redirect(url_for('modulo'))
+            fase = oFaseDao.getFase(progresso.idFase)
+            print('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+            print(fase)
+            return oFaseView.material(fase)
             
         
     #funções auxiliares

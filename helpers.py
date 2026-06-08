@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, validators, IntegerField
+from wtforms import StringField, PasswordField, SubmitField, validators, IntegerField,TextAreaField
 from wtforms.validators import DataRequired, Length, NumberRange
 
 class FormularioUsuario(FlaskForm):
@@ -18,18 +18,19 @@ class FormularioExercicio(FlaskForm):
     numero = IntegerField("Número do Exercício", validators=[DataRequired()])
     idFase = IntegerField("Id da Fase", validators=[DataRequired()])
     titulo = StringField("Título", validators=[DataRequired(), Length(min=1, max=35)])
-    enunciado = StringField("Enunciado", validators=[DataRequired(), Length(min=1, max=99)])
+    enunciado = StringField("Enunciado", validators=[DataRequired()])
     alternativaA = StringField("Alternativa A", validators=[DataRequired(), Length(min=1, max=99)])
     alternativaB = StringField("Alternatica B", validators=[DataRequired(), Length(min = 1, max=99)])
     alternativaC = StringField("Alternativa C", validators=[DataRequired(),Length(min=1, max=99)])
     alternativaD = StringField("ALternativa D", validators=[DataRequired(), Length(min=1, max=99)])
-    resposta = StringField("Alternativa da Resposta",validators=[DataRequired(),Length(min=1, max=1)])
+    resposta = StringField("Alternativa da Resposta",validators=[DataRequired()])
     
     enviar = SubmitField("Criar Exercício")
 
 class FormularioFase(FlaskForm):
     idFase = IntegerField("Id da Fase",validators=[DataRequired()])
-    materialApoio = StringField("Material de apoio",validators=[DataRequired()])
+    titulo= StringField("Titulo da Fase",validators=[DataRequired()])
+    materialApoio = TextAreaField("Material de apoio",validators=[DataRequired()])
     idModulo = StringField("Id do módulo",validators=[DataRequired()])
     enviar = SubmitField("Enviar")
 

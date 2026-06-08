@@ -4,7 +4,7 @@ class FaseDao:
     def __init__(self):
         pass
     def criarNovaFase(self, form):
-        fase = FaseModel(idFase=form.idFase.data, materialApoio=form.materialApoio.data, idModulo=form.idModulo.data)
+        fase = FaseModel(idFase=form.idFase.data, materialApoio=form.materialApoio.data, idModulo=form.idModulo.data, titulo = form.titulo.data)
         bd.session.add(fase)
         bd.session.commit()
 
@@ -30,6 +30,7 @@ class FaseDao:
         if fase_antiga:
             fase_antiga.materialApoio = fase_nova.materialApoio
             fase_antiga.idModulo = fase_nova.idModulo
+            fase_antiga.titulo = fase_nova.titulo
             bd.session.commit()
 
     def maiorIdFase(self):

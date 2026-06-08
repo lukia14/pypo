@@ -22,10 +22,10 @@
     <main class="content">
         <div class="path-container">
         {% for fase in listaFases %}
-            <a href="{{url_for('fase', idFase=fase.idFase) }}" class="phase">
+            <a href="{{url_for('material', idFase=fase.idFase) }}" class="phase">
                 <div class="bubble">{{ loop.index }}</div>
                 
-                <span class="phase-tooltip">Fase {{ loop.index }}: {{ fase.materialApoio }}</span>
+                <span class="phase-tooltip">Fase {{ loop.index }}: {{ fase.titulo }}</span>
             </a>
         {% endfor %}
         </div>

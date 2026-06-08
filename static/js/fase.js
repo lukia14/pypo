@@ -13,7 +13,6 @@ var sequenciaAcerto = 0;
 
 var listaExercicios = JSON.parse(document.getElementById("listaExercicios").value);
 var numeroExercicio = 1;
-console.log(listaExercicios[0].enunciado)
 console.log(listaExercicios)
 carregarExercicio(1)
 
@@ -47,8 +46,15 @@ alternativas.forEach((botao) => {//percorre cada botão
     )} 
         else {
             botao.classList.add("erro");//adiciona a classe errado
-            pontuacao -= 25
+            if (pontuacao <= 25){
+                pontuacao = 0
+            }
+            else{
+                pontuacao -= 25
+            }
+            
             sequenciaAcerto = 0
+            pontuacaoHTML.innerHTML = `Pontos: ${pontuacao}`;
         }
     })
 })

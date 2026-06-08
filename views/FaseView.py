@@ -7,6 +7,9 @@ class FaseView:
     def fase(self, usuario, lista_dicionarios, idFase):
         return render_template('fase.html', titulo='Fase 1', usuario=usuario, lista_exercicios=lista_dicionarios, idFase=idFase)
     
+    def material(self,fase):
+        return render_template('material.html',fase=fase)
+
     def conclusaoFase(self, pontuacao, idFase):
         return render_template('conclusaoFase.html', idFase=idFase, pontuacao=pontuacao)
     

@@ -23,8 +23,6 @@ class ModuloService:
         idModulo = oFaseDao.getFase(idFase).idModulo
         listaFases = oModuloDao.getModulo(idModulo).fase
         if listaFases:
-            print('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
-            print(listaFases)
             return oModuloView.modulo(listaFases)
         else:
             flash('Módulo não encontrado','danger')
