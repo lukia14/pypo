@@ -12,7 +12,7 @@ def modulo():
 @app.route('/fase/<int:idFase>')
 def fase(idFase):
     oFaseController = FaseController()
-    return oFaseController.fase()
+    return oFaseController.fase(idFase)
 
 @app.route('/material/<int:idFase>')
 def material(idFase):

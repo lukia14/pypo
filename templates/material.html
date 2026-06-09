@@ -61,7 +61,7 @@
                         <h4>{{exercicio.titulo}}</h4>
                         <p class="exercicio-descricao">{{exercicio.enunciado}}</p>
                     </div>
-                    <a href="/" class="btn-resolver">
+                    <a href="{{ url_for('fase', idFase=fase.idFase) }}" class="btn-resolver">
                         <i class="fa-solid fa-play"></i> Resolver no Sandbox
                     </a>
                 </div>

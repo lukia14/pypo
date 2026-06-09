@@ -156,3 +156,24 @@ finalizar.addEventListener("click", async function() {
 */
 
 }
+// Garantir que o script rode apenas após o HTML carregar completamente
+window.addEventListener("load", function () {
+    const btnMochila = document.getElementById("btn-mochila");
+    const navMochila = document.getElementById("mochila-lateral");
+    const fecharMochila = document.getElementById("fechar-mochila");
+
+    // Só adiciona o evento de clique se os elementos realmente existirem na página atual
+    if (btnMochila && navMochila) {
+        btnMochila.addEventListener("click", function (e) {
+            e.preventDefault(); // Evita qualquer comportamento padrão do navegador
+            navMochila.classList.add("aberta");
+        });
+    }
+
+    if (fecharMochila && navMochila) {
+        fecharMochila.addEventListener("click", function (e) {
+            e.preventDefault();
+            navMochila.classList.remove("aberta");
+        });
+    }
+});
