@@ -9,10 +9,14 @@
 </head>
 <body>
 
+<a href="{{ url_for('modulo') }}" class="btn-voltar">
+    <i class="fa-solid fa-chevron-left"></i> Voltar
+</a>
+
 <div class="container">
     <div class="header">
         <h1 class="titulo"><i class="fa-solid fa-book-bookmark"></i> Trilhas de Aprendizado</h1>
-        <p class="subtitulo">Acesse conteúdos, assista às aulas eifique direto no Sandbox</p>
+        <p class="subtitulo">Acesse conteúdos, assista às aulas e pratique direto no Sandbox</p>
     </div>
 
     <div class="abas-container">
@@ -22,13 +26,13 @@
         <input type="radio" id="tab3" name="navegador">
 
         <div class="barra-navegador">
-            <label for="tab1" class="aba-label">
+            <label for="tab1" class="aba-label" id="label-tab1">
                 <i class="fa-solid fa-file-lines"></i> Conteúdo Escrito
             </label>
-            <label for="tab2" class="aba-label">
+            <label for="tab2" class="aba-label" id="label-tab2">
                 <i class="fa-solid fa-video"></i> Videoaulas
             </label>
-            <label for="tab3" class="aba-label">
+            <label for="tab3" class="aba-label" id="label-tab3">
                 <i class="fa-solid fa-code"></i> Praticar Exercícios
             </label>
         </div>
@@ -43,7 +47,7 @@
             <div class="video-grid">
                 <div class="video-card">
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/5qap5aO4i9A" allowfullscreen></iframe>
                     </div>
                     <div class="video-info">
                         <h4>Aula 1: Configurando o Ambiente e Primeiro Print</h4>
@@ -55,18 +59,14 @@
 
         <div id="conteudo-exercicios" class="painel-conteudo">
             <div class="lista-exercicios">
-                {%for exercicio in fase.exercicio%}
                 <div class="exercicio-item">
                     <div class="exercicio-info">
-                        <h4>{{exercicio.titulo}}</h4>
-                        <p class="exercicio-descricao">{{exercicio.enunciado}}</p>
+                        <h4>Exercícios</h4>
                     </div>
                     <a href="{{ url_for('fase', idFase=fase.idFase) }}" class="btn-resolver">
-                        <i class="fa-solid fa-play"></i> Resolver no Sandbox
+                        <i class="fa-solid fa-play"></i> Resolver
                     </a>
                 </div>
-                {%endfor%}
-
             </div>
         </div>
 

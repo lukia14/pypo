@@ -22,7 +22,7 @@ class FaseService:
             if idFase > progresso.idFase:
                 flash(f'Fase ainda não desbloqueada. Fase atual: {progresso.idFase+1}')
                 return redirect(url_for('modulo'))
-            fase = oFaseDao.getFase(progresso.idFase)
+            fase = oFaseDao.getFase(idFase)
             lista_exercicios = fase.exercicio
 
             lista_dicionarios = self.criar_lista_exercicios_dict(lista_exercicios)# Converte a lista de exercícios em uma lista de dicionários
@@ -41,9 +41,7 @@ class FaseService:
             if idFase > progresso.idFase:
                 flash(f'Fase ainda não desbloqueada. Fase atual: {progresso.idFase+1}')
                 return redirect(url_for('modulo'))
-            fase = oFaseDao.getFase(progresso.idFase)
-            print('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
-            print(fase)
+            fase = oFaseDao.getFase(idFase)
             return oFaseView.material(fase)
             
         

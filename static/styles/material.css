@@ -226,3 +226,40 @@ input[type="radio"] {
     background-color: #1c873f;
     transform: translateY(-1px);
 }
+/* --- BOTÃO VOLTAR --- */
+.btn-voltar {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    background-color: rgba(13, 31, 61, 0.6);
+    border: 1px solid rgba(56, 182, 255, 0.3);
+    color: #38b6ff;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+}
+
+.btn-voltar:hover {
+    background-color: #38b6ff;
+    color: #091220;
+    box-shadow: 0 0 15px rgba(56, 182, 255, 0.4);
+    transform: translateX(-2px);
+}
+
+/* Responsividade para telas menores não esmagarem o botão */
+@media (max-width: 1100px) {
+    .btn-voltar {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-left: 20px;
+        margin-bottom: 20px;
+    }
+}
